@@ -9,7 +9,6 @@ public class Cliente {
 	
 	//construtor
 	public Cliente(String nome, String cpf, String dataNascimento, int idade, String endereco) {
-		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.dataNascimento = dataNascimento;
@@ -18,7 +17,7 @@ public class Cliente {
 	}
 	
 	public boolean validarCPF(String cpf) {
-		/*Recebe uma string e verifica se ela corresponde a um cpf
+		/*Recebe uma string e verifica se ela corresponde a um cpf.
 		 * Entrada: String cpf (cpf a ser validado)
 		 * Saida: valor booleano (true se o cpf for valido, false se nao for) */
 		
@@ -42,38 +41,38 @@ public class Cliente {
 		//calculando o primeiro digito verificador:
 		soma = 0;
 		peso = 10;
-        for (i=0; i<9; i++) {
-        	num = (int)(cpf.charAt(i) - 48);
-	        soma = soma + (num * peso);
-	        peso--;
-        }
+		for (i=0; i<9; i++) {
+			num = (int)(cpf.charAt(i) - 48);
+			soma = soma + (num * peso);
+			peso--;
+		}
 
-        r = 11 - (soma % 11);
-        if ((r == 10) || (r == 11))
-            digito10 = '0';
-        else digito10 = (char)(r + 48);
-        
-        //calculando o segundo digito verificador:
-        soma = 0;
+		r = 11 - (soma % 11);
+		if ((r == 10) || (r == 11))
+			digito10 = '0';
+		else digito10 = (char)(r + 48);
+	        
+		//calculando o segundo digito verificador:
+		soma = 0;
 		peso = 11;
-        for (i=0; i<10; i++) {
-        	num = (int)(cpf.charAt(i) - 48);
-	        soma = soma + (num * peso);
-	        peso--;
-        }
+		for (i=0; i<10; i++) {
+			num = (int)(cpf.charAt(i) - 48);
+			soma = soma + (num * peso);
+			peso--;
+		}
 
-        r = 11 - (soma % 11);
-        if ((r == 10) || (r == 11))
-            digito11 = '0';
-        else digito11 = (char)(r + 48);
+		r = 11 - (soma % 11);
+		if ((r == 10) || (r == 11))
+			digito11 = '0';
+		else digito11 = (char)(r + 48);
         
-        //verificando se os digitos calculados correspondem aos do cpf:
-        if ((digito10 == cpf.charAt(9)) && (digito11 == cpf.charAt(10))) {
-        	return(true);
-        }
-        else {
-        	return(false);
-        }
+		//verificando se os digitos calculados correspondem aos do cpf:
+		if ((digito10 == cpf.charAt(9)) && (digito11 == cpf.charAt(10))) {
+			return(true);
+		}
+		else {
+			return(false);
+		}
 
        
 	}

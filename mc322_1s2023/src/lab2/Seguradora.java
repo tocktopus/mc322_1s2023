@@ -7,7 +7,7 @@ public class Seguradora {
 	private String endereco;
 
 	//construtor
-	public Seguradora ( String nome , String telefone , String email , String endereco ) {
+	public Seguradora (String nome, String telefone, String email, String endereco) {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
