@@ -1,4 +1,4 @@
-package lab2;
+package lab02;
 
 public class Seguradora {
 	private String nome;

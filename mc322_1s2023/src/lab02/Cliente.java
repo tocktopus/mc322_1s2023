@@ -1,4 +1,4 @@
-package lab2;
+package lab02;
 
 public class Cliente {
 	private String nome;
@@ -16,6 +16,12 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 	
+	public String toString(){
+		String dados;
+		dados = "Nome: "+this.nome+"\nCPF: "+this.cpf+"\nData de nascimento: "+this.dataNascimento+"\nIdade: "+this.idade+"\nEndereco: "+this.endereco;
+		return dados;
+	}
+
 	public boolean validarCPF(String cpf) {
 		/*Recebe uma string e verifica se ela corresponde a um cpf.
 		 * Entrada: String cpf (cpf a ser validado)
