@@ -15,8 +15,8 @@ public class Cliente {
 	}
 	
 	public String toString(){
-		String dados;
-		dados = "Nome: "+this.nome+"\nCPF: "+this.cpf+"\nData de nascimento: "+this.dataNascimento+"\nIdade: "+this.idade+"\nEndereco: "+this.endereco;
+		String dados = "";
+		dados += "Nome: "+this.nome+"\nCPF: "+this.cpf+"\nData de nascimento: "+this.dataNascimento+"\nIdade: "+this.idade+"\nEndereco: "+this.endereco;
 		return dados;
 	}
 
