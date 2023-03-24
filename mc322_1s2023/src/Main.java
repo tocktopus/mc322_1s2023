@@ -5,8 +5,9 @@ public class Main {
 		//Abaixo, seguem as instanciacoes dos objetos e demonstracao das funcionalidades
 
 
-		System.out.println("Classe Veiculo:\n");  //instanciando objetos da classe Veiculo
-		Veiculo v1 = new Veiculo("ABC3040", "Chevrolet", "Onix");
+		//instanciando e testando objetos da classe Veiculo
+		System.out.println("Classe Veiculo:\n");  
+		Veiculo v1 = new Veiculo("ABC3040", "Chevrolet", "Onix");  
 		Veiculo v2 = new Veiculo("DEF000", "Fiat", "Uno");
 		
 		v1.setModelo("Prisma"); 	//testando setters
@@ -17,8 +18,9 @@ public class Main {
 		System.out.println("\nDados do veiculo de placa "+v2.getPlaca()+"\nMarca: "
 				+v2.getMarca()+"\nModelo: "+v2.getModelo());
 		
-		
-		System.out.println("\nClasse Cliente:");  //instanciando objetos da classe Cliente
+
+		//instanciando e testando objetos da classe Cliente
+		System.out.println("\nClasse Cliente:");  
 		Cliente c1 = new Cliente("Joao", "571.098.530-98", "20/01/1990", 33, "Rua A nº 75");	 //cliente com cpf valido
 		Cliente c2 = new Cliente("Ana", "123.456.789-10", "13/08/1974", 48, "Rua C nº 500");	 //cliente com cpf invalido
 		
@@ -29,7 +31,8 @@ public class Main {
 		System.out.println("O do cpf do(a) cliente "+c2.getNome()+ " e valido? Resposta: "+c2.validarCPF(c2.getCpf()));
 		
 		
-		System.out.println("\nClasse Seguradora:");  //instanciando objeto da classe Seguradora
+		//instanciando e testando objeto da classe Seguradora
+		System.out.println("\nClasse Seguradora:");  
 		Seguradora seg = new Seguradora("Hello World Seguros", "4002-8922", "hwseguros@gmail.com", "Rua B nº 30");
 		
 		seg.setEmail("hw_seguros@gmail.com");  //testando setters
@@ -39,7 +42,8 @@ public class Main {
 				"\nEmail: "+seg.getEmail()+"\nEndereco: "+seg.getEndereco());
 		
 		
-		System.out.println("\nClasse Sinistro:"); 	//instanciando objetos da classe Sinistro
+		//instanciando e testando objetos da classe Sinistro
+		System.out.println("\nClasse Sinistro:"); 	
 		Sinistro s1 = new Sinistro("28/02/2016", "Rua Pinguim nº 12");
 		Sinistro s2 = new Sinistro("23/03/2019", "Rua Pato nº 700");
 		Sinistro s3 = new Sinistro("12/08/2022", "Rua A nº 75");
