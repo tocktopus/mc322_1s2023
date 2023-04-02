@@ -1,5 +1,14 @@
+/*
+ * Cliente.java
+ * 
+ * Ultima modificacao: 02/04/2023
+ * 
+ * Material usado na disciplina MC322
+ * 
+ */
+
 import java.util.Date;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Cliente {
     protected String nome;
@@ -8,11 +17,11 @@ public class Cliente {
 	protected String educacao;
 	protected String genero;
 	protected String classeEconomica;
-	protected List<Veiculo> listaVeiculos;
+	protected ArrayList<Veiculo> listaVeiculos;
 	
 	//construtor
 	public Cliente(String nome, String endereco, Date dataLicenca, String educacao, String genero,
-			String classeEconomica, List<Veiculo> listaVeiculos) {
+			String classeEconomica, ArrayList<Veiculo> listaVeiculos) {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.dataLicenca = dataLicenca;
@@ -26,12 +35,11 @@ public class Cliente {
 	public String toString(){
 		String dados = "";
 		dados += "Nome: "+this.nome+"\nEndereco: "+this.endereco+"\nData Licenca: "+this.dataLicenca+"\nEducacao: "+this.educacao+
-		"\nGenero: "+this.genero+"\nClasse Economica: "+this.classeEconomica;
-		
-		//aqui vamos adicionar a lista de veiculos na string dados mais tarde
+		"\nGenero: "+this.genero+"\nClasse Economica: "+this.classeEconomica+"\nLista Veiculos:\n"+this.listaVeiculos;
 
 		return dados;
 	}
+    
 
 
 	//getters e setters:
@@ -95,12 +103,12 @@ public class Cliente {
 	}
 
 
-	public List<Veiculo> getListaVeiculos() {
+	public ArrayList<Veiculo> getListaVeiculos() {
 		return listaVeiculos;
 	}
 
 
-	public void setListaVeiculos(List<Veiculo> listaVeiculos) {
+	public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
 		this.listaVeiculos = listaVeiculos;
 	}
 }

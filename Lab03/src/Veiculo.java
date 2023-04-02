@@ -1,3 +1,12 @@
+/*
+ * Veiculo.java
+ * 
+ * Ultima modificacao: 02/04/2023
+ * 
+ * Material usado na disciplina MC322
+ * 
+ */
+
 public class Veiculo {
     private String placa;
 	private String marca;

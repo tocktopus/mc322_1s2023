@@ -1,5 +1,15 @@
+/*
+ * ClientePF.java
+ * 
+ * Ultima modificacao: 02/04/2023
+ * 
+ * Material usado na disciplina MC322
+ * 
+ * TO-DO: deixar cpf como final
+ */
+
 import java.util.Date;
-import java.util.List;
+import java.util.ArrayList;
 
 public class ClientePF extends Cliente{
     private String cpf;
@@ -7,7 +17,7 @@ public class ClientePF extends Cliente{
 
     //construtor
     public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, String genero,
-            String classeEconomica, List<Veiculo> listaVeiculos, String cpf, Date dataNascimento) {
+            String classeEconomica, ArrayList<Veiculo> listaVeiculos, String cpf, Date dataNascimento) {
         //chama o construtor da superclasse
         super(nome, endereco, dataLicenca, educacao, genero, classeEconomica, listaVeiculos);
         this.cpf = cpf;
@@ -18,9 +28,8 @@ public class ClientePF extends Cliente{
     public String toString(){
         String dados = "";
 		dados += "Nome: "+this.nome+"\nEndereco: "+this.endereco+"\nData Licenca: "+this.dataLicenca+"\nEducacao: "+this.educacao+
-		"\nGenero: "+this.genero+"\nClasse Economica: "+this.classeEconomica+"CPF: "+ this.cpf+"Data nascimento: "+this.dataNascimento;
-		
-		//aqui vamos adicionar a lista de veiculos na string dados mais tarde
+		"\nGenero: "+this.genero+"\nClasse Economica: "+this.classeEconomica+"\nCPF: "+ this.cpf+"\nData nascimento: "+this.dataNascimento+
+        "\nLista Veiculos:\n"+this.listaVeiculos;
 
 		return dados;
     }
