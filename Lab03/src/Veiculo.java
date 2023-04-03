@@ -23,7 +23,7 @@ public class Veiculo {
 
 	public String toString(){
 		String dados = "";
-		dados += "Placa: "+this.placa+"\nMarca: "+this.marca+"\nModelo "+this.modelo+"\nAno de fabricacao: "+this.anoFabricacao;
+		dados += "Placa: "+this.placa+"\nMarca: "+this.marca+"\nModelo: "+this.modelo+"\nAno de fabricacao: "+this.anoFabricacao;
 		return dados;
 	}
 

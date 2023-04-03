@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args){
         //TO-DO: deixar main nos conformes das instrucoes, por enquanto estamos usando apenas para testes rapidos
-        
+
         ClientePJ c = new ClientePJ(null, null, null, null, null, null, null, null, null);
         if(c.validarCNPJ("19733821000165")){
             System.out.println("valido");
@@ -23,6 +23,10 @@ public class Main {
         c.listaVeiculos.add(2, v3);
         //System.out.println(c.getListaVeiculos());
         
-        System.out.println(c);
+        //System.out.println(c);
+
+        Sinistro s = new Sinistro("30/06/2020", null, null, v3, c);
+
+        System.out.println(s);
     }
 }
