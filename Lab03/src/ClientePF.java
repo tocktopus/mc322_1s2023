@@ -1,7 +1,7 @@
 /*
  * ClientePF.java
  * 
- * Ultima modificacao: 02/04/2023
+ * Ultima modificacao: 03/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -9,17 +9,19 @@
  */
 
 import java.util.Date;
-import java.util.ArrayList;
 
 public class ClientePF extends Cliente{
     private String cpf;
     private Date dataNascimento;
 
-    //construtor
+    //construtores
+    public ClientePF(){
+    }
+
     public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, String genero,
-            String classeEconomica, ArrayList<Veiculo> listaVeiculos, String cpf, Date dataNascimento) {
+            String classeEconomica, String cpf, Date dataNascimento) {
         //chama o construtor da superclasse
-        super(nome, endereco, dataLicenca, educacao, genero, classeEconomica, listaVeiculos);
+        super(nome, endereco, dataLicenca, educacao, genero, classeEconomica);
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
     }

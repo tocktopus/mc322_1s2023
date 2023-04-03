@@ -1,7 +1,7 @@
 /*
  * ClientePJ.java
  * 
- * Ultima modificacao: 02/04/2023
+ * Ultima modificacao: 03/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -9,17 +9,19 @@
  */
 
 import java.util.Date;
-import java.util.ArrayList;
 
 public class ClientePJ extends Cliente{
     private String cnpj;
     private Date dataFundacao;
 
-    //construtor
+    //construtores
+    public ClientePJ(){
+    }
+
     public ClientePJ(String nome, String endereco, Date dataLicenca, String educacao, String genero,
-            String classeEconomica, ArrayList<Veiculo> listaVeiculos, String cnpj, Date dataFundacao) {
+            String classeEconomica, String cnpj, Date dataFundacao) {
         //chama o construtor da superclasse
-        super(nome, endereco, dataLicenca, educacao, genero, classeEconomica, listaVeiculos);
+        super(nome, endereco, dataLicenca, educacao, genero, classeEconomica);
         this.cnpj = cnpj;
         this.dataFundacao = dataFundacao;
     }

@@ -1,7 +1,7 @@
 /*
  * Sinistro.java
  * 
- * Ultima modificacao: 02/04/2023
+ * Ultima modificacao: 03/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -16,7 +16,12 @@ public class Sinistro {
     private Cliente cliente;
 	private static int numSinistros = 0; //conta quantos objetos da classe Sinistro ja foram criados, e eh usada para atribuir os ids
 	
-	//construtor
+	//construtores
+    public Sinistro() {
+        numSinistros++;
+		this.id = numSinistros;
+    }
+
 	public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
 		this.data = data;
 		this.endereco = endereco;
@@ -27,14 +32,12 @@ public class Sinistro {
 		this.id = numSinistros;
 	}
 
-
     public String toString() {
         String dados = "";
         dados += "ID:" + id + "\nData: " + data + "\nEndereco: " + endereco + "\nSeguradora: " + seguradora
                 + "\nVeiculo:\n" + veiculo + "\nCliente:\n" + cliente;
         return dados;
     }
-
 
 
     //getters e setters

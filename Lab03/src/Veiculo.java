@@ -1,7 +1,7 @@
 /*
  * Veiculo.java
  * 
- * Ultima modificacao: 02/04/2023
+ * Ultima modificacao: 03/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -13,7 +13,10 @@ public class Veiculo {
 	private String modelo;
 	private int anoFabricacao;
 
-	//construtor
+	//construtores
+    public Veiculo(){
+    }
+
 	public Veiculo(String placa, String marca, String modelo, int anoFabricacao){
 		this.placa = placa;
 		this.marca = marca;

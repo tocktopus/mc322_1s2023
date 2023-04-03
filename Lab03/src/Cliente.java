@@ -1,7 +1,7 @@
 /*
  * Cliente.java
  * 
- * Ultima modificacao: 02/04/2023
+ * Ultima modificacao: 03/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -19,16 +19,19 @@ public class Cliente {
 	protected String classeEconomica;
 	protected ArrayList<Veiculo> listaVeiculos;
 	
-	//construtor
+	//construtores
+    public Cliente(){
+    }
+
 	public Cliente(String nome, String endereco, Date dataLicenca, String educacao, String genero,
-			String classeEconomica, ArrayList<Veiculo> listaVeiculos) {
+			String classeEconomica) {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.dataLicenca = dataLicenca;
 		this.educacao = educacao;
 		this.genero = genero;
 		this.classeEconomica = classeEconomica;
-		this.listaVeiculos = listaVeiculos;
+		listaVeiculos = new ArrayList<Veiculo>();
 	}
 	
 
