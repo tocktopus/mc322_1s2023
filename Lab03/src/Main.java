@@ -33,6 +33,10 @@ public class Main {
         System.out.println(seg.cadastrarCliente(c2));
         System.out.println(seg.cadastrarCliente(k));
         System.out.println(seg.removerCliente(c2));
-        System.out.println(seg.listarClientes("pj"));
+        System.out.println(seg.gerarSinistro(null, "casa", seg, v3, c));
+        System.out.println(seg.gerarSinistro(null, "rua 2", seg, v3, c));
+        //System.out.println("listando clientes\n"+seg.listarClientes("pj"));
+        //System.out.println("\nlistando sinistros\n"+seg.listarSinistros());
+        seg.visualizarSinistro(c);
     }
 }

@@ -1,7 +1,7 @@
 /*
  * Cliente.java
  * 
- * Ultima modificacao: 03/04/2023
+ * Ultima modificacao: 04/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -33,16 +33,23 @@ public class Cliente {
         this.classeEconomica = classeEconomica;
         listaVeiculos = new ArrayList<Veiculo>();
     }
-
+    
+    
     public String toString() {
         String dados = "";
         dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco + "\nData Licenca: " + this.dataLicenca
                 + "\nEducacao: " + this.educacao +
                 "\nGenero: " + this.genero + "\nClasse Economica: " + this.classeEconomica + "\nLista Veiculos:\n"
-                + this.listaVeiculos;
+                + this.listaVeiculos+"\n";
 
         return dados;
     }
+
+    /*public String toString() {
+        return "Cliente [nome=" + nome + ", endereco=" + endereco + ", dataLicenca=" + dataLicenca + ", educacao="
+                + educacao + ", genero=" + genero + ", classeEconomica=" + classeEconomica + ", listaVeiculos="
+                + listaVeiculos + "]";
+    }*/
 
     // getters e setters:
     public String getNome() {

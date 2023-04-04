@@ -1,7 +1,7 @@
 /*
  * ClientePF.java
  * 
- * Ultima modificacao: 03/04/2023
+ * Ultima modificacao: 04/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -33,10 +33,17 @@ public class ClientePF extends Cliente {
                 + "\nEducacao: " + this.educacao +
                 "\nGenero: " + this.genero + "\nClasse Economica: " + this.classeEconomica + "\nCPF: " + this.cpf
                 + "\nData nascimento: " + this.dataNascimento +
-                "\nLista Veiculos:\n" + this.listaVeiculos;
+                "\nLista Veiculos:\n" + this.listaVeiculos+"\n";
 
         return dados;
     }
+
+    /*@Override
+    public String toString(){
+        return "Cliente [nome=" + nome + ", endereco=" + endereco + ", dataLicenca=" + dataLicenca + ", educacao="
+                + educacao + ", genero=" + genero + ", classeEconomica=" + classeEconomica + ", listaVeiculos="
+                + listaVeiculos + ", dataNascimento="+dataNascimento+", cpf="+cpf+ "]";
+    }*/
 
     public boolean validarCPF(String cpf) {
         /*

@@ -1,11 +1,11 @@
 /*
  * ClientePJ.java
  * 
- * Ultima modificacao: 03/04/2023
+ * Ultima modificacao: 04/04/2023
  * 
  * Material usado na disciplina MC322
  * 
- * TO-DO: deixar cnpj como final, arrumar tabulacao de todo mundo
+ * TO-DO: deixar cnpj como final
  */
 
 import java.util.Date;
@@ -33,10 +33,17 @@ public class ClientePJ extends Cliente {
                 + "\nEducacao: " + this.educacao +
                 "\nGenero: " + this.genero + "\nClasse Economica: " + this.classeEconomica + "\nCNPJ: " + this.cnpj
                 + "\nData fundacao: " + this.dataFundacao
-                + "\nLista Veiculos:\n" + this.listaVeiculos;
+                + "\nLista Veiculos:\n" + this.listaVeiculos+"\n";
 
         return dados;
     }
+
+   /*@Override
+    public String toString(){
+        return "Cliente [nome=" + nome + ", endereco=" + endereco + ", dataLicenca=" + dataLicenca + ", educacao="
+                + educacao + ", genero=" + genero + ", classeEconomica=" + classeEconomica + ", listaVeiculos="
+                + listaVeiculos + ", dataFundacao="+dataFundacao+", cnpj="+cnpj+ "]";
+    }*/
 
     public boolean validarCNPJ(String cnpj) {
         /*
@@ -101,7 +108,7 @@ public class ClientePJ extends Cliente {
             digito14 = (char) ((11 - r) + 48);
         }
 
-        // verificando se os digitos calculados correspondem aos do cpf:
+        // verificando se os digitos calculados correspondem aos do cnpj:
         if ((digito13 == cnpj.charAt(12)) && (digito14 == cnpj.charAt(13))) {
             return (true);
         } else {
