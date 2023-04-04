@@ -8,29 +8,30 @@
  */
 
 public class Sinistro {
-	private int id;
-	private String data;
-	private String endereco;
+    private int id;
+    private String data;
+    private String endereco;
     private Seguradora seguradora;
     private Veiculo veiculo;
     private Cliente cliente;
-	private static int numSinistros = 0; //conta quantos objetos da classe Sinistro ja foram criados, e eh usada para atribuir os ids
-	
-	//construtores
+    private static int numSinistros = 0; // conta quantos objetos da classe Sinistro ja foram criados, e eh usada para
+                                         // atribuir os ids
+
+    // construtores
     public Sinistro() {
         numSinistros++;
-		this.id = numSinistros;
+        this.id = numSinistros;
     }
 
-	public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
-		this.data = data;
-		this.endereco = endereco;
+    public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
+        this.data = data;
+        this.endereco = endereco;
         this.seguradora = seguradora;
         this.veiculo = veiculo;
         this.cliente = cliente;
-		numSinistros++;
-		this.id = numSinistros;
-	}
+        numSinistros++;
+        this.id = numSinistros;
+    }
 
     public String toString() {
         String dados = "";
@@ -39,27 +40,26 @@ public class Sinistro {
         return dados;
     }
 
+    // getters e setters
+    public int getId() {
+        return id;
+    }
 
-    //getters e setters
-	public int getId() {
-		return id;
-	}
+    public String getData() {
+        return data;
+    }
 
-	public String getData() {
-		return data;
-	}
+    public void setData(String data) {
+        this.data = data;
+    }
 
-	public void setData(String data) {
-		this.data = data;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
     public Seguradora getSeguradora() {
         return seguradora;
@@ -85,5 +85,12 @@ public class Sinistro {
         this.cliente = cliente;
     }
 
-    
+    public static int getNumSinistros() {
+        return numSinistros;
+    }
+
+    public static void setNumSinistros(int numSinistros) {
+        Sinistro.numSinistros = numSinistros;
+    }
+
 }
