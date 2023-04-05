@@ -6,7 +6,6 @@
  * 
  * Material usado na disciplina MC322
  * 
- * TO-DO: arrumar metodos em que os parametros nao estao iguais aos das instrucoes (removerCliente e visualizarSinistro)
  */
 import java.util.ArrayList;
 
@@ -65,7 +64,7 @@ public class Seguradora {
         }
     }
 
-    public boolean removerCliente(Cliente cliente) {
+    public boolean removerCliente(Cliente cliente) { //TO-DO: remover esse metodo aq
         /*
          * Remove um cliente da listaClientes.
          * Entrada: Cliente cliente (cliente a ser removido)
@@ -81,6 +80,43 @@ public class Seguradora {
         return false;
 
     }
+
+    public boolean removerCliente(String cliente) {
+        /*
+         * Remove um cliente da listaClientes.
+         * Entrada: String cliente (cpf ou cnpj do cliente a ser removido)
+         * Saida: valor booleano (true se o cliente com esse cpf/cnpj for encontrado na lista (e removido), false se nao for)
+         */
+
+        // objetos auxiliares para verificar se a string é um cpf, cnpj, ou nenhum dos dois:
+        ClientePF pf = new ClientePF(); 
+        ClientePJ pj = new ClientePJ();
+
+        if(pf.validarCPF(cliente)){
+            for (Cliente c : listaClientes) { 
+                if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
+                    ClientePF k = (ClientePF) c; // k recebe c convertido de Cliente para ClientePF
+                    if (k.getCpf().equals(cliente)) {
+                        listaClientes.remove(c);
+                        return true;
+                    }
+                }
+            }
+        }else if(pj.validarCNPJ(cliente)){
+            for (Cliente c : listaClientes) {
+                if (c instanceof ClientePJ) {  // verifica se c eh pessoa juridica
+                    ClientePJ k = (ClientePJ) c; // k recebe c convertido de Cliente para ClientePJ
+                    if (k.getCnpj().equals(cliente)) {
+                        listaClientes.remove(c);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+
+    }
+
 
     public ArrayList<Cliente> listarClientes(String tipoCliente) {
         /*
@@ -117,7 +153,7 @@ public class Seguradora {
         return listaSinistros.add(s);
     }
 
-    public boolean visualizarSinistro(Cliente cliente){
+    public boolean visualizarSinistro(Cliente cliente){ //TO-DO: remover esse metodo aq
         /* Imprime todos os sinistros relacionados a um cliente
          * Entrada: Cliente cujos sinistros serão exibidos
          * Saida: valor booleano (true se encontrar 1 ou mais sinistros, false do contrário)
@@ -127,6 +163,43 @@ public class Seguradora {
             if (s.getCliente().equals(cliente)) {
                 System.out.println(s);
                 flag = true;
+            }
+        }
+        return flag;
+        
+    }
+
+    public boolean visualizarSinistro(String cliente){
+        /* Imprime todos os sinistros relacionados a um cliente e retorna true se encontrar sinistro relacionado a ele
+         * Entrada: String cliente (cpf ou cnpj do cliente cujos sinistros serão exibidos)
+         * Saida: valor booleano (true se a string corresponder a um cpf ou cnpj valido e se encontrar 1 ou mais sinistros, false do contrario)
+         */
+
+        // a flag verifica se foram encontrados sinistros para esse cliente
+        boolean flag = false;
+        // objetos auxiliares para verificar se a string é um cpf, cnpj, ou nenhum dos dois:
+        ClientePF pf = new ClientePF(); 
+        ClientePJ pj = new ClientePJ();
+
+        if(pf.validarCPF(cliente)){ // se a string for cpf, ou seja, um cliente tipo pessoa fisica
+            for (Sinistro s : listaSinistros) {
+                if (s.getCliente() instanceof ClientePF) { // se o cliente relacionado ao sinistro atual for ClientePF
+                    ClientePF k = (ClientePF) s.getCliente();
+                    if(k.getCpf().equals(cliente)){ // compara o cpf do sinistro atual com o recebido por parametro
+                        System.out.println(s);
+                        flag = true;
+                    }
+                }
+            }
+        }else if(pj.validarCNPJ(cliente)){ // se a string for cnpj, ou seja, um cliente tipo pessoa juridica
+            for (Sinistro s : listaSinistros) {
+                if (s.getCliente() instanceof ClientePJ) { // se o cliente relacionado ao sinistro atual for ClientePJ
+                    ClientePJ k = (ClientePJ) s.getCliente();
+                    if(k.getCnpj().equals(cliente)){  // compara o cpf do sinistro atual com o recebido por parametro
+                        System.out.println(s);
+                        flag = true;
+                    }
+                }
             }
         }
         return flag;
