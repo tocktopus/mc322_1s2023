@@ -1,3 +1,4 @@
+
 /*
  * Sinistro.java
  * 
@@ -5,11 +6,14 @@
  * 
  * Material usado na disciplina MC322
  * 
+ * TO-DO: deixar o id como final
  */
+
+import java.time.LocalDate;
 
 public class Sinistro {
     private int id;
-    private String data;
+    private LocalDate data;
     private String endereco;
     private Seguradora seguradora;
     private Veiculo veiculo;
@@ -22,7 +26,7 @@ public class Sinistro {
         this.id = numSinistros;
     }
 
-    public Sinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
+    public Sinistro(LocalDate data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
         this.data = data;
         this.endereco = endereco;
         this.seguradora = seguradora;
@@ -50,11 +54,11 @@ public class Sinistro {
         return id;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

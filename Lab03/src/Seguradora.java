@@ -7,6 +7,7 @@
  * Material usado na disciplina MC322
  * 
  */
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Seguradora {
@@ -41,7 +42,7 @@ public class Seguradora {
          * Saida: valor booleano (true se o cadastro for realizado com sucesso, false se nao for)
          */
 
-        if (cliente.validarCPF(cliente.getCpf()) && !listaClientes.contains(cliente)) { // verifica se o cpf é valido e se o cliente ja foi cadastrado
+        if (ClientePF.validarCPF(cliente.getCpf()) && !listaClientes.contains(cliente)) { // verifica se o cpf é valido e se o cliente ja foi cadastrado
             listaClientes.add(cliente);
             return true;
         } else {
@@ -56,7 +57,7 @@ public class Seguradora {
          * Saida: valor booleano (true se o cadastro for realizado com sucesso, false se nao for)
          */
 
-        if (cliente.validarCNPJ(cliente.getCnpj()) && !listaClientes.contains(cliente)) { // verifica se o cnpj é valido e se o cliente ja foi cadastrado
+        if (ClientePJ.validarCNPJ(cliente.getCnpj()) && !listaClientes.contains(cliente)) { // verifica se o cnpj é valido e se o cliente ja foi cadastrado
             listaClientes.add(cliente);
             return true;
         } else {
@@ -88,11 +89,7 @@ public class Seguradora {
          * Saida: valor booleano (true se o cliente com esse cpf/cnpj for encontrado na lista (e removido), false se nao for)
          */
 
-        // objetos auxiliares para verificar se a string é um cpf, cnpj, ou nenhum dos dois:
-        ClientePF pf = new ClientePF(); 
-        ClientePJ pj = new ClientePJ();
-
-        if(pf.validarCPF(cliente)){
+        if(ClientePF.validarCPF(cliente)){
             for (Cliente c : listaClientes) { 
                 if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
                     ClientePF k = (ClientePF) c; // k recebe c convertido de Cliente para ClientePF
@@ -102,7 +99,7 @@ public class Seguradora {
                     }
                 }
             }
-        }else if(pj.validarCNPJ(cliente)){
+        }else if(ClientePJ.validarCNPJ(cliente)){
             for (Cliente c : listaClientes) {
                 if (c instanceof ClientePJ) {  // verifica se c eh pessoa juridica
                     ClientePJ k = (ClientePJ) c; // k recebe c convertido de Cliente para ClientePJ
@@ -144,12 +141,12 @@ public class Seguradora {
     }
 
     // metodos relacionados ao atributo listaSinistros
-    public boolean gerarSinistro(String data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente){
+    public boolean gerarSinistro(LocalDate data, String endereco, Veiculo veiculo, Cliente cliente){
         /* Gera um Sinistro novo e o insere na lista
          * Entrada: dados do novo Sinistro
          * Saida: valor booleano (correspondente ao retorno do metodo add() do arraylist)
          */
-        Sinistro s = new Sinistro(data, endereco, seguradora, veiculo, cliente);
+        Sinistro s = new Sinistro(data, endereco, this, veiculo, cliente);
         return listaSinistros.add(s);
     }
 
@@ -178,10 +175,8 @@ public class Seguradora {
         // a flag verifica se foram encontrados sinistros para esse cliente
         boolean flag = false;
         // objetos auxiliares para verificar se a string é um cpf, cnpj, ou nenhum dos dois:
-        ClientePF pf = new ClientePF(); 
-        ClientePJ pj = new ClientePJ();
 
-        if(pf.validarCPF(cliente)){ // se a string for cpf, ou seja, um cliente tipo pessoa fisica
+        if(ClientePF.validarCPF(cliente)){ // se a string for cpf, ou seja, um cliente tipo pessoa fisica
             for (Sinistro s : listaSinistros) {
                 if (s.getCliente() instanceof ClientePF) { // se o cliente relacionado ao sinistro atual for ClientePF
                     ClientePF k = (ClientePF) s.getCliente();
@@ -191,7 +186,8 @@ public class Seguradora {
                     }
                 }
             }
-        }else if(pj.validarCNPJ(cliente)){ // se a string for cnpj, ou seja, um cliente tipo pessoa juridica
+
+        }else if(ClientePJ.validarCNPJ(cliente)){ // se a string for cnpj, ou seja, um cliente tipo pessoa juridica
             for (Sinistro s : listaSinistros) {
                 if (s.getCliente() instanceof ClientePJ) { // se o cliente relacionado ao sinistro atual for ClientePJ
                     ClientePJ k = (ClientePJ) s.getCliente();

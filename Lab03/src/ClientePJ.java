@@ -8,18 +8,18 @@
  * TO-DO: deixar cnpj como final
  */
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ClientePJ extends Cliente {
     private String cnpj;
-    private Date dataFundacao;
+    private LocalDate dataFundacao;
 
     // construtores
     public ClientePJ() {
     }
 
-    public ClientePJ(String nome, String endereco, Date dataLicenca, String educacao, String genero,
-            String classeEconomica, String cnpj, Date dataFundacao) {
+    public ClientePJ(String nome, String endereco, LocalDate dataLicenca, String educacao, String genero,
+            String classeEconomica, String cnpj, LocalDate dataFundacao) {
         // chama o construtor da superclasse
         super(nome, endereco, dataLicenca, educacao, genero, classeEconomica);
         this.cnpj = cnpj;
@@ -45,7 +45,7 @@ public class ClientePJ extends Cliente {
                 + listaVeiculos + ", dataFundacao="+dataFundacao+", cnpj="+cnpj+ "]";
     }*/
 
-    public boolean validarCNPJ(String cnpj) {
+    public static boolean validarCNPJ(String cnpj) {
         /*
          * Recebe uma string e verifica se ela corresponde a um cnpj.
          * Entrada: String cnpj (cnpj a ser validado)
@@ -125,11 +125,11 @@ public class ClientePJ extends Cliente {
         this.cnpj = cnpj;
     }
 
-    public Date getDataFundacao() {
+    public LocalDate getDataFundacao() {
         return dataFundacao;
     }
 
-    public void setDataFundacao(Date dataFundacao) {
+    public void setDataFundacao(LocalDate dataFundacao) {
         this.dataFundacao = dataFundacao;
     }
 

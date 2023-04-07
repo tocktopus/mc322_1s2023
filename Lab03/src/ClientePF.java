@@ -8,18 +8,18 @@
  * TO-DO: deixar cpf como final
  */
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ClientePF extends Cliente {
     private String cpf;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     // construtores
     public ClientePF() {
     }
 
-    public ClientePF(String nome, String endereco, Date dataLicenca, String educacao, String genero,
-            String classeEconomica, String cpf, Date dataNascimento) {
+    public ClientePF(String nome, String endereco, LocalDate dataLicenca, String educacao, String genero,
+            String classeEconomica, String cpf, LocalDate dataNascimento) {
         // chama o construtor da superclasse
         super(nome, endereco, dataLicenca, educacao, genero, classeEconomica);
         this.cpf = cpf;
@@ -45,7 +45,7 @@ public class ClientePF extends Cliente {
                 + listaVeiculos + ", dataNascimento="+dataNascimento+", cpf="+cpf+ "]";
     }*/
 
-    public boolean validarCPF(String cpf) {
+    public static boolean validarCPF(String cpf) {
         /*
          * Recebe uma string e verifica se ela corresponde a um cpf.
          * Entrada: String cpf (cpf a ser validado)
@@ -117,11 +117,11 @@ public class ClientePF extends Cliente {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
