@@ -1,7 +1,7 @@
 /*
  * Veiculo.java
  * 
- * Ultima modificacao: 04/04/2023
+ * Ultima modificacao: 07/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -30,11 +30,6 @@ public class Veiculo {
                 + "\nAno de fabricacao: " + this.anoFabricacao+"\n";
         return dados;
     }
-
-    /*public String toString() {
-        return "Veiculo [placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anoFabricacao="
-                + anoFabricacao + "]";
-    }*/
 
 
     // getters e setters

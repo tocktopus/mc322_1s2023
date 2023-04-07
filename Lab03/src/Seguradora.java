@@ -2,7 +2,7 @@
 /*
  * Seguradora.java
  * 
- * Ultima modificacao: 04/04/2023
+ * Ultima modificacao: 07/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -65,22 +65,6 @@ public class Seguradora {
         }
     }
 
-    public boolean removerCliente(Cliente cliente) { //TO-DO: remover esse metodo aq
-        /*
-         * Remove um cliente da listaClientes.
-         * Entrada: Cliente cliente (cliente a ser removido)
-         * Saida: valor booleano (true se o cliente for encontrado na lista, false se nao for)
-         */
-
-        for (Cliente c : listaClientes) {
-            if (c.equals(cliente)) {
-                listaClientes.remove(c);
-                return true;
-            }
-        }
-        return false;
-
-    }
 
     public boolean removerCliente(String cliente) {
         /*
@@ -144,26 +128,15 @@ public class Seguradora {
     public boolean gerarSinistro(LocalDate data, String endereco, Veiculo veiculo, Cliente cliente){
         /* Gera um Sinistro novo e o insere na lista
          * Entrada: dados do novo Sinistro
-         * Saida: valor booleano (correspondente ao retorno do metodo add() do arraylist)
+         * Saida: valor booleano (true se o cliente tiver esse veiculo, false se nao)
          */
-        Sinistro s = new Sinistro(data, endereco, this, veiculo, cliente);
-        return listaSinistros.add(s);
-    }
-
-    public boolean visualizarSinistro(Cliente cliente){ //TO-DO: remover esse metodo aq
-        /* Imprime todos os sinistros relacionados a um cliente
-         * Entrada: Cliente cujos sinistros serão exibidos
-         * Saida: valor booleano (true se encontrar 1 ou mais sinistros, false do contrário)
-         */
-        boolean flag = false;
-        for (Sinistro s : listaSinistros) {
-            if (s.getCliente().equals(cliente)) {
-                System.out.println(s);
-                flag = true;
-            }
+        if(cliente.listaVeiculos.contains(veiculo)){
+            Sinistro s = new Sinistro(data, endereco, this, veiculo, cliente);
+            listaSinistros.add(s);
+            return true;
         }
-        return flag;
         
+        return false;
     }
 
     public boolean visualizarSinistro(String cliente){
@@ -174,8 +147,8 @@ public class Seguradora {
 
         // a flag verifica se foram encontrados sinistros para esse cliente
         boolean flag = false;
-        // objetos auxiliares para verificar se a string é um cpf, cnpj, ou nenhum dos dois:
 
+        System.out.println("Imprimindo sinistros do cliente "+cliente);
         if(ClientePF.validarCPF(cliente)){ // se a string for cpf, ou seja, um cliente tipo pessoa fisica
             for (Sinistro s : listaSinistros) {
                 if (s.getCliente() instanceof ClientePF) { // se o cliente relacionado ao sinistro atual for ClientePF

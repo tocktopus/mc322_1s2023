@@ -1,7 +1,7 @@
 /*
  * ClientePJ.java
  * 
- * Ultima modificacao: 04/04/2023
+ * Ultima modificacao: 07/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -18,10 +18,9 @@ public class ClientePJ extends Cliente {
     public ClientePJ() {
     }
 
-    public ClientePJ(String nome, String endereco, LocalDate dataLicenca, String educacao, String genero,
-            String classeEconomica, String cnpj, LocalDate dataFundacao) {
+    public ClientePJ(String nome, String endereco, LocalDate dataLicenca, String cnpj, LocalDate dataFundacao) {
         // chama o construtor da superclasse
-        super(nome, endereco, dataLicenca, educacao, genero, classeEconomica);
+        super(nome, endereco, dataLicenca);
         this.cnpj = cnpj;
         this.dataFundacao = dataFundacao;
     }
@@ -30,20 +29,10 @@ public class ClientePJ extends Cliente {
     public String toString() {
         String dados = "";
         dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco + "\nData Licenca: " + this.dataLicenca
-                + "\nEducacao: " + this.educacao +
-                "\nGenero: " + this.genero + "\nClasse Economica: " + this.classeEconomica + "\nCNPJ: " + this.cnpj
-                + "\nData fundacao: " + this.dataFundacao
-                + "\nLista Veiculos:\n" + this.listaVeiculos+"\n";
+                + "\nCNPJ: " + this.cnpj + "\nData fundacao: " + this.dataFundacao + "\nLista Veiculos:\n" + this.listaVeiculos+"\n";
 
         return dados;
     }
-
-   /*@Override
-    public String toString(){
-        return "Cliente [nome=" + nome + ", endereco=" + endereco + ", dataLicenca=" + dataLicenca + ", educacao="
-                + educacao + ", genero=" + genero + ", classeEconomica=" + classeEconomica + ", listaVeiculos="
-                + listaVeiculos + ", dataFundacao="+dataFundacao+", cnpj="+cnpj+ "]";
-    }*/
 
     public static boolean validarCNPJ(String cnpj) {
         /*

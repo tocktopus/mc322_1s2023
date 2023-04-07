@@ -1,7 +1,7 @@
 /*
  * ClientePF.java
  * 
- * Ultima modificacao: 04/04/2023
+ * Ultima modificacao: 07/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -13,6 +13,9 @@ import java.time.LocalDate;
 public class ClientePF extends Cliente {
     private String cpf;
     private LocalDate dataNascimento;
+    private String educacao;
+    private String genero;
+    private String classeEconomica;
 
     // construtores
     public ClientePF() {
@@ -21,9 +24,12 @@ public class ClientePF extends Cliente {
     public ClientePF(String nome, String endereco, LocalDate dataLicenca, String educacao, String genero,
             String classeEconomica, String cpf, LocalDate dataNascimento) {
         // chama o construtor da superclasse
-        super(nome, endereco, dataLicenca, educacao, genero, classeEconomica);
+        super(nome, endereco, dataLicenca);
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
+        this.educacao = educacao;
+        this.genero = genero;
+        this.classeEconomica = classeEconomica;
     }
 
     @Override
@@ -38,12 +44,6 @@ public class ClientePF extends Cliente {
         return dados;
     }
 
-    /*@Override
-    public String toString(){
-        return "Cliente [nome=" + nome + ", endereco=" + endereco + ", dataLicenca=" + dataLicenca + ", educacao="
-                + educacao + ", genero=" + genero + ", classeEconomica=" + classeEconomica + ", listaVeiculos="
-                + listaVeiculos + ", dataNascimento="+dataNascimento+", cpf="+cpf+ "]";
-    }*/
 
     public static boolean validarCPF(String cpf) {
         /*
@@ -123,6 +123,30 @@ public class ClientePF extends Cliente {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getEducacao() {
+        return educacao;
+    }
+
+    public void setEducacao(String educacao) {
+        this.educacao = educacao;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getClasseEconomica() {
+        return classeEconomica;
+    }
+
+    public void setClasseEconomica(String classeEconomica) {
+        this.classeEconomica = classeEconomica;
     }
 
 }

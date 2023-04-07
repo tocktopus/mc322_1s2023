@@ -2,7 +2,7 @@
 /*
  * Sinistro.java
  * 
- * Ultima modificacao: 04/04/2023
+ * Ultima modificacao: 07/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -42,12 +42,6 @@ public class Sinistro {
                 + "\nVeiculo:\n" + veiculo + "Cliente:\n" + cliente+"\n";
         return dados;
     }
-
-    /*@Override
-    public String toString() {
-        return "Sinistro [id=" + id + ", data=" + data + ", endereco=" + endereco + ", seguradora=" + seguradora
-                + ", veiculo=" + veiculo + ", cliente=" + cliente + "]";
-    }*/
 
     // getters e setters
     public int getId() {
