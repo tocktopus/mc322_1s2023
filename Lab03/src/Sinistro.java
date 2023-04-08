@@ -6,13 +6,12 @@
  * 
  * Material usado na disciplina MC322
  * 
- * TO-DO: deixar o id como final
  */
 
 import java.time.LocalDate;
 
 public class Sinistro {
-    private int id;
+    private final int id;
     private LocalDate data;
     private String endereco;
     private Seguradora seguradora;

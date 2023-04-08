@@ -24,14 +24,21 @@ public class Seguradora {
         listaClientes = new ArrayList<Cliente>();
     }
 
-    public Seguradora(String nome, String telefone, String email, String endereco, ArrayList<Sinistro> listaSinistros,
-            ArrayList<Cliente> listaClientes) {
+    public Seguradora(String nome, String telefone, String email, String endereco) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.endereco = endereco;
         listaSinistros = new ArrayList<Sinistro>();
         listaClientes = new ArrayList<Cliente>();
+    }
+
+    public String toString() { //nao incluindo listaSinistros e listaClientes pois os exibiremos em metodos separados
+        String dados = "";
+        dados += "Nome: " + this.nome + "\nData Licenca: " + this.telefone
+                + "\nEmail: " + this.email + "\nEndereco: " + this.endereco ;
+
+        return dados;
     }
 
     // metodos relacionados ao atributo listaClientes:
@@ -148,7 +155,7 @@ public class Seguradora {
         // a flag verifica se foram encontrados sinistros para esse cliente
         boolean flag = false;
 
-        System.out.println("Imprimindo sinistros do cliente "+cliente);
+        System.out.println("Sinistros do cliente "+cliente);
         if(ClientePF.validarCPF(cliente)){ // se a string for cpf, ou seja, um cliente tipo pessoa fisica
             for (Sinistro s : listaSinistros) {
                 if (s.getCliente() instanceof ClientePF) { // se o cliente relacionado ao sinistro atual for ClientePF

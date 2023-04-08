@@ -5,21 +5,18 @@
  * 
  * Material usado na disciplina MC322
  * 
- * TO-DO: deixar cpf como final
  */
 
 import java.time.LocalDate;
 
 public class ClientePF extends Cliente {
-    private String cpf;
+    private final String cpf;
     private LocalDate dataNascimento;
     private String educacao;
     private String genero;
     private String classeEconomica;
 
     // construtores
-    public ClientePF() {
-    }
 
     public ClientePF(String nome, String endereco, LocalDate dataLicenca, String educacao, String genero,
             String classeEconomica, String cpf, LocalDate dataNascimento) {
@@ -111,10 +108,6 @@ public class ClientePF extends Cliente {
     // getters e setters:
     public String getCpf() {
         return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
     }
 
     public LocalDate getDataNascimento() {

@@ -5,18 +5,15 @@
  * 
  * Material usado na disciplina MC322
  * 
- * TO-DO: deixar cnpj como final
  */
 
 import java.time.LocalDate;
 
 public class ClientePJ extends Cliente {
-    private String cnpj;
+    private final String cnpj;
     private LocalDate dataFundacao;
 
     // construtores
-    public ClientePJ() {
-    }
 
     public ClientePJ(String nome, String endereco, LocalDate dataLicenca, String cnpj, LocalDate dataFundacao) {
         // chama o construtor da superclasse
@@ -108,10 +105,6 @@ public class ClientePJ extends Cliente {
     // getters e setters:
     public String getCnpj() {
         return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
     }
 
     public LocalDate getDataFundacao() {
