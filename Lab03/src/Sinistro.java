@@ -1,4 +1,3 @@
-
 /*
  * Sinistro.java
  * 

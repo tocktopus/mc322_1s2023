@@ -1,7 +1,7 @@
 /*
  * ClientePF.java
  * 
- * Ultima modificacao: 07/04/2023
+ * Ultima modificacao: 11/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -14,18 +14,19 @@ public class ClientePF extends Cliente {
     private LocalDate dataNascimento;
     private String educacao;
     private String genero;
+    protected LocalDate dataLicenca;
     private String classeEconomica;
 
-    // construtores
-
+    // construtor
     public ClientePF(String nome, String endereco, LocalDate dataLicenca, String educacao, String genero,
             String classeEconomica, String cpf, LocalDate dataNascimento) {
         // chama o construtor da superclasse
-        super(nome, endereco, dataLicenca);
+        super(nome, endereco);
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.educacao = educacao;
         this.genero = genero;
+        this.dataLicenca = dataLicenca;
         this.classeEconomica = classeEconomica;
     }
 
@@ -132,6 +133,14 @@ public class ClientePF extends Cliente {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public LocalDate getDataLicenca() {
+        return dataLicenca;
+    }
+
+    public void setDataLicenca(LocalDate dataLicenca) {
+        this.dataLicenca = dataLicenca;
     }
 
     public String getClasseEconomica() {

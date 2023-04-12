@@ -1,7 +1,7 @@
 /*
  * ClientePJ.java
  * 
- * Ultima modificacao: 07/04/2023
+ * Ultima modificacao: 11/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -13,11 +13,10 @@ public class ClientePJ extends Cliente {
     private final String cnpj;
     private LocalDate dataFundacao;
 
-    // construtores
-
-    public ClientePJ(String nome, String endereco, LocalDate dataLicenca, String cnpj, LocalDate dataFundacao) {
+    // construtor
+    public ClientePJ(String nome, String endereco, String cnpj, LocalDate dataFundacao) {
         // chama o construtor da superclasse
-        super(nome, endereco, dataLicenca);
+        super(nome, endereco);
         this.cnpj = cnpj;
         this.dataFundacao = dataFundacao;
     }
@@ -25,7 +24,7 @@ public class ClientePJ extends Cliente {
     @Override
     public String toString() {
         String dados = "";
-        dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco + "\nData Licenca: " + this.dataLicenca
+        dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco
                 + "\nCNPJ: " + this.cnpj + "\nData fundacao: " + this.dataFundacao + "\nLista Veiculos:\n" + this.listaVeiculos+"\n";
 
         return dados;

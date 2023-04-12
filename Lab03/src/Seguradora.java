@@ -1,4 +1,3 @@
-
 /*
  * Seguradora.java
  * 
@@ -7,6 +6,7 @@
  * Material usado na disciplina MC322
  * 
  */
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 

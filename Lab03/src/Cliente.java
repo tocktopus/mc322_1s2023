@@ -1,37 +1,30 @@
 /*
  * Cliente.java
  * 
- * Ultima modificacao: 07/04/2023
+ * Ultima modificacao: 11/04/2023
  * 
  * Material usado na disciplina MC322
  * 
  */
 
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Cliente {
     protected String nome;
     protected String endereco;
-    protected LocalDate dataLicenca;
     protected ArrayList<Veiculo> listaVeiculos;
 
-    // construtores
-    public Cliente() {
-    }
-
-    public Cliente(String nome, String endereco, LocalDate dataLicenca) {
+    // construtor
+    public Cliente(String nome, String endereco) {
         this.nome = nome;
         this.endereco = endereco;
-        this.dataLicenca = dataLicenca;
         listaVeiculos = new ArrayList<Veiculo>();
     }
     
     
     public String toString() {
         String dados = "";
-        dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco + "\nData Licenca: " + this.dataLicenca
+        dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco
                 + "\nLista Veiculos:\n"+ this.listaVeiculos+"\n";
 
         return dados;
@@ -91,14 +84,6 @@ public class Cliente {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public LocalDate getDataLicenca() {
-        return dataLicenca;
-    }
-
-    public void setDataLicenca(LocalDate dataLicenca) {
-        this.dataLicenca = dataLicenca;
     }
 
     public ArrayList<Veiculo> getListaVeiculos() {
