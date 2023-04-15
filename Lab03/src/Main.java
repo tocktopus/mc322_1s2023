@@ -60,6 +60,7 @@ public class Main {
                             "4. Validar um CPF\n"+
                             "5. Validar um CNPJ\n"+
                             "6. Testar método toString() de alguma classe\n"+
+                            "7. Sair\n"+
                             "\nDigite o número correspondente ao que deseja fazer:");
         
         // Scanner para leitura de dados
@@ -126,6 +127,10 @@ public class Main {
                     default:
                         System.out.println("Opção inválida");
                 }
+                break;
+            
+            case 7:
+                System.out.println("Saindo...");
                 break;
 
             default:
