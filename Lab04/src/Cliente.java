@@ -1,7 +1,7 @@
 /*
  * Cliente.java
  * 
- * Ultima modificacao: 11/04/2023
+ * Ultima modificacao: 25/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -67,6 +67,11 @@ public class Cliente {
             }
         }
         return false;
+    }
+
+    public double calculaScore(){
+        //TO-DO: entender oq isso aqui precisa retornar
+        return 0;
     }
 
     // getters e setters:

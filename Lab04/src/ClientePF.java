@@ -1,13 +1,14 @@
 /*
  * ClientePF.java
  * 
- * Ultima modificacao: 11/04/2023
+ * Ultima modificacao: 25/04/2023
  * 
  * Material usado na disciplina MC322
  * 
  */
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class ClientePF extends Cliente {
     private final String cpf;
@@ -104,6 +105,32 @@ public class ClientePF extends Cliente {
             return (false);
         }
 
+    }
+
+    public long idade(){
+        LocalDate agora = LocalDate.now();
+        return ChronoUnit.YEARS.between(dataNascimento, agora);
+    }
+
+    @Override
+    public double calculaScore(){
+        /* Calcula o score (pontuacao) de um cliente fisico com base em sua idade e num. de veiculos.
+         * Saida: score (double com o score do cliente)
+         */
+        double score = 0;
+
+        System.out.println(CalcSeguro.FATOR_18_30.fator);
+        if (idade() >= 18 && idade() <= 30){
+            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_18_30.fator * listaVeiculos.size(); 
+
+        }else if(idade() > 30 && idade() <= 60){
+            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_30_60.fator * listaVeiculos.size();
+
+        }else if(idade() > 60 && idade() <=90){
+            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_60_90.fator * listaVeiculos.size(); 
+        }
+
+        return score;
     }
 
     // getters e setters:

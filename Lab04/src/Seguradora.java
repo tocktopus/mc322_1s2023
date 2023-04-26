@@ -1,7 +1,7 @@
 /*
  * Seguradora.java
  * 
- * Ultima modificacao: 07/04/2023
+ * Ultima modificacao: 25/04/2023
  * 
  * Material usado na disciplina MC322
  * 
@@ -105,7 +105,6 @@ public class Seguradora {
 
     }
 
-
     public ArrayList<Cliente> listarClientes(String tipoCliente) {
         /*
          * Separa todos os clientes de um determinado tipo em uma lista
@@ -182,6 +181,15 @@ public class Seguradora {
         
     }
 
+    public int qtdSinistros(Cliente c){
+        int n = 0;
+        for(Sinistro s : listaSinistros){
+            if (s.getCliente().equals(c)){
+                n++;
+            }
+        }
+        return n;
+    }
     public ArrayList<Sinistro> listarSinistros(){
         /* Lista todos os sinistros da seguradora
          * Saida: listaSinistros (arraylist contendo os objetos tipo Sinistro da Seguradora)
@@ -189,6 +197,14 @@ public class Seguradora {
         return listaSinistros;
     }
     
+    public ArrayList<Double> calcularPrecoSeguroCliente(){
+        ArrayList<Double> precoSeguroClientes = new ArrayList<Double>();
+        for(Cliente c : listaClientes){
+            double preco = c.calculaScore() * (1 + qtdSinistros(c));
+            precoSeguroClientes.add(preco);
+        }
+        return precoSeguroClientes;
+    }
 
     // getters e setters
     public String getNome() {
