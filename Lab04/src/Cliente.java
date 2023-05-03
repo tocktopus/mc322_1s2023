@@ -71,7 +71,7 @@ public class Cliente {
 
     public double calculaScore(){
         //TO-DO: entender oq isso aqui precisa retornar
-        return 0;
+        return CalcSeguro.VALOR_BASE.fator;
     }
 
     // getters e setters:

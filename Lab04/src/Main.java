@@ -2,7 +2,7 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args){
-        ClientePF pf1 = new ClientePF("PF1", "Avenida X", LocalDate.parse("2017-05-13"), "Ensino Medio", "M", "C", "132.104.950-17", LocalDate.parse("2004-06-30"));
+        ClientePF pf1 = new ClientePF("PF1", "Avenida X", LocalDate.parse("2017-05-13"), "Ensino Medio", "M", "C", "132.104.950-17", LocalDate.parse("1990-06-30"));
         ClientePJ pj1 = new ClientePJ("PJ1", "Rua B", "04.348.764/0001-23", LocalDate.parse("2006-01-30"), 200);
 
         Veiculo v1 = new Veiculo("AAA1234", "Fiat", "Uno", 2020);
@@ -21,5 +21,7 @@ public class Main {
         seg.cadastrarCliente(pj1);
         seg.cadastrarCliente(pf1);
         System.out.println(seg.calcularPrecoSeguroCliente());
+        System.out.println(Validacao.validarNome("abc de"));
+        System.out.println(Validacao.validarNome("abcd2 "));
     }
 }

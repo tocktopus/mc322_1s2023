@@ -109,7 +109,7 @@ public class ClientePJ extends Cliente {
         /* Calcula o score (pontuacao) de um cliente juridico com base em sua qtd de funcionarios e num. de veiculos.
          * Saida: score (double com o score do cliente)
          */
-        double score = CalcSeguro.VALOR_BASE.fator * ((1+qtdFuncionarios)/100) * listaVeiculos.size();
+        double score = super.calculaScore() * ((1+qtdFuncionarios)/100) * listaVeiculos.size();
         return score;
     }
 

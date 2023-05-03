@@ -119,15 +119,15 @@ public class ClientePF extends Cliente {
          */
         double score = 0;
 
-        System.out.println(CalcSeguro.FATOR_18_30.fator);
+        //System.out.println(CalcSeguro.FATOR_18_30.fator);
         if (idade() >= 18 && idade() <= 30){
-            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_18_30.fator * listaVeiculos.size(); 
+            score = super.calculaScore() * CalcSeguro.FATOR_18_30.fator * listaVeiculos.size(); 
 
         }else if(idade() > 30 && idade() <= 60){
-            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_30_60.fator * listaVeiculos.size();
+            score = super.calculaScore() * CalcSeguro.FATOR_30_60.fator * listaVeiculos.size();
 
         }else if(idade() > 60 && idade() <=90){
-            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_60_90.fator * listaVeiculos.size(); 
+            score = super.calculaScore() * CalcSeguro.FATOR_60_90.fator * listaVeiculos.size(); 
         }
 
         return score;
