@@ -17,5 +17,14 @@ public enum MenuOperacoes {
         return operacao;
     }
 
+    public static MenuOperacoes valor(int op) {
+        for (MenuOperacoes e : values()) {
+            if (e.operacao == op) {
+                return e;
+            }
+        }
+        return null;
+    }
+
     
 }

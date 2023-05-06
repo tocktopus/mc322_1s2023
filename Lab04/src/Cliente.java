@@ -9,7 +9,7 @@
 
 import java.util.ArrayList;
 
-public class Cliente {
+public abstract class Cliente {
     protected String nome;
     protected String endereco;
     protected ArrayList<Veiculo> listaVeiculos;
@@ -69,11 +69,8 @@ public class Cliente {
         return false;
     }
 
-    public double calculaScore(){
-        //TO-DO: entender oq isso aqui precisa retornar
-        return CalcSeguro.VALOR_BASE.fator;
-    }
-
+    public abstract double calculaScore();
+    
     // getters e setters:
     public String getNome() {
         return nome;

@@ -49,7 +49,7 @@ public class Seguradora {
          * Saida: valor booleano (true se o cadastro for realizado com sucesso, false se nao for)
          */
 
-        if (ClientePF.validarCPF(cliente.getCpf()) && !listaClientes.contains(cliente)) { // verifica se o cpf é valido e se o cliente ja foi cadastrado
+        if (Validacao.validarCPF(cliente.getCpf()) && Validacao.validarNome(cliente.getNome()) && !listaClientes.contains(cliente)) { // verifica se o cpf é valido e se o cliente ja foi cadastrado
             listaClientes.add(cliente);
             return true;
         } else {
@@ -64,7 +64,7 @@ public class Seguradora {
          * Saida: valor booleano (true se o cadastro for realizado com sucesso, false se nao for)
          */
 
-        if (ClientePJ.validarCNPJ(cliente.getCnpj()) && !listaClientes.contains(cliente)) { // verifica se o cnpj é valido e se o cliente ja foi cadastrado
+        if (Validacao.validarCNPJ(cliente.getCnpj()) && Validacao.validarNome(cliente.getNome()) && !listaClientes.contains(cliente)) { // verifica se o cnpj é valido e se o cliente ja foi cadastrado
             listaClientes.add(cliente);
             return true;
         } else {
@@ -80,7 +80,7 @@ public class Seguradora {
          * Saida: valor booleano (true se o cliente com esse cpf/cnpj for encontrado na lista (e removido), false se nao for)
          */
 
-        if(ClientePF.validarCPF(cliente)){
+        if(Validacao.validarCPF(cliente)){
             for (Cliente c : listaClientes) { 
                 if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
                     ClientePF k = (ClientePF) c; // k recebe c convertido de Cliente para ClientePF
@@ -90,7 +90,7 @@ public class Seguradora {
                     }
                 }
             }
-        }else if(ClientePJ.validarCNPJ(cliente)){
+        }else if(Validacao.validarCNPJ(cliente)){
             for (Cliente c : listaClientes) {
                 if (c instanceof ClientePJ) {  // verifica se c eh pessoa juridica
                     ClientePJ k = (ClientePJ) c; // k recebe c convertido de Cliente para ClientePJ
@@ -155,7 +155,7 @@ public class Seguradora {
         boolean flag = false;
 
         System.out.println("Sinistros do cliente "+cliente);
-        if(ClientePF.validarCPF(cliente)){ // se a string for cpf, ou seja, um cliente tipo pessoa fisica
+        if(Validacao.validarCPF(cliente)){ // se a string for cpf, ou seja, um cliente tipo pessoa fisica
             for (Sinistro s : listaSinistros) {
                 if (s.getCliente() instanceof ClientePF) { // se o cliente relacionado ao sinistro atual for ClientePF
                     ClientePF k = (ClientePF) s.getCliente();
@@ -166,7 +166,7 @@ public class Seguradora {
                 }
             }
 
-        }else if(ClientePJ.validarCNPJ(cliente)){ // se a string for cnpj, ou seja, um cliente tipo pessoa juridica
+        }else if(Validacao.validarCNPJ(cliente)){ // se a string for cnpj, ou seja, um cliente tipo pessoa juridica
             for (Sinistro s : listaSinistros) {
                 if (s.getCliente() instanceof ClientePJ) { // se o cliente relacionado ao sinistro atual for ClientePJ
                     ClientePJ k = (ClientePJ) s.getCliente();
