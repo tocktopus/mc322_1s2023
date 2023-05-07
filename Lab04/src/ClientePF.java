@@ -66,7 +66,6 @@ public class ClientePF extends Cliente {
         }else if(idade() > 60 && idade() <=90){
             score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_60_90.fator * listaVeiculos.size(); 
         }
-
         return score;
     }
 

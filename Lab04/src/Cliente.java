@@ -13,6 +13,7 @@ public abstract class Cliente {
     protected String nome;
     protected String endereco;
     protected ArrayList<Veiculo> listaVeiculos;
+    protected double valorSeguro;
 
     // construtor
     public Cliente(String nome, String endereco) {
@@ -95,4 +96,16 @@ public abstract class Cliente {
     public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
         this.listaVeiculos = listaVeiculos;
     }
+
+
+    public double getValorSeguro() {
+        return valorSeguro;
+    }
+
+
+    public void setValorSeguro(double valorSeguro) {
+        this.valorSeguro = valorSeguro;
+    }
+
+    
 }

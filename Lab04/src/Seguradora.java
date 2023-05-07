@@ -197,13 +197,26 @@ public class Seguradora {
         return listaSinistros;
     }
     
-    public ArrayList<Double> calcularPrecoSeguroCliente(){
-        ArrayList<Double> precoSeguroClientes = new ArrayList<Double>();
+    public void calcularPrecoSeguroCliente(){
+        /* calcula o preco do seguro de todos os clientes cadastrados na seguradora */
         for(Cliente c : listaClientes){
             double preco = c.calculaScore() * (1 + qtdSinistros(c));
-            precoSeguroClientes.add(preco);
+            c.setValorSeguro(preco);
         }
-        return precoSeguroClientes;
+    }
+
+    public double calcularReceita(){
+        /* calcula a receita da seguradora somando o preco de todos os seguros */
+        double receita = 0;
+        for(Cliente c : listaClientes){
+            receita += c.getValorSeguro();
+        }
+        return receita;
+    }   
+
+    public boolean transferirSeguro(String c1, String c2){
+        /* TO-DO */
+        return true;
     }
 
     // getters e setters
