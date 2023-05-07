@@ -28,7 +28,8 @@ public class ClientePJ extends Cliente {
         String dados = "";
         dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco
                 + "\nCNPJ: " + this.cnpj + "\nData fundacao: " + this.dataFundacao +
-                "\nNumero de funcionarios: " + this.qtdFuncionarios+ "\nLista Veiculos:\n" + this.listaVeiculos+"\n";
+                "\nNumero de funcionarios: " + this.qtdFuncionarios+ "\nValor seguro: "+this.valorSeguro+
+                "\nLista Veiculos:\n" + this.listaVeiculos+"\n";
 
         return dados;
     }

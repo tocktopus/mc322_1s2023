@@ -37,8 +37,9 @@ public class ClientePF extends Cliente {
         dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco + "\nData Licenca: " + this.dataLicenca
                 + "\nEducacao: " + this.educacao +
                 "\nGenero: " + this.genero + "\nClasse Economica: " + this.classeEconomica + "\nCPF: " + this.cpf
-                + "\nData nascimento: " + this.dataNascimento +
-                "\nLista Veiculos:\n" + this.listaVeiculos+"\n";
+                + "\nData nascimento: " + this.dataNascimento + "\nValor seguro: "+this.valorSeguro+
+                "\nLista Veiculos:\n" + this.listaVeiculos;
+                
 
         return dados;
     }

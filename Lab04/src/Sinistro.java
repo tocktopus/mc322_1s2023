@@ -20,8 +20,8 @@ public class Sinistro {
 
     // construtores
     public Sinistro() {
-        numSinistros++;
         this.id = numSinistros;
+        numSinistros++;
     }
 
     public Sinistro(LocalDate data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente) {
@@ -30,8 +30,8 @@ public class Sinistro {
         this.seguradora = seguradora;
         this.veiculo = veiculo;
         this.cliente = cliente;
-        numSinistros++;
         this.id = numSinistros;
+        numSinistros++;
     }
     
     public String toString() {

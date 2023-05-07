@@ -9,7 +9,7 @@ public enum MenuOperacoes {
 
     CAD_CLIENTE(1.1),
     CAD_VEICULO(1.2),
-    CAD_SEG(1.3),
+    CAD_SEGURADORA(1.3),
     VOLTAR_CAD(1.4),
 
 

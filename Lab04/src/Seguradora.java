@@ -145,6 +145,16 @@ public class Seguradora {
         return false;
     }
 
+    public boolean excluirSinistro(int id){
+        for (Sinistro s : listaSinistros){
+            if (s.getId() == id){
+                listaSinistros.remove(s);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean visualizarSinistro(String cliente){
         /* Imprime todos os sinistros relacionados a um cliente e retorna true se encontrar sinistro relacionado a ele
          * Entrada: String cliente (cpf ou cnpj do cliente cujos sinistros serão exibidos)
@@ -179,6 +189,72 @@ public class Seguradora {
         }
         return flag;
         
+    }
+    
+    public ClientePF encontrarClientePF(String cpf){
+        for (Sinistro s : listaSinistros) {
+            if (s.getCliente() instanceof ClientePF) { // se o cliente relacionado ao sinistro atual for ClientePF
+                ClientePF k = (ClientePF) s.getCliente();
+                if(k.getCpf().equals(cpf)){ // compara o cpf do sinistro atual com o recebido por parametro
+                    return k;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Cliente encontrarCliente(String cliente){
+        if(Validacao.validarCPF(cliente)){
+            for (Cliente c : listaClientes) { 
+                if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
+                    ClientePF k = (ClientePF) c; // k recebe c convertido de Cliente para ClientePF
+                    if (k.getCpf().equals(cliente)) {
+                        return k;
+                    }
+                }
+            }
+        }else if(Validacao.validarCNPJ(cliente)){
+            for (Cliente c : listaClientes) {
+                if (c instanceof ClientePJ) {  // verifica se c eh pessoa juridica
+                    ClientePJ k = (ClientePJ) c; // k recebe c convertido de Cliente para ClientePJ
+                    if (k.getCnpj().equals(cliente)) {
+                        return k;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public ClientePJ encontrarClientePJ(String cnpj){
+        for (Sinistro s : listaSinistros) {
+            if (s.getCliente() instanceof ClientePJ) { // se o cliente relacionado ao sinistro atual for ClientePJ
+                ClientePJ k = (ClientePJ) s.getCliente();
+                if(k.getCnpj().equals(cnpj)){  // compara o cpf do sinistro atual com o recebido por parametro
+                    return k;
+                }
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Veiculo> listarVeiculosClientes(){
+        ArrayList<Veiculo> veiculosSeguradora = new ArrayList<Veiculo>();
+        for (Cliente c : listaClientes){
+            for (Veiculo v : c.getListaVeiculos()){
+                veiculosSeguradora.add(v);
+            }
+        }
+        return veiculosSeguradora;
+    }
+
+    public boolean excluirVeiculoCliente(String placa){
+        for(Cliente c : listaClientes){
+            if(c.removerVeiculo(placa)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public int qtdSinistros(Cliente c){
