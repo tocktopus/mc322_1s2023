@@ -190,18 +190,7 @@ public class Seguradora {
         return flag;
         
     }
-    
-    public ClientePF encontrarClientePF(String cpf){
-        for (Sinistro s : listaSinistros) {
-            if (s.getCliente() instanceof ClientePF) { // se o cliente relacionado ao sinistro atual for ClientePF
-                ClientePF k = (ClientePF) s.getCliente();
-                if(k.getCpf().equals(cpf)){ // compara o cpf do sinistro atual com o recebido por parametro
-                    return k;
-                }
-            }
-        }
-        return null;
-    }
+
 
     public Cliente encontrarCliente(String cliente){
         if(Validacao.validarCPF(cliente)){
@@ -226,17 +215,6 @@ public class Seguradora {
         return null;
     }
 
-    public ClientePJ encontrarClientePJ(String cnpj){
-        for (Sinistro s : listaSinistros) {
-            if (s.getCliente() instanceof ClientePJ) { // se o cliente relacionado ao sinistro atual for ClientePJ
-                ClientePJ k = (ClientePJ) s.getCliente();
-                if(k.getCnpj().equals(cnpj)){  // compara o cpf do sinistro atual com o recebido por parametro
-                    return k;
-                }
-            }
-        }
-        return null;
-    }
 
     public ArrayList<Veiculo> listarVeiculosClientes(){
         ArrayList<Veiculo> veiculosSeguradora = new ArrayList<Veiculo>();
@@ -290,9 +268,25 @@ public class Seguradora {
         return receita;
     }   
 
-    public boolean transferirSeguro(String c1, String c2){
+    public boolean transferirSeguro(String cliente1, String cliente2){
         /* TO-DO */
-        return true;
+        Cliente c1 = encontrarCliente(cliente1);
+        Cliente c2 = encontrarCliente(cliente2);
+
+        if(c1 == null || c2 == null){
+            return false;
+        }else{
+            ArrayList<Veiculo> aux = new ArrayList<Veiculo>();
+            aux = c1.getListaVeiculos();
+            c1.setListaVeiculos(c2.getListaVeiculos());
+            c2.setListaVeiculos(aux);
+
+            calcularPrecoSeguroCliente();
+            
+            System.out.println("Transferência de seguro concluída.\nValor do seguro de "+c1.getNome()+": "+c1.getValorSeguro()+
+            "\nValor do seguro de "+c2.getNome()+": "+c2.getValorSeguro());
+            return true;
+        }
     }
 
     // getters e setters

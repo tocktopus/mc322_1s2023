@@ -87,7 +87,7 @@ public class AppMain {
                     case CAD_CLIENTE:{
                         imprimirIDSeguradoras();
                         Seguradora s = seguradoras.get(entrada.nextInt());
-                        entrada.nextLine(); //para nao pular o proximo
+                        entrada.nextLine(); //para nao pular o proximo next
 
                         System.out.println("Insira o tipo de cliente (digite \"pf\" para pessoa física, \"pj\" para pessoa jurídica): ");
                         String tipo = entrada.nextLine();
@@ -154,24 +154,10 @@ public class AppMain {
                         Seguradora s = seguradoras.get(entrada.nextInt());
                         entrada.nextLine(); //para nao pular o proximo
 
-                        System.out.println("Insira o tipo de cliente ao qual o veículo será cadastrado (digite \"pf\" para pessoa física, \"pj\" para pessoa jurídica): ");
-                        String tipo = entrada.nextLine();
-                        Cliente c = null;
-                        switch(tipo){
-                            case "pf":{
-                                System.out.println("Digite o CPF do cliente");
-                                String cpf = entrada.nextLine();
-                                c = s.encontrarClientePF(cpf);
-                            }break;
-                            case "pj":{
-                                System.out.println("Digite o CPF do cliente");
-                                String cnpj = entrada.nextLine();
-                                c = s.encontrarClientePJ(cnpj);
-                            }break;
-                            default:
-                                System.out.println("Comando inválido");
-                            break;
-                        }
+                        System.out.println("Insira o cpf/cnpj do cliente ao qual será cadastrado o veículo:");
+                        String cliente = entrada.nextLine();
+                        Cliente c = s.encontrarCliente(cliente);
+
                         if (c == null) {
                             System.out.println("Cliente inválido");
                         }else{
@@ -268,24 +254,10 @@ public class AppMain {
                         Seguradora s = seguradoras.get(entrada.nextInt());
                         entrada.nextLine(); //para nao pular o proximo
 
-                        System.out.println("Insira o tipo de cliente ao qual o veículo será cadastrado (digite \"pf\" para pessoa física, \"pj\" para pessoa jurídica): ");
-                        String tipo = entrada.nextLine();
-                        Cliente c = null;
-                        switch(tipo){
-                            case "pf":{
-                                System.out.println("Digite o CPF do cliente");
-                                String cpf = entrada.nextLine();
-                                c = s.encontrarClientePF(cpf);
-                            }break;
-                            case "pj":{
-                                System.out.println("Digite o CNPJ do cliente");
-                                String cnpj = entrada.nextLine();
-                                c = s.encontrarClientePJ(cnpj);
-                            }break;
-                            default:
-                                System.out.println("Comando inválido");
-                            break;
-                        }
+                        System.out.println("Insira o cpf/cnpj do cliente:");
+                        String cliente = entrada.nextLine();
+                        Cliente c = s.encontrarCliente(cliente);
+                        
                         if (c != null) {
                             System.out.println(c.getListaVeiculos());
                         }else{
@@ -311,7 +283,7 @@ public class AppMain {
 
             }break;
 
-            case EXCLUIR:
+            case EXCLUIR:{
             System.out.println("\nEscolha uma das opções digitando o número correspondente:\n"+
                                     "3.1 Excluir Cliente\n"+
                                     "3.2 Excluir Veículo\n"+
@@ -372,31 +344,18 @@ public class AppMain {
                     break;
 
                 }
-            break;
+            }break;
 
-            case GERAR_SINISTRO:
+            case GERAR_SINISTRO:{
                 imprimirIDSeguradoras();
                 Seguradora s = seguradoras.get(entrada.nextInt());
                 entrada.nextLine();//para nao pular o proximo
 
-                System.out.println("Insira o tipo de cliente para o qual será gerado o Sinistro (digite \"pf\" para pessoa física, \"pj\" para pessoa jurídica): ");
-                String tipo = entrada.nextLine();
-                Cliente c = null;
-                switch(tipo){
-                    case "pf":{
-                        System.out.println("Digite o CPF do cliente");
-                        String cpf = entrada.nextLine();
-                        c = s.encontrarClientePF(cpf);
-                    }break;
-                    case "pj":{
-                        System.out.println("Digite o CPF do cliente");
-                        String cnpj = entrada.nextLine();
-                        c = s.encontrarClientePJ(cnpj);
-                    }break;
-                    default:
-                        System.out.println("Comando inválido");
-                    break;
-                }if (c == null) {
+                System.out.println("Insira o cpf/cnpj do cliente para o qual será gerado o sinistro");
+                String cliente = entrada.nextLine();
+                Cliente c = s.encontrarCliente(cliente);
+
+                if (c == null) {
                     System.out.println("Cliente não encontrado.");
                 }else{
                     System.out.println("Digite a placa do veículo associado:");
@@ -417,21 +376,38 @@ public class AppMain {
                         String endereco = entrada.nextLine();
 
                         s.gerarSinistro(LocalDate.parse(data), endereco, veicSinistro, c);
-                        System.out.println(s.listarSinistros());
+                        s.calcularPrecoSeguroCliente();
+                        System.out.println("Sinistro gerado com sucesso. Valor do seguro agora é: "+c.getValorSeguro());
                     }
-                    
-                    
                 }
                         
-            break;
+            }break;
 
-            case TRANSFERIR_SEGURO:
-            break;
+            case TRANSFERIR_SEGURO:{
+                imprimirIDSeguradoras();
+                Seguradora s = seguradoras.get(entrada.nextInt());
+                entrada.nextLine();//para nao pular o proximo
 
-            case CALC_RECEITA:
-            break;
+                System.out.println("Insira o cpf/cnpj do primeiro cliente da transferência: ");
+                String cliente1 = entrada.nextLine();
+                System.out.println("Insira o cpf/cnpj do segundo cliente: ");
+                String cliente2 = entrada.nextLine();
+                
+                if(!s.transferirSeguro(cliente1, cliente2)){
+                    System.out.println("Transferência não concluída. Clientes inválidos.");
+                }
+
+            }break;
+
+            case CALC_RECEITA:{
+                imprimirIDSeguradoras();
+                Seguradora s = seguradoras.get(entrada.nextInt());
+                s.calcularPrecoSeguroCliente();
+                System.out.println("A receita total da seguradora "+s.getNome()+" é de "+s.calcularReceita());
+            }break;
 
             case SAIR:
+                System.out.println("Saindo...");
             break;
 
             default:
@@ -441,7 +417,7 @@ public class AppMain {
     }
 
     public static void imprimirIDSeguradoras(){
-        System.err.println("Escolha uma das seguradoras digitando seu id:");
+        System.out.println("Escolha uma das seguradoras digitando seu id:");
         for (int i=0; i < seguradoras.size(); i++){
             System.out.println("ID "+ i + " - "+ seguradoras.get(i).getNome());
         }
