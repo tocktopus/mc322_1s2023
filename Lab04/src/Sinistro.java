@@ -1,10 +1,7 @@
 /*
- * Sinistro.java
- * 
- * Ultima modificacao: 07/04/2023
- * 
+ * Validacao.java
+ * Ultima modificacao: 08/05/2023
  * Material usado na disciplina MC322
- * 
  */
 
 import java.time.LocalDate;
@@ -36,8 +33,8 @@ public class Sinistro {
     
     public String toString() {
         String dados = "";
-        dados += "ID:" + id + "\nData: " + data + "\nEndereco: " + endereco + "\nSeguradora:\n " + seguradora
-                + "\nVeiculo:\n" + veiculo + "Cliente:\n" + cliente+"\n";
+        dados += "ID:" + id + "\nData: " + data + "\nEndereco: " + endereco + "\nDados da Seguradora:\n" + seguradora
+                + "\nDados do Veiculo:\n" + veiculo + "Dados do Cliente:\n" + cliente+"\n";
         return dados;
     }
 

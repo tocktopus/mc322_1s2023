@@ -1,3 +1,9 @@
+/*
+ * Validacao.java
+ * Ultima modificacao: 08/05/2023
+ * Material usado na disciplina MC322
+ */
+
 public class Validacao{
 
     public static boolean validarCPF(String cpf) {
@@ -135,6 +141,12 @@ public class Validacao{
     }
 
     public static boolean validarNome(String nome){
+        /* 
+         * Recebe um nome e o valida, verificando se ele possui apenas letras e espaços.
+         * Entrada: String nome (nome a ser validado)
+         * Saida: valor booleano (true se o nome for valido, false se nao for)
+         */
+
         for(int i=0; i<nome.length(); i++){
             if(!Character.isLetter(nome.charAt(i)) && nome.charAt(i) != ' '){
                 return false;

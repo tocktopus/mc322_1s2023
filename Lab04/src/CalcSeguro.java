@@ -1,3 +1,9 @@
+/*
+ * CalcSeguro.java
+ * Ultima modificacao: 08/05/2023
+ * Material usado na disciplina MC322
+ */
+
 public enum CalcSeguro {
     VALOR_BASE(100.0),
     FATOR_18_30(1.2),

@@ -1,10 +1,7 @@
 /*
  * Cliente.java
- * 
- * Ultima modificacao: 25/04/2023
- * 
+ * Ultima modificacao: 08/05/2023
  * Material usado na disciplina MC322
- * 
  */
 
 import java.util.ArrayList;

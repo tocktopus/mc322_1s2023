@@ -1,10 +1,7 @@
 /*
  * Seguradora.java
- * 
- * Ultima modificacao: 25/04/2023
- * 
+ * Ultima modificacao: 08/05/2023
  * Material usado na disciplina MC322
- * 
  */
 
 import java.time.LocalDate;
@@ -197,7 +194,10 @@ public class Seguradora {
     }
 
     public Cliente encontrarCliente(String cliente){
-        //localiza um cliente na listaClientes com base no seu cpf/cnpj
+        /* Localiza um cliente na listaClientes com base no seu cpf/cnpj
+         * Entrada: String cliente (cpf ou cnpj do cliente buscado)
+         * Saída: Cliente procurado (retorna null se não encontrar)
+        */
         if(Validacao.validarCPF(cliente)){
             for (Cliente c : listaClientes) { 
                 if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
@@ -222,7 +222,9 @@ public class Seguradora {
 
     // outros metodos
     public ArrayList<Veiculo> listarVeiculosClientes(){
-        //lista e retorna todos os veiculos de todos os clientes da seguradora
+        /* Lista e retorna os veiculos de todos os clientes da seguradora
+         * Saida: veiculosSeguradora (arraylist contendo todos os veiculos cadastrados)
+        */
         ArrayList<Veiculo> veiculosSeguradora = new ArrayList<Veiculo>();
         for (Cliente c : listaClientes){
             for (Veiculo v : c.getListaVeiculos()){
@@ -233,7 +235,10 @@ public class Seguradora {
     }
 
     public boolean excluirVeiculoCliente(String placa){
-        //exclui veiculo com base na placa
+        /* Exclui veiculo com base na placa
+         * Entrada: String placa (placa do veiculo a ser excluido)
+         * Saida: valor booleano (true se conseguir remover algum veículo, false do contrário)
+        */
         for(Cliente c : listaClientes){
             if(c.removerVeiculo(placa)){
                 return true;
@@ -243,7 +248,10 @@ public class Seguradora {
     }
 
     public int qtdSinistros(Cliente c){
-        //conta os sinistros associados a um cliente c
+        /* Conta os sinistros associados a um cliente c
+         * Entrada: Cliente c (cliente cujos sinistros serão contados)
+         * Saida: numero de sinistros
+        */
         int n = 0;
         for(Sinistro s : listaSinistros){
             if (s.getCliente().equals(c)){
@@ -254,13 +262,13 @@ public class Seguradora {
     }
     public ArrayList<Sinistro> listarSinistros(){
         /* Lista todos os sinistros da seguradora
-         * Saida: listaSinistros (arraylist contendo os objetos tipo Sinistro da Seguradora)
+         * Saida: listaSinistros (arraylist contendo os objetos tipo Sinistro da seguradora)
          */
         return listaSinistros;
     }
     
     public void calcularPrecoSeguroCliente(){
-        /* calcula o preco do seguro de todos os clientes cadastrados na seguradora */
+        /* Calcula o preco do seguro de todos os clientes cadastrados na seguradora */
         for(Cliente c : listaClientes){
             double preco = c.calculaScore() * (1 + qtdSinistros(c));
             c.setValorSeguro(preco);
@@ -268,7 +276,9 @@ public class Seguradora {
     }
 
     public double calcularReceita(){
-        /* calcula a receita da seguradora somando o preco de todos os seguros */
+        /* Calcula a receita da seguradora somando o preco de todos os seguros 
+         * Saida: receita calculada
+        */
         double receita = 0;
         for(Cliente c : listaClientes){
             receita += c.getValorSeguro();
@@ -277,7 +287,7 @@ public class Seguradora {
     }   
 
     public boolean transferirSeguro(String cliente1, String cliente2){
-        /*recebe o cpf/cnpj de dois clientes, troca seus veiculos e recalcula e exibe o novo valor de seguro deles.
+        /* Recebe o cpf/cnpj de dois clientes, troca seus veiculos e recalcula e exibe o novo valor de seguro deles.
          * Entradas: cliente1, cliente2 (cpf ou cnpj dos dois clientes)
          * Saida: true se encontrar os clientes e false do contrário
         */
