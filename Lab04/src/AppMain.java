@@ -3,12 +3,14 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+/*TO-DO: organizar codigo, tentar colocar o switch do menu em loop, colocar algumas operacoes do menu em metodos separados, 
+e revisar/testar todas as funcionalidades de novo */
+
 public class AppMain {
+    //cria lista que vai conter todas as seguradoras do programa
     private static ArrayList<Seguradora> seguradoras = new ArrayList<Seguradora>();
 
     public static void main(String[] args) {
-        //cria lista de seguradoras
-
         //instanciando veiculos, clientes e seguradora
         Veiculo v1 = new Veiculo("AAA1234", "Fiat", "Uno", 2020);
         Veiculo v2 = new Veiculo("BBB3750", "Chevrolet", "Onix", 2013);
@@ -18,42 +20,35 @@ public class AppMain {
 
         Seguradora seg = new Seguradora("Hello World Seguros", "1140028922","hwseguros@gmail.com","Rua S n30");
 
-
         Seguradora seg2 = new Seguradora("a", "1140028922","hwseguros@gmail.com","Rua S n30");
         ClientePJ pj2 = new ClientePJ("PJ", "Rua B", "50.372.210/0001-89", LocalDate.parse("2006-01-30"), 200);
         seg2.cadastrarCliente(pj2);
 
         seguradoras.add(seg);
-        seguradoras.add(seg2);
-        pj2.addVeiculo(v2);
-        seg2.gerarSinistro(null, null, v2, pj2);
 
         //adicionando veiculos a clientes
         pf.addVeiculo(v1);
         pj.addVeiculo(v2);
 
         //cadastrando clientes na seguradora
-        System.out.println(seg.cadastrarCliente(pf));
-        System.out.println(seg.cadastrarCliente(pj));
+        seg.cadastrarCliente(pf);
+        seg.cadastrarCliente(pj);
         seg.calcularPrecoSeguroCliente();
 
         //gerando sinistros
-        System.out.println(seg.gerarSinistro(null, null, v2, pj));
-        System.out.println(seg.gerarSinistro(null, null, v1, pf));
+        seg.gerarSinistro(LocalDate.parse("2020-01-30"), "Rua ABC", v2, pj);
+        seg.gerarSinistro(LocalDate.parse("2021-01-30"), "Rua DEF", v1, pf);
 
+        //calculando valor do seguro dos clientes:
+        seg.calcularPrecoSeguroCliente();
+
+        //calculando receita total:
+        System.out.println("A receita total da seguradora "+seg.getNome()+" é de "+seg.calcularReceita());
         /*
          * to-do:
          * - Chamar os metodos da classe Seguradora: listarClientes(); visualizarSinistro(); listarSinistros(); e calcularReceita()
-         * - Atualizar o atributo valorSeguro de cada cliente cadastrado na seguradora utilizando o metodo calcularPrecoSeguroCliente() 
-         * da classe Seguradora;
-         * - Mostrar na tela a receita total da seguradora utilizando o metodo calcularReceita();
          */
 
-         
-        seg.calcularPrecoSeguroCliente();
-        System.out.println(pj.getValorSeguro());
-        
-        System.out.println(seg.calcularReceita());
 
         criarMenu();
     }
@@ -63,7 +58,8 @@ public class AppMain {
         entrada.useLocale(Locale.ENGLISH); //para aceitar valores double usando ponto ao invés de vírgula
         /*to-do: implementar funcionalidades*/
 
-        System.out.println("\nBem vindo(a)! Escolha uma das opções digitando o número correspondente:\n"+
+        //loop: while (true){
+        System.out.println("\n ----MENU----\nEscolha uma das opções digitando o número correspondente:\n"+
                             "1 Cadastrar\n"+
                             "2 Listar\n"+
                             "3 Excluir\n"+
@@ -73,6 +69,7 @@ public class AppMain {
                             "0 Sair");
 
         MenuOperacoes operacao = MenuOperacoes.valor(entrada.nextDouble());
+        
         
         switch(operacao){
             case CADASTRAR:{
@@ -111,7 +108,7 @@ public class AppMain {
                                 String classe = entrada.nextLine();
 
                                 ClientePF clientePF = new ClientePF(nome, endereco, LocalDate.parse(dataLicenca), educacao, genero, classe, cpf, LocalDate.parse(dataNasc));
-                                s.cadastrarCliente(clientePF);
+                                //s.cadastrarCliente(clientePF);
                                 if(s.cadastrarCliente(clientePF)){
                                     System.out.println("Cliente cadastrado com sucesso!");
                                     s.calcularPrecoSeguroCliente();
@@ -408,15 +405,20 @@ public class AppMain {
 
             case SAIR:
                 System.out.println("Saindo...");
-            break;
+                break /*loop*/;
 
             default:
+                System.out.println("Operação inválida");
             break;
+        //}
         }
         entrada.close();
     }
 
+
+
     public static void imprimirIDSeguradoras(){
+        //Imprime todas as seguradoras existentes e seus respectivos ids
         System.out.println("Escolha uma das seguradoras digitando seu id:");
         for (int i=0; i < seguradoras.size(); i++){
             System.out.println("ID "+ i + " - "+ seguradoras.get(i).getNome());

@@ -24,8 +24,9 @@ public enum MenuOperacoes {
     EXCLUIR_CLIENTE(3.1),
     EXCLUIR_VEICULO(3.2),
     EXCLUIR_SINISTRO(3.3),
-    VOLTAR_EXCLUIR(3.4);
+    VOLTAR_EXCLUIR(3.4),
 
+    INVALIDO(-1);
     
 
     public final double operacao;
@@ -44,7 +45,7 @@ public enum MenuOperacoes {
                 return e;
             }
         }
-        return null;
+        return INVALIDO;
     }
 
     

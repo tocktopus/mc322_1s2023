@@ -146,6 +146,11 @@ public class Seguradora {
     }
 
     public boolean excluirSinistro(int id){
+        /* Exclui um Sinistro da listaSinistros com base no seu campo "id"
+         * Entrada: int id (id do sinistro)
+         * Saida: true se encontrar o sinistro e false do contrário
+        */
+    
         for (Sinistro s : listaSinistros){
             if (s.getId() == id){
                 listaSinistros.remove(s);
@@ -191,8 +196,8 @@ public class Seguradora {
         
     }
 
-
     public Cliente encontrarCliente(String cliente){
+        //localiza um cliente na listaClientes com base no seu cpf/cnpj
         if(Validacao.validarCPF(cliente)){
             for (Cliente c : listaClientes) { 
                 if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
@@ -215,8 +220,9 @@ public class Seguradora {
         return null;
     }
 
-
+    // outros metodos
     public ArrayList<Veiculo> listarVeiculosClientes(){
+        //lista e retorna todos os veiculos de todos os clientes da seguradora
         ArrayList<Veiculo> veiculosSeguradora = new ArrayList<Veiculo>();
         for (Cliente c : listaClientes){
             for (Veiculo v : c.getListaVeiculos()){
@@ -227,6 +233,7 @@ public class Seguradora {
     }
 
     public boolean excluirVeiculoCliente(String placa){
+        //exclui veiculo com base na placa
         for(Cliente c : listaClientes){
             if(c.removerVeiculo(placa)){
                 return true;
@@ -236,6 +243,7 @@ public class Seguradora {
     }
 
     public int qtdSinistros(Cliente c){
+        //conta os sinistros associados a um cliente c
         int n = 0;
         for(Sinistro s : listaSinistros){
             if (s.getCliente().equals(c)){
@@ -269,7 +277,10 @@ public class Seguradora {
     }   
 
     public boolean transferirSeguro(String cliente1, String cliente2){
-        /* TO-DO */
+        /*recebe o cpf/cnpj de dois clientes, troca seus veiculos e recalcula e exibe o novo valor de seguro deles.
+         * Entradas: cliente1, cliente2 (cpf ou cnpj dos dois clientes)
+         * Saida: true se encontrar os clientes e false do contrário
+        */
         Cliente c1 = encontrarCliente(cliente1);
         Cliente c2 = encontrarCliente(cliente2);
 
@@ -282,7 +293,7 @@ public class Seguradora {
             c2.setListaVeiculos(aux);
 
             calcularPrecoSeguroCliente();
-            
+
             System.out.println("Transferência de seguro concluída.\nValor do seguro de "+c1.getNome()+": "+c1.getValorSeguro()+
             "\nValor do seguro de "+c2.getNome()+": "+c2.getValorSeguro());
             return true;
