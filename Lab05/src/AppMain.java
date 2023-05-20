@@ -6,12 +6,13 @@
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+/*
 import java.util.Locale;
-import java.util.Scanner;
+import java.util.Scanner;*/
 
 public class AppMain {
     //cria lista que vai conter todas as seguradoras do programa
-    private static ArrayList<Seguradora> seguradoras = new ArrayList<Seguradora>();
+    //private static ArrayList<Seguradora> seguradoras = new ArrayList<Seguradora>();
 
     public static void main(String[] args) {
 
@@ -19,10 +20,31 @@ public class AppMain {
         Veiculo v1 = new Veiculo("AAA1234", "Fiat", "Uno", 2020);
         Veiculo v2 = new Veiculo("BBB3750", "Chevrolet", "Onix", 2013);
 
-        ClientePF pf = new ClientePF("PF", "Avenida X", LocalDate.parse("2017-05-13"), "Ensino Medio", "M", "C", "132.104.950-17", LocalDate.parse("1990-06-30"));
-        ClientePJ pj = new ClientePJ("PJ", "Rua B", "04.348.764/0001-23", LocalDate.parse("2006-01-30"), 200);
+        ClientePF pf = new ClientePF("PF", "132.104.950-17", "12345678", "Rua A", "PF@gmail.com", "F", "Ensino Medio", LocalDate.parse("1995-05-13"));
+        ClientePJ pj = new ClientePJ("PJ", "04.348.764/0001-23","12345678", "Rua A", "PF@gmail.com", LocalDate.parse("2006-01-30"), 200);
 
-        Seguradora seg = new Seguradora("Hello World Seguros", "1140028922","hwseguros@gmail.com","Rua S n30");
+        pf.cadastrarVeiculo(v1);
+        pj.cadastrarFrota();
+        ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
+        veiculos.add(v2);
+        pj.cadastrarFrota(veiculos);
+        
+        System.out.println(pf);
+        System.out.println(pj);
+
+        Scanner entrada = new Scanner(System.in);
+        String code = entrada.nextLine();
+        System.out.println(pj.getVeiculosPorFrota(code));
+
+        // testando metodos alterarFrota
+        System.out.println(pj.alterarFrota(code, v2));
+        System.out.println(pj.alterarFrota(code, "BBB3750"));
+        System.out.println(pj.alterarFrota(code));
+        System.out.println(pj);
+        
+
+
+        /*Seguradora seg = new Seguradora("Hello World Seguros", "1140028922","hwseguros@gmail.com","Rua S n30");
 
         Seguradora seg2 = new Seguradora("a", "1140028922","hwseguros@gmail.com","Rua S n30");
         ClientePJ pj2 = new ClientePJ("PJ", "Rua B", "50.372.210/0001-89", LocalDate.parse("2006-01-30"), 200);
@@ -60,13 +82,13 @@ public class AppMain {
         System.out.println("A receita total da seguradora "+seg.getNome()+" é de "+seg.calcularReceita());
         
         //finalmente, criando o menu interativo
-        criarMenu();
+        //criarMenu();*/
+        entrada.close();
     }
 
-    public static void criarMenu(){
+    /*public static void criarMenu(){
         Scanner entrada = new Scanner(System.in);
         entrada.useLocale(Locale.ENGLISH); //para aceitar valores double usando ponto ao invés de vírgula
-        /*to-do: implementar funcionalidades*/
 
         loop: while (true){
             System.out.println("\n ----MENU----\nEscolha uma das opções digitando o número correspondente:\n"+
@@ -430,5 +452,5 @@ public class AppMain {
             System.out.println("ID "+ i + " - "+ seguradoras.get(i).getNome());
         }
     }
-    
+    */
 }

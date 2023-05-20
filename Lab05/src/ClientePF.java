@@ -5,57 +5,97 @@
  */
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 public class ClientePF extends Cliente {
     private final String cpf;
-    private LocalDate dataNascimento;
-    private String educacao;
     private String genero;
-    protected LocalDate dataLicenca;
-    private String classeEconomica; //TO-DO: tirar classeEconomica e dataLicenca; adicionar ArrayList listaVeiculos
+    private String educacao;
+    private LocalDate dataNascimento;
+    private ArrayList<Veiculo> listaVeiculos;
 
     // construtor
-    public ClientePF(String nome, String endereco, LocalDate dataLicenca, String educacao, String genero,
-            String classeEconomica, String cpf, LocalDate dataNascimento) {
-        // chama o construtor da superclasse
-        super(nome, endereco);
+    public ClientePF(String nome, String cpf, String telefone, String endereco, String email, String genero, String educacao, 
+            LocalDate dataNascimento) {
+        super(nome, telefone, endereco, email);
         this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.educacao = educacao;
         this.genero = genero;
-        this.dataLicenca = dataLicenca;
-        this.classeEconomica = classeEconomica;
+        this.educacao = educacao;
+        this.dataNascimento = dataNascimento;
+        listaVeiculos = new ArrayList<Veiculo>();
     }
 
     @Override
     public String toString() {
-        String dados = "";
-        dados += "Nome: " + this.nome + "\nEndereco: " + this.endereco + "\nData Licenca: " + this.dataLicenca
-                + "\nEducacao: " + this.educacao +
-                "\nGenero: " + this.genero + "\nClasse Economica: " + this.classeEconomica + "\nCPF: " + this.cpf
-                + "\nData nascimento: " + this.dataNascimento + "\nValor seguro: "+this.valorSeguro+
-                "\nLista Veiculos:\n" + this.listaVeiculos;
-                
+        String dados = ""; 
+        
+        dados += "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nTelefone: " + this.telefone + "\nEndereco: " + this.endereco +
+                "\nEmail: " + this.email + "\nGenero: " + this.genero + "\nEducacao: " + this.educacao + "\nData nascimento: " + 
+                this.dataNascimento + "\nLista Veiculos:\n" + this.listaVeiculos;
 
         return dados;
     }
 
-    //TO-DO: metodos cadastrarVeiculo() e atualizarVeiculos()
+    /**
+     * Insere um Veiculo na listaVeiculos do cliente.
+     * @param veiculo (Veiculo a ser inserido)
+     * @return valor booleano (true se o veiculo nao estiver na lista, false do contrario)
+     */
+    public boolean cadastrarVeiculo(Veiculo veiculo){
+        if(!listaVeiculos.contains(veiculo)){
+            listaVeiculos.add(veiculo);
+            return true;
+        }
+        return false;
+    }
 
-    public long idade(){
+    /**
+     * Remove um veiculo da listaVeiculos do cliente.
+     * @param veiculo (Veiculo que sera removido)
+     * @return valor booleano (true se a lista conter o veiculo, false do contrario)
+     */
+    public boolean removerVeiculo(Veiculo veiculo){
+        
+        if(listaVeiculos.contains(veiculo)){
+            listaVeiculos.remove(veiculo);
+            return true;
+            
+        }
+        return false;
+    }
+
+    /**
+     * Remove um veiculo da listaVeiculos do cliente a partir de sua placa.
+     * @param placaVeiculo (placa do veiculo que sera removido)
+     * @return valor booleano (true se a lista conter o veiculo, false do contrario)
+     */
+    public boolean removerVeiculo(String placaVeiculo){
+
+        for(Veiculo v : listaVeiculos){
+            if(v.getPlaca().equals(placaVeiculo)){
+                listaVeiculos.remove(v);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*public long idade(){
         LocalDate agora = LocalDate.now();
         return ChronoUnit.YEARS.between(dataNascimento, agora);
     }
 
     @Override
-    public double calculaScore(){
-        /* Calcula o score (pontuacao) de um cliente fisico com base em sua idade e num. de veiculos.
-         * Saida: score (double com o score do cliente)
-         */
+    public double calculaScore(){ //TO-DO: REFATORAR colocar em seguro
+        //Calcula o score (pontuacao) de um cliente fisico com base em sua idade e num. de veiculos.
+        //Saida: score (double com o score do cliente)
+         
         double score = 0;
 
-        //System.out.println(CalcSeguro.FATOR_18_30.fator);
+        // Score novo deve ser:
+        //  ( VALOR_BASE * FATOR_IDADE * (1 + 1/( quantidadeVeiculos +2) ) * 
+        //  (2 + quantidadeSinistrosCliente /10) * (5 + quantidadeSinistrosCondutor /10) )
+        
         if (idade() >= 18 && idade() <= 30){
             score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_18_30.fator * listaVeiculos.size(); 
 
@@ -66,7 +106,7 @@ public class ClientePF extends Cliente {
             score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_60_90.fator * listaVeiculos.size(); 
         }
         return score;
-    }
+    }*/
 
     // getters e setters:
     public String getCpf() {
@@ -97,20 +137,14 @@ public class ClientePF extends Cliente {
         this.genero = genero;
     }
 
-    public LocalDate getDataLicenca() {
-        return dataLicenca;
+    public ArrayList<Veiculo> getListaVeiculos() {
+        return listaVeiculos;
     }
 
-    public void setDataLicenca(LocalDate dataLicenca) {
-        this.dataLicenca = dataLicenca;
+    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
+        this.listaVeiculos = listaVeiculos;
     }
 
-    public String getClasseEconomica() {
-        return classeEconomica;
-    }
-
-    public void setClasseEconomica(String classeEconomica) {
-        this.classeEconomica = classeEconomica;
-    }
+    
 
 }

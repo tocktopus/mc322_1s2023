@@ -2,6 +2,10 @@
  * MenuOperacoes.java
  * Ultima modificacao: 08/05/2023
  * Material usado na disciplina MC322
+ * 
+ * TO-DO: refatorar com funcionalidades correspondentes ao lab atual
+ * OBS. anotei em cada classe mais ou menos quais metodos de exibicao (ex: listarSeguros, listarFrota) preciso criar, ai p cada um deles
+ * eh bom criar uma operacao no menu
  */
 
 public enum MenuOperacoes {

@@ -10,12 +10,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Seguradora {
-    //TO-DO: inserir atributo String final cnpj
     private String nome;
     private String telefone;
     private String email;
     private String endereco;
-    private ArrayList<Sinistro> listaSinistros;
+    private ArrayList<Sinistro> listaSinistros; //TO-DO: inserir atributo String final cnpj e ArrayList listaSeguros; remover listaSinistros
     private ArrayList<Cliente> listaClientes;
 
     // construtores
@@ -41,7 +40,7 @@ public class Seguradora {
         return dados;
     }
 
-    //TO-DO: inserir metodos gerarSeguro() e cancelarSeguro()
+    //TO-DO: inserir metodos gerarSeguro() e cancelarSeguro(), getSegurosPorCliente(), getSinistrosPorCliente(), e tbm listarSeguros()
 
     // metodos relacionados ao atributo listaClientes:
     public boolean cadastrarCliente(ClientePF cliente) {
