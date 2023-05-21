@@ -6,9 +6,8 @@
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-/*
 import java.util.Locale;
-import java.util.Scanner;*/
+import java.util.Scanner;
 
 public class AppMain {
     //cria lista que vai conter todas as seguradoras do programa
@@ -16,32 +15,41 @@ public class AppMain {
 
     public static void main(String[] args) {
 
-        //instanciando veiculos, clientes e seguradora
-        Veiculo v1 = new Veiculo("AAA1234", "Fiat", "Uno", 2020);
-        Veiculo v2 = new Veiculo("BBB3750", "Chevrolet", "Onix", 2013);
-
+        //instanciando clientes
         ClientePF pf = new ClientePF("PF", "132.104.950-17", "12345678", "Rua A", "PF@gmail.com", "F", "Ensino Medio", LocalDate.parse("1995-05-13"));
         ClientePJ pj = new ClientePJ("PJ", "04.348.764/0001-23","12345678", "Rua A", "PF@gmail.com", LocalDate.parse("2006-01-30"), 200);
 
-        pf.cadastrarVeiculo(v1);
-        pj.cadastrarFrota();
-        ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
-        veiculos.add(v2);
-        pj.cadastrarFrota(veiculos);
+        //cadastrando veiculo no cliente pessoa fisica
+        pf.cadastrarVeiculo(new Veiculo("AAA1234", "Fiat", "Uno", 2020));
+        //cadastrando frota no cliente pessoa juridica ja contendo um veiculo
+        pj.cadastrarFrota(new Veiculo("BBB3750", "Chevrolet", "Onix", 2013));
         
         System.out.println(pf);
         System.out.println(pj);
 
-        Scanner entrada = new Scanner(System.in);
-        String code = entrada.nextLine();
-        System.out.println(pj.getVeiculosPorFrota(code));
+        String code = pj.getListaFrota().get(0).getCode();
+        System.out.println(pj.getVeiculosPorFrota(code) + "\n");
 
-        // testando metodos alterarFrota
-        System.out.println(pj.alterarFrota(code, v2));
+        //adicionando veiculo na frota
+        System.out.println(pj.alterarFrota(code, new Veiculo("AAA1234", "Fiat", "Uno", 2020)));
+        //removendo veiculo da frota
         System.out.println(pj.alterarFrota(code, "BBB3750"));
+        //removendo frota
         System.out.println(pj.alterarFrota(code));
+
         System.out.println(pj);
-        
+
+        Condutor c1 = new Condutor("132.104.950-17", "Maria", "123", "a", "a", null);
+        Condutor c2 = new Condutor("47711991835", "sar", "123", "a", "a", null);
+        Sinistro s1 = new Sinistro(null, "b", null, c1);
+        Sinistro s2 = new Sinistro(null, null, null, c2);
+        SeguroPF seg = new SeguroPF(null, null, null, pf.getListaVeiculos().get(0), pf);
+
+        System.out.println(seg.autorizarCondutor(c1));
+        System.out.println(seg.gerarSinistro(s1));
+        System.out.println(seg.gerarSinistro(s2));
+        System.out.println(seg.getListaSinistros());
+        System.out.println(seg.getListaCondutores());
 
 
         /*Seguradora seg = new Seguradora("Hello World Seguros", "1140028922","hwseguros@gmail.com","Rua S n30");
@@ -83,7 +91,6 @@ public class AppMain {
         
         //finalmente, criando o menu interativo
         //criarMenu();*/
-        entrada.close();
     }
 
     /*public static void criarMenu(){

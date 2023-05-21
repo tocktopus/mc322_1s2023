@@ -1,6 +1,6 @@
 /*
  * ClientePJ.java
- * Ultima modificacao: 08/05/2023
+ * Ultima modificacao: 21/05/2023
  * Material usado na disciplina MC322
  */
 
@@ -32,23 +32,14 @@ public class ClientePJ extends Cliente {
         return dados;
     }
 
-    /**
-     * Cria uma frota vazia e a insere na listaFrotas do cliente
-     * @return valor booleano correspondente ao retorno de add()
-     */
-    public boolean cadastrarFrota(){
-        Frota frota = new Frota();
-        return listaFrota.add(frota);
-    }
 
     /**
      * Cria uma frota com uma lista de veiculos recebida e a insere na listaFrotas do cliente
      * @param veiculos (lista de veiculos da frota)
      * @return valor booleano correspondente ao retorno de add()
      */
-    public boolean cadastrarFrota(ArrayList<Veiculo> veiculos){
-        Frota frota = new Frota();
-        frota.setListaVeiculos(veiculos);
+    public boolean cadastrarFrota(Veiculo veiculo){
+        Frota frota = new Frota(veiculo);
         return listaFrota.add(frota);
     }
 
@@ -123,23 +114,7 @@ public class ClientePJ extends Cliente {
             return null;
         }
     }
-    /*
-    @Override
-    public double calculaScore(){  //TO-DO: REFATORAR
-        //Calcula o score (pontuacao) de um cliente juridico com base em sua qtd de funcionarios e num. de veiculos.
-        //Saida: score (double com o score do cliente)
-        
-
-        // Score novo deve ser:
-        //( VALOR_BASE * (10 + ( quantidadeFunc ) /10) *
-        //(1 + 1/( quantidadeVeiculos +2) ) *
-        //(1 + 1/( AnosPosFundacao +2) ) *
-        //(2 + quantidadeSinistrosCliente /10) *
-        //(5 + quantidadeSinistrosCondutor /10))
-
-        double score = CalcSeguro.VALOR_BASE.fator * (1+(qtdFuncionarios/100)) * listaVeiculos.size();
-        return score;
-    }*/
+    
 
     // getters e setters:
     public String getCnpj() {
