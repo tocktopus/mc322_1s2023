@@ -15,9 +15,11 @@ public class AppMain {
 
     public static void main(String[] args) {
 
-        //instanciando clientes
+        //instanciando clientes e seguradora
         ClientePF pf = new ClientePF("PF", "132.104.950-17", "12345678", "Rua A", "PF@gmail.com", "F", "Ensino Medio", LocalDate.parse("1995-05-13"));
         ClientePJ pj = new ClientePJ("PJ", "04.348.764/0001-23","12345678", "Rua A", "PF@gmail.com", LocalDate.parse("2006-01-30"), 200);
+        Seguradora seguradora = new Seguradora(null, null, null, null, null);
+        seguradora.cadastrarCliente(pf);
 
         //cadastrando veiculo no cliente pessoa fisica
         pf.cadastrarVeiculo(new Veiculo("AAA1234", "Fiat", "Uno", 2020));
@@ -35,22 +37,25 @@ public class AppMain {
         //removendo veiculo da frota
         System.out.println(pj.alterarFrota(code, "BBB3750"));
         //removendo frota
-        System.out.println(pj.alterarFrota(code));
+        //System.out.println(pj.alterarFrota(code));
 
         System.out.println(pj);
 
         Condutor c1 = new Condutor("132.104.950-17", "Maria", "123", "a", "a", null);
         Condutor c2 = new Condutor("47711991835", "sar", "123", "a", "a", null);
-        Sinistro s1 = new Sinistro(null, "b", null, c1);
-        Sinistro s2 = new Sinistro(null, null, null, c2);
-        SeguroPF seg = new SeguroPF(null, null, null, pf.getListaVeiculos().get(0), pf);
-
+        Sinistro s1 = new Sinistro(null, "sinistro 1", null, c1);
+        Sinistro s2 = new Sinistro(null, "sinistro 2", null, c2);
+        SeguroPJ seg = new SeguroPJ(null, null, null, pj.getListaFrota().get(0), pj);
+        
+        System.out.println(seguradora.gerarSeguro(seg));
         System.out.println(seg.autorizarCondutor(c1));
         System.out.println(seg.gerarSinistro(s1));
         System.out.println(seg.gerarSinistro(s2));
-        System.out.println(seg.getListaSinistros());
-        System.out.println(seg.getListaCondutores());
+        /*System.out.println(seg.getListaSinistros());
+        System.out.println(seg.getListaCondutores());*/
 
+        //System.out.println(seguradora.listarClientes());
+        System.out.println(seguradora.getSinistrosPorCliente("04.348.764/0001-23"));
 
         /*Seguradora seg = new Seguradora("Hello World Seguros", "1140028922","hwseguros@gmail.com","Rua S n30");
 

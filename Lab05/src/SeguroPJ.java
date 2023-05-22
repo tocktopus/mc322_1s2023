@@ -17,6 +17,16 @@ public class SeguroPJ extends Seguro{
     }
 
     @Override
+    public String toString(){
+        String dados = "";
+        
+        dados += "ID:" + id + "\nData de Inicio: " + dataInicio + "\nData de Fim: " + dataFim + "\nSeguradora: " + seguradora 
+        + "\nDados da Frota:\n" + frota + "Dados do Cliente:\n" + cliente;
+
+        return dados;
+    }
+
+    @Override
     public int calcularValor(){
         int valor = 0;
         // valor deve ser:

@@ -1,10 +1,11 @@
 /*
  * ClientePF.java
- * Ultima modificacao: 08/05/2023
+ * Ultima modificacao: 21/05/2023
  * Material usado na disciplina MC322
  */
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class ClientePF extends Cliente {
@@ -55,7 +56,6 @@ public class ClientePF extends Cliente {
      * @return valor booleano (true se a lista conter o veiculo, false do contrario)
      */
     public boolean removerVeiculo(Veiculo veiculo){
-        
         if(listaVeiculos.contains(veiculo)){
             listaVeiculos.remove(veiculo);
             return true;
@@ -70,7 +70,6 @@ public class ClientePF extends Cliente {
      * @return valor booleano (true se a lista conter o veiculo, false do contrario)
      */
     public boolean removerVeiculo(String placaVeiculo){
-
         for(Veiculo v : listaVeiculos){
             if(v.getPlaca().equals(placaVeiculo)){
                 listaVeiculos.remove(v);
@@ -80,34 +79,11 @@ public class ClientePF extends Cliente {
         return false;
     }
 
-    /*public long idade(){
+    public long idade(){
         LocalDate agora = LocalDate.now();
         return ChronoUnit.YEARS.between(dataNascimento, agora);
     }
-
-    @Override
-    public double calculaScore(){ //TO-DO: REFATORAR colocar em seguro
-        //Calcula o score (pontuacao) de um cliente fisico com base em sua idade e num. de veiculos.
-        //Saida: score (double com o score do cliente)
-         
-        double score = 0;
-
-        // Score novo deve ser:
-        //  ( VALOR_BASE * FATOR_IDADE * (1 + 1/( quantidadeVeiculos +2) ) * 
-        //  (2 + quantidadeSinistrosCliente /10) * (5 + quantidadeSinistrosCondutor /10) )
-        
-        if (idade() >= 18 && idade() <= 30){
-            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_18_30.fator * listaVeiculos.size(); 
-
-        }else if(idade() > 30 && idade() <= 60){
-            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_30_60.fator * listaVeiculos.size();
-
-        }else if(idade() > 60 && idade() <=90){
-            score = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_60_90.fator * listaVeiculos.size(); 
-        }
-        return score;
-    }*/
-
+    
     // getters e setters:
     public String getCpf() {
         return cpf;

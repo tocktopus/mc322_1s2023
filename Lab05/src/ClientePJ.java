@@ -26,7 +26,7 @@ public class ClientePJ extends Cliente {
     public String toString() {
         String dados = "";
         dados += "Nome: " + this.nome + "\nCNPJ: " + this.cnpj + "\nTelefone: " + this.telefone + "\nEndereco: " + this.endereco +
-                "Email: " + this.email + "\nData fundacao: " + this.dataFundacao + "\nNumero de funcionarios: " + this.qtdFuncionarios +
+                "\nEmail: " + this.email + "\nData fundacao: " + this.dataFundacao + "\nNumero de funcionarios: " + this.qtdFuncionarios +
                 "\nLista de Frotas:\n" + this.listaFrota+"\n";
 
         return dados;

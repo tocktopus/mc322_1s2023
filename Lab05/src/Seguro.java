@@ -29,6 +29,8 @@ public abstract class Seguro {
         numSeguros++;
     }
 
+    public abstract String toString();
+
     /**
      * Recebe o cpf de um condutor e o remove da lista de condutores do seguro
      * @param cpf (cpf do condutor a ser desautorizado)
@@ -131,7 +133,7 @@ public abstract class Seguro {
         this.valorMensal = valorMensal;
     }
 
-    
+    public abstract Cliente getCliente();
 
     
 }

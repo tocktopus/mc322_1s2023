@@ -16,6 +16,16 @@ public class SeguroPF extends Seguro{
         this.cliente = cliente;
     }
 
+    @Override
+    public String toString(){
+        String dados = "";
+
+        dados += "ID:" + id + "\nData de Inicio: " + dataInicio + "\nData de Fim: " + dataFim + "\nSeguradora: " + seguradora 
+        + "\nDados do Veiculo:\n" + veiculo + "Dados do Cliente:\n" + cliente;
+
+        return dados;
+    }
+
     public int calcularValor(){
         int valor = 0;
         // Valor deve ser:
