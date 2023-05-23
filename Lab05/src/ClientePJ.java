@@ -5,6 +5,7 @@
  */
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class ClientePJ extends Cliente {
@@ -113,6 +114,20 @@ public class ClientePJ extends Cliente {
         }else{
             return null;
         }
+    }
+
+    public long AnosPosFundacao(){
+        LocalDate agora = LocalDate.now();
+        return ChronoUnit.YEARS.between(dataFundacao, agora);
+    }
+
+    @Override
+    public int qtdVeiculos(){
+        int qtd = 0;
+        for(Frota f : listaFrota){
+            qtd += f.getListaVeiculos().size();
+        }
+        return qtd;
     }
     
 

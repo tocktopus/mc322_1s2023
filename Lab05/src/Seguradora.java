@@ -6,7 +6,6 @@
  * //TO-DO: refatorar um montao de coisa vish
  */
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Seguradora {
@@ -31,7 +30,7 @@ public class Seguradora {
 
     public String toString() { //nao incluindo listaSinistros e listaClientes pois os exibiremos em metodos separados
         String dados = "";
-        dados += "CNPJ" + this.cnpj + "Nome: " + this.nome + "\nData Licenca: " + this.telefone
+        dados += "CNPJ: " + this.cnpj + "\nNome: " + this.nome + "\nData Licenca: " + this.telefone
                 + "\nEmail: " + this.email + "\nEndereco: " + this.endereco ;
 
         return dados;
@@ -40,17 +39,21 @@ public class Seguradora {
     //TO-DO: inserir metodos gerarSeguro() e cancelarSeguro(), getSegurosPorCliente(), getSinistrosPorCliente(), e tbm listarSeguros()
 
     // metodos relacionados ao atributo listaClientes:
+    /**
+     * Lista todos os clientes da seguradora
+     * @return listaClientes (ArrayList contendo os clientes)
+     */
     public ArrayList<Cliente> listarClientes(){
         return listaClientes;
     }
 
+    /**
+     * Separa todos os clientes de um determinado tipo em uma lista
+     * @param tipoCliente (String informando o tipo de cliente que se deseja listar)
+     * @return ArrayList contendo todos os clientes correspondentes
+     */
     public ArrayList<Cliente> listarClientes(String tipoCliente) {
-        /*
-         * Separa todos os clientes de um determinado tipo em uma lista
-         * Entrada: String tipoCliente (String informando o tipo de cliente que se deseja listar)
-         * Saida: ArrayList<Cliente> lista (Lista contendo todos os clientes correspondentes)
-         */
-
+        
         ArrayList<Cliente> lista = new ArrayList<Cliente>();
         if (tipoCliente.equals("pf")) {
             for (Cliente c : listaClientes) {
@@ -69,12 +72,12 @@ public class Seguradora {
         return lista;
     }
 
+    /**
+     * Insere um cliente tipo pessoa física na listaClientes.
+     * @param cliente (cliente a ser cadastrado)
+     * @return valor booleano (true se o cadastro for realizado com sucesso, false se nao for)
+     */
     public boolean cadastrarCliente(ClientePF cliente) {
-        /*
-         * Insere um cliente tipo pessoa física na listaClientes.
-         * Entrada: ClientePF cliente (cliente a ser cadastrado)
-         * Saida: valor booleano (true se o cadastro for realizado com sucesso, false se nao for)
-         */
 
         if (Validacao.validarCPF(cliente.getCpf()) && Validacao.validarNome(cliente.getNome()) && !listaClientes.contains(cliente)) { // verifica se o cpf é valido e se o cliente ja foi cadastrado
             listaClientes.add(cliente);
@@ -84,12 +87,12 @@ public class Seguradora {
         }
     }
 
+    /**
+     * Insere um cliente tipo pessoa jurídica na listaClientes.
+     * @param cliente (cliente a ser cadastrado)
+     * @return valor booleano (true se o cadastro for realizado com sucesso, false se nao for)
+     */
     public boolean cadastrarCliente(ClientePJ cliente) {
-        /*
-         * Insere um cliente tipo pessoa jurídica na listaClientes.
-         * Entrada: ClientePJ cliente (cliente a ser cadastrado)
-         * Saida: valor booleano (true se o cadastro for realizado com sucesso, false se nao for)
-         */
 
         if (Validacao.validarCNPJ(cliente.getCnpj()) && Validacao.validarNome(cliente.getNome()) && !listaClientes.contains(cliente)) { // verifica se o cnpj é valido e se o cliente ja foi cadastrado
             listaClientes.add(cliente);
@@ -99,13 +102,12 @@ public class Seguradora {
         }
     }
 
-
+    /**
+     * Remove um cliente da listaClientes.
+     * @param cliente (cpf ou cnpj do cliente a ser removido)
+     * @return valor booleano (true se o cliente com esse cpf/cnpj for encontrado na lista (e removido), false se nao for)
+     */
     public boolean removerCliente(String cliente) {
-        /*
-         * Remove um cliente da listaClientes.
-         * Entrada: String cliente (cpf ou cnpj do cliente a ser removido)
-         * Saida: valor booleano (true se o cliente com esse cpf/cnpj for encontrado na lista (e removido), false se nao for)
-         */
 
         if(Validacao.validarCPF(cliente)){
             for (Cliente c : listaClientes) { 
@@ -132,11 +134,13 @@ public class Seguradora {
 
     }
 
+    /**
+     * Localiza um cliente na listaClientes com base no seu cpf/cnpj
+     * @param cliente (cpf ou cnpj do cliente buscado)
+     * @return Cliente procurado (retorna null se não encontrar)
+     */
     public Cliente encontrarCliente(String cliente){ 
-        /* Localiza um cliente na listaClientes com base no seu cpf/cnpj
-         * Entrada: String cliente (cpf ou cnpj do cliente buscado)
-         * Saída: Cliente procurado (retorna null se não encontrar)
-        */
+
         if(Validacao.validarCPF(cliente)){
             for (Cliente c : listaClientes) { 
                 if (c instanceof ClientePF) {  // verifica se c eh pessoa fisica
@@ -160,10 +164,20 @@ public class Seguradora {
     }
 
     //metodos relacionados a listaSeguros
+    /**
+     * Recebe um seguro e insere ele na listaSeguros da seguradora
+     * @param seguro (seguro a ser cadastrado)
+     * @return valor booleano correspondente ao retorno do método add()
+     */
     public boolean gerarSeguro(Seguro seguro){
         return listaSeguros.add(seguro);
     }
 
+    /**
+     * Remove um seguro da listaSeguros
+     * @param id (id do seguro a ser cancelado)
+     * @return valor booleano (true se o seguro com esse id for encontrado na lista (e removido), false se nao for)
+     */
     public boolean cancelarSeguro(int id){
         for(Seguro s : listaSeguros){
             if(s.getId() == id){
@@ -175,6 +189,11 @@ public class Seguradora {
         
     }
 
+    /**
+     * Lista todos os seguros de um determinado cliente
+     * @param cliente (cpf/cnpj do cliente)
+     * @return arraylist contendo os seguros
+     */
     public ArrayList<Seguro> getSegurosPorCliente(String cliente){
         ArrayList<Seguro> seguros = new ArrayList<Seguro>();
 
@@ -201,6 +220,11 @@ public class Seguradora {
         return seguros;
     }
 
+    /**
+     * Lista todos os sinistros de um determinado cliente
+     * @param cliente (cpf/cnpj do cliente)
+     * @return arraylist contendo todos os sinistros associados
+     */
     public ArrayList<Sinistro> getSinistrosPorCliente(String cliente){
         ArrayList<Sinistro> sinistros = new ArrayList<Sinistro>();
 
@@ -226,6 +250,38 @@ public class Seguradora {
         }
         return sinistros;
     }
+
+    /**
+     * Lista todos os seguros da seguradora
+     * @return arraylist contendo os seguros
+     */
+    public ArrayList<Seguro> listarSeguros(){
+        return listaSeguros;
+    }
+
+    
+    /**
+     * Mostra o balanco de seguros de todos os clientes da Seguradora
+     */
+    public void calcularReceita(){
+
+        for(Cliente c : listaClientes){
+            double receita = 0;
+            String cliente;
+
+            if(c instanceof ClientePF){
+                cliente = ((ClientePF)c).getCpf();
+            }else{
+                cliente = ((ClientePJ)c).getCnpj();
+            }
+            for(Seguro s : listaSeguros){
+                if (s.getCliente().equals(c)){
+                    receita += s.getValorMensal();
+                }
+            }
+            System.out.println("Cliente: " + cliente + " ; Balanço de seguros: " + receita);
+        }
+    }   
 
     // metodos relacionados ao atributo listaSinistros
     /*public boolean gerarSinistro(LocalDate data, String endereco, Veiculo veiculo, Cliente cliente){ //TO-DO: refatorar

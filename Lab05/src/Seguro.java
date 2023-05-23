@@ -14,7 +14,7 @@ public abstract class Seguro {
     protected Seguradora seguradora;
     protected ArrayList<Sinistro> listaSinistros;
     protected ArrayList<Condutor> listaCondutores;
-    protected int valorMensal;
+    protected double valorMensal;
     protected static int numSeguros = 0;
 
     //construtor
@@ -61,8 +61,6 @@ public abstract class Seguro {
         
     }
 
-    public abstract int calcularValor();
-
     /**
      * Insere sinistro na listaSinistros do seguro e do condutor correspondente
      * @param sinistro (sinistro a ser gerado)
@@ -79,6 +77,17 @@ public abstract class Seguro {
         autorizarCondutor(sinistro.getCondutor());
         return sinistro.getCondutor().adicionarSinistro(sinistro);
     }
+
+    public int qtdSinistrosCondutores(){
+        int qtd = 0;
+        for(Condutor c : listaCondutores){
+            qtd += c.listarSinistros().size();
+        }
+        return qtd;
+    }
+
+    public abstract double calcularValor();
+
 
     //getters e setters
     public int getId() {
@@ -125,11 +134,11 @@ public abstract class Seguro {
         this.listaCondutores = listaCondutores;
     }
 
-    public int getValorMensal() {
+    public double getValorMensal() {
         return valorMensal;
     }
 
-    public void setValorMensal(int valorMensal) {
+    public void setValorMensal(double valorMensal) {
         this.valorMensal = valorMensal;
     }
 

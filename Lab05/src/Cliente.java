@@ -18,7 +18,6 @@ public abstract class Cliente {
         this.email = email;
     }
     
-    
     public String toString() {
         String dados = "";
         dados += "Nome: " + this.nome + "\nTelefone: " + this.telefone + "\nEndereco: " + this.endereco
@@ -26,6 +25,8 @@ public abstract class Cliente {
 
         return dados;
     }
+
+    public abstract int qtdVeiculos();
 
     // getters e setters:
     public String getNome() {

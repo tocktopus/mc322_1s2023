@@ -42,6 +42,10 @@ public class Condutor {
         return listaSinistros.add(sinistro);
     }
 
+    public ArrayList<Sinistro> listarSinistros() {
+        return listaSinistros;
+    }
+
     //getters e setters
     public String getCpf() {
         return cpf;
@@ -86,17 +90,6 @@ public class Condutor {
     public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
-
-    public ArrayList<Sinistro> getListaSinistros() {
-        return listaSinistros;
-    }
-
-    public void setListaSinistros(ArrayList<Sinistro> listaSinistros) {
-        this.listaSinistros = listaSinistros;
-    }
-
-    
-
     
 
 }

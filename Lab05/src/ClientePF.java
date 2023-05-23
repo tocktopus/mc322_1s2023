@@ -83,6 +83,11 @@ public class ClientePF extends Cliente {
         LocalDate agora = LocalDate.now();
         return ChronoUnit.YEARS.between(dataNascimento, agora);
     }
+
+    @Override
+    public int qtdVeiculos(){
+        return listaVeiculos.size();
+    }
     
     // getters e setters:
     public String getCpf() {
