@@ -86,6 +86,15 @@ public abstract class Seguro {
         return qtd;
     }
 
+    public Condutor getCondutorPorCPF(String cpf){
+        for (Condutor c : listaCondutores){
+            if(c.getCpf().equals(cpf)){
+                return c;
+            }
+        }
+        return null;
+    }
+
     public abstract double calcularValor();
 
 

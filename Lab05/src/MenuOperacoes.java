@@ -17,8 +17,7 @@ public enum MenuOperacoes {
     AUTORIZAR_CONDUTOR(6),
     DESAUTORIZAR_CONDUTOR(7),
     GERAR_SINISTRO(8),
-    ATUALIZAR_FROTA(9),
-    CALC_RECEITA(10),
+    CALC_RECEITA(9),
     SAIR(0),
 
     //operacoes cadastro
@@ -30,18 +29,8 @@ public enum MenuOperacoes {
 
     //operacoes listar
     LISTAR_CLIENTE(2.1),
-
     LISTAR_SEGURO(2.2),
-    LISTAR_SEGURO_SEGURADORA(2.21),
-    LISTAR_SEGURO_CLIENTE(2.22),
-    VOLTAR_LISTAR_SEGURO(2.23),
-
     LISTAR_SINISTROS(2.3),
-    LISTAR_SINISTROS_SEGURADORA(2.31),
-    LISTAR_SINISTROS_CLIENTE(2.32),
-    LISTAR_SINISTROS_SEGURO(2.33),
-    VOLTAR_LISTAR_SINISTROS(2.34),
-
     LISTAR_CONDUTORES(2.4),
     LISTAR_FROTAS(2.5),
     LISTAR_VEICULOS(2.6),
@@ -50,6 +39,7 @@ public enum MenuOperacoes {
     //operacoes excluir
     EXCLUIR_CLIENTE(3.1),
     EXCLUIR_VEICULO(3.2),
+    EXCLUIR_FROTA(3.3),
     VOLTAR_EXCLUIR(3.4),
 
     INVALIDO(-1);

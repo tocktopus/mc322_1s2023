@@ -84,6 +84,15 @@ public class ClientePF extends Cliente {
         return ChronoUnit.YEARS.between(dataNascimento, agora);
     }
 
+    public Veiculo getVeiculoPorPlaca(String placa){
+        for(Veiculo v : listaVeiculos){
+            if(v.getPlaca().equals(placa)){
+                return v;
+            }
+        }
+        return null;
+    }
+
     @Override
     public int qtdVeiculos(){
         return listaVeiculos.size();

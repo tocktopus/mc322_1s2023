@@ -307,6 +307,15 @@ public class Seguradora {
         return null;
     }
 
+    public Seguro getSeguroPorID(int id){
+        for(Seguro s : listaSeguros){
+            if(s.getId() == id){
+                return s;
+            }
+        }
+        return null;
+    }
+
     // metodos relacionados ao atributo listaSinistros
     /*public boolean gerarSinistro(LocalDate data, String endereco, Veiculo veiculo, Cliente cliente){ //TO-DO: refatorar
         /* Gera um Sinistro novo e o insere na lista

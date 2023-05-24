@@ -39,8 +39,7 @@ public class ClientePJ extends Cliente {
      * @param veiculos (lista de veiculos da frota)
      * @return valor booleano correspondente ao retorno de add()
      */
-    public boolean cadastrarFrota(Veiculo veiculo){
-        Frota frota = new Frota(veiculo);
+    public boolean cadastrarFrota(Frota frota){
         return listaFrota.add(frota);
     }
 
@@ -115,6 +114,16 @@ public class ClientePJ extends Cliente {
             return null;
         }
     }
+
+    public Frota getFrotaPorCode(String code){
+        for(Frota f : listaFrota){
+            if(f.getCode().equals(code)){
+                return f;
+            }
+        }
+        return null;
+    }
+
 
     public long AnosPosFundacao(){
         LocalDate agora = LocalDate.now();

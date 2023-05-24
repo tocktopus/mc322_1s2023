@@ -4,16 +4,14 @@
  * Material usado na disciplina MC322
  */
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Frota {
-    private Random random = new Random();
-    private final String code;
+    private String code;
     private ArrayList<Veiculo> listaVeiculos;
 
     //construtor
-    public Frota(Veiculo veiculo) {
-        this.code = Integer.toString(random.nextInt(1000));
+    public Frota(String code, Veiculo veiculo) {
+        this.code = code;
         listaVeiculos = new ArrayList<Veiculo>();
         listaVeiculos.add(veiculo);
     }

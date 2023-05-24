@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
-import javafx.scene.control.Menu;
-
 public class AppMain {
     //cria lista que vai conter todas as seguradoras do programa
     private static ArrayList<Seguradora> seguradoras = new ArrayList<Seguradora>();
@@ -27,13 +25,14 @@ public class AppMain {
         seguradora.cadastrarCliente(pf);
         seguradora.cadastrarCliente(pj);
 
-        //cadastrando veiculo no Cliente pf
+        //instanciando e cadastrando veiculo no Cliente pf
         Veiculo v1 = new Veiculo("AAA1234", "Fiat", "Uno", 2020);
         pf.cadastrarVeiculo(v1);
 
-        //cadastrando frota no Cliente pj ja contendo um veiculo
+        //instanciando e cadastrando frota no Cliente pj ja contendo um veiculo
         Veiculo v2 = new Veiculo("BBB3750", "Chevrolet", "Onix", 2013);
-        pj.cadastrarFrota(v2);
+        Frota f1 = new Frota("1234", v2);
+        pj.cadastrarFrota(f1);
 
         //pegando o code da frota que criamos
         String code = pj.getListaFrota().get(0).getCode();
@@ -96,8 +95,7 @@ public class AppMain {
                                 "6 Autorizar Condutor\n"+
                                 "7 Desautorizar Condutor\n"+
                                 "8 Gerar Sinistro\n"+
-                                "9 Atualizar Frota\n"+
-                                "10 Calcular Receita\n"+
+                                "9 Calcular Receita\n"+
                                 "0 Sair");
 
             MenuOperacoes operacao = MenuOperacoes.valor(entrada.nextDouble());
@@ -187,9 +185,7 @@ public class AppMain {
                             System.out.println("Insira o cpf/cnpj do cliente ao qual será cadastrado o veículo:");
                             String cliente = entrada.nextLine();
                             Cliente c = s.encontrarCliente(cliente);
-                            if (c == null) {
-                                System.out.println("Cliente inválido");
-                            }else if(c instanceof ClientePF){
+                            if(c instanceof ClientePF){
                                 ClientePF k = (ClientePF)c; //faz o downcasting
                                         System.out.println("Placa: ");
                                         String placa = entrada.nextLine();
@@ -207,7 +203,6 @@ public class AppMain {
                                         }
                             }else if(c instanceof ClientePJ){
                                 ClientePJ k = (ClientePJ)c; //faz o downcasting
-                                System.out.println("Frotas de cliente " + cliente + ":\n" + k.getListaFrota() + "\nCódigo da frota à qual será cadastrado o veículo: ");
                                 String code = entrada.nextLine();
                                 System.out.println("Placa: ");
                                 String placa = entrada.nextLine();
@@ -218,17 +213,52 @@ public class AppMain {
                                 System.out.println("Ano de fabricação: ");
                                 int ano = entrada.nextInt();
                                 Veiculo v = new Veiculo(placa, marca, modelo, ano);
+
                                 if(k.atualizarFrota(code, v)){
-                                    System.out.println("Cliente cadastrado com sucesso!");
+                                    System.out.println("Veículo cadastrado com sucesso!");
                                 }else{
                                     System.out.println("Falha no cadastro, verifique se o código está correto.");
                                 }
+                            }else{
+                                System.out.println("Cliente inválido.");
                             }
 
                         }break;
- 
-                        case CAD_SEGURADORA:{
 
+                        case CAD_FROTA:{
+                            imprimirIDSeguradoras();
+                            Seguradora s = seguradoras.get(entrada.nextInt());
+                            entrada.nextLine(); //para nao pular o proximo
+                            
+                            System.out.println("Insira o cpf/cnpj do cliente ao qual será cadastrado o veículo:");
+                            String cliente = entrada.nextLine();
+                            Cliente c = s.encontrarCliente(cliente);
+
+                            if(c instanceof ClientePJ){
+                                ClientePJ k = (ClientePJ)c; //faz o downcasting
+                                System.out.println("Código da nova frota");
+                                String code = entrada.nextLine();
+                                System.out.println("Placa: ");
+                                String placa = entrada.nextLine();
+                                System.out.println("Marca: ");
+                                String marca = entrada.nextLine();
+                                System.out.println("Modelo: ");
+                                String modelo = entrada.nextLine();
+                                System.out.println("Ano de fabricação: ");
+                                int ano = entrada.nextInt();
+                                Veiculo v = new Veiculo(placa, marca, modelo, ano);
+                                Frota f = new Frota(code, v);
+                                if(k.cadastrarFrota(f)){
+                                    System.out.println("Frota cadastrada com sucesso!");
+                                }else{
+                                    System.out.println("Falha no cadastro");
+                                }
+                            }else{
+                                System.out.println("Cliente inválido");
+                            }
+                        }break;
+                        
+                        case CAD_SEGURADORA:{
                             entrada.nextLine(); //para nao pular o proximo
                             System.out.println("Nome da nova seguradora:");
                             String nome = entrada.nextLine();
@@ -379,7 +409,7 @@ public class AppMain {
 
                             String cliente = entrada.nextLine();
                             Cliente c = s.encontrarCliente(cliente);
-                            if (c != null && c instanceof ClientePJ) {
+                            if (c instanceof ClientePJ) {
                                 ClientePJ k = (ClientePJ)c;
                                 System.out.println("Listando Frotas do Cliente "+ cliente + ":\n" +k.getListaFrota());
                             }else{
@@ -397,7 +427,7 @@ public class AppMain {
                             String cliente = entrada.nextLine();
                             Cliente c = s.encontrarCliente(cliente);
 
-                            if (c != null && c instanceof ClientePF) {
+                            if (c instanceof ClientePF) {
                                 ClientePF k = (ClientePF)c;
                                 System.out.println("Listando Veiculos do Cliente "+ cliente + ":\n" +k.getListaVeiculos());
                             }else{
@@ -439,19 +469,63 @@ public class AppMain {
                             }
                         }break;
 
-                        /*case EXCLUIR_VEICULO:{
+                        case EXCLUIR_VEICULO:{
                             imprimirIDSeguradoras();
                             Seguradora s = seguradoras.get(entrada.nextInt());
                             entrada.nextLine();//para nao pular o proximo
 
-                            System.out.println("Insira a placa do veículo a ser removido:");
-                            String placa = entrada.nextLine();
-                            if(s.excluirVeiculoCliente(placa)){
-                                System.out.println("Veiculo excluido com sucesso");
+                            System.out.println("Insira o cpf/cnpj do cliente dono do veículo:");
+                            String cliente = entrada.nextLine();
+                            Cliente c = s.encontrarCliente(cliente);
+                            
+                            if(c instanceof ClientePF){
+                                ClientePF k = (ClientePF)c;
+                                System.out.println("Insira a placa do veículo a ser removido:");
+                                String placa = entrada.nextLine();
+                                if(k.removerVeiculo(placa)){
+                                    System.out.println("Veiculo excluido com sucesso");
+                                }else{
+                                    System.out.println("Veiculo não encontrado");
+                                }
+
+                            }else if(c instanceof ClientePJ){
+                                ClientePJ k = (ClientePJ)c;
+
+                                System.out.println("Insira o código da frota com o veículo a ser removido:");
+                                String code = entrada.nextLine();
+                                System.out.println("Insira a placa do veículo a ser removido:");
+                                String placa = entrada.nextLine();
+
+                                if(k.atualizarFrota(code, placa)){
+                                    System.out.println("Veiculo excluido com sucesso");
+                                }else{
+                                    System.out.println("Veiculo ou frota não encontrados");
+                                }
                             }else{
-                                System.out.println("Veiculo não encontrado");
+                                System.out.println("Cliente inválido");  
                             }
-                        }break;*/
+                        }break;
+
+                        case EXCLUIR_FROTA:{
+                            imprimirIDSeguradoras();
+                            Seguradora s = seguradoras.get(entrada.nextInt());
+                            entrada.nextLine();//para nao pular o proximo
+                            System.out.println("Insira o cnpj do cliente dono da frota:");
+                            String cliente = entrada.nextLine();
+                            Cliente c = s.encontrarCliente(cliente);
+                            if (c instanceof ClientePJ) {
+                                ClientePJ k = (ClientePJ)c;
+                                System.out.println("Insira o código da frota a ser removida:");
+                                String code = entrada.nextLine();
+                                if(k.atualizarFrota(code)){
+                                    System.out.println("Frota excluida com sucesso");
+                                }else{
+                                    System.out.println("Frota não encontrada");
+                                }
+                            }else{
+                                System.out.println("Cliente inválido");
+                            }
+                        }break;
 
                         case VOLTAR_EXCLUIR:
                             continue loop;
@@ -463,66 +537,153 @@ public class AppMain {
                     }
                 }break;
 
-/*                 case GERAR_SINISTRO:{
+                case GERAR_SEGURO:{
                     imprimirIDSeguradoras();
                     Seguradora s = seguradoras.get(entrada.nextInt());
                     entrada.nextLine();//para nao pular o proximo
 
-                    System.out.println("Insira o cpf/cnpj do cliente para o qual será gerado o sinistro");
+                    System.out.println("Insira o cpf/cnpj do cliente dono do veículo:");
                     String cliente = entrada.nextLine();
                     Cliente c = s.encontrarCliente(cliente);
-
-                    if (c == null) {
-                        System.out.println("Cliente não encontrado.");
-                    }else{
-                        System.out.println("Digite a placa do veículo associado:");
-                        String placa = entrada.nextLine();
-                        Veiculo veicSinistro = null;
-                        for(Veiculo v : c.getListaVeiculos()){
-                            if (v.getPlaca().equals(placa)){
-                                veicSinistro = v;
-                                break;
-                            }
-                        }
-                        if(veicSinistro == null){
-                            System.out.println("Veículo não encontrado");
+                    if(c instanceof ClientePF){
+                        ClientePF k = (ClientePF) c;
+                        System.out.println("Data de início (formato aaaa-mm-dd): ");
+                        String dataIni = entrada.nextLine();
+                        System.out.println("Data de fim (formato aaaa-mm-dd): ");
+                        String dataFim = entrada.nextLine();
+                        System.out.println("Placa do veiculo: ");
+                        Veiculo v = k.getVeiculoPorPlaca(entrada.nextLine());
+                        if(s.gerarSeguro(new SeguroPF(LocalDate.parse(dataIni), LocalDate.parse(dataFim), s, v, k))){
+                            System.out.println("Seguro gerado com sucesso.");
                         }else{
-                            System.out.println("Data de ocorrência do sinistro (formato aaaa-mm-dd):");
-                            String data = entrada.nextLine();
-                            System.out.println("Local do sinistro: ");
-                            String endereco = entrada.nextLine();
-
-                            s.gerarSinistro(LocalDate.parse(data), endereco, veicSinistro, c);
-                            s.calcularPrecoSeguroCliente();
-                            System.out.println("Sinistro gerado com sucesso. Valor do seguro agora é: "+c.getValorSeguro());
+                            System.out.println("Seguro não gerado. Verifique os dados.");
                         }
+
+                    }else if(c instanceof ClientePJ){
+                        ClientePJ k = (ClientePJ) c;
+                        System.out.println("Data de início (formato aaaa-mm-dd): ");
+                        String dataIni = entrada.nextLine();
+                        System.out.println("Data de fim (formato aaaa-mm-dd): ");
+                        String dataFim = entrada.nextLine();
+                        System.out.println("Código da Frota: ");
+                        Frota f = k.getFrotaPorCode(entrada.nextLine());
+                        if(f != null && s.gerarSeguro(new SeguroPJ(LocalDate.parse(dataIni), LocalDate.parse(dataFim), s, f, k))){
+                            System.out.println("Seguro gerado com sucesso.");
+                        }
+                        else{
+                            System.out.println("Falha em gerar seguro. Verifique os dados.");
+                        }
+                    }else{
+                        System.out.println("Cliente inválido");
                     }
-                            
+
+
                 }break;
 
-                case TRANSFERIR_SEGURO:{
+                case CANCELAR_SEGURO:{
                     imprimirIDSeguradoras();
                     Seguradora s = seguradoras.get(entrada.nextInt());
                     entrada.nextLine();//para nao pular o proximo
 
-                    System.out.println("Insira o cpf/cnpj do primeiro cliente da transferência: ");
-                    String cliente1 = entrada.nextLine();
-                    System.out.println("Insira o cpf/cnpj do segundo cliente: ");
-                    String cliente2 = entrada.nextLine();
-                    
-                    if(!s.transferirSeguro(cliente1, cliente2)){
-                        System.out.println("Transferência não concluída. Clientes inválidos.");
+                    System.out.println("Insira o id do seguro a ser cancelado:");
+                    int id = entrada.nextInt();
+                    if(s.cancelarSeguro(id)){
+                        System.out.println("Seguro cancelado com sucesso");
+                    }else{
+                        System.out.println("Falha em cancelar seguro. Verifique o id.");
                     }
+                }break;
 
+                case AUTORIZAR_CONDUTOR:{
+                    imprimirIDSeguradoras();
+                    Seguradora s = seguradoras.get(entrada.nextInt());
+                    entrada.nextLine();//para nao pular o proximo
+
+                    System.out.println("Insira o id do seguro:");
+                    int id = entrada.nextInt();
+                    entrada.nextLine();//para nao pular o proximo
+
+                    Seguro seguro = s.getSeguroPorID(id);
+                    if(seguro != null){
+                        System.out.println("Nome: ");
+                        String nome = entrada.nextLine();
+                        System.out.println("CPF: ");
+                        String cpf = entrada.nextLine();
+                        System.out.println("Telefone: ");
+                        String tel = entrada.nextLine();
+                        System.out.println("Endereco: ");
+                        String endereco = entrada.nextLine();
+                        System.out.println("Email: ");
+                        String email = entrada.nextLine();
+                        System.out.println("Data de nascimento (formato aaaa-mm-dd): ");
+                        String dataNasc = entrada.nextLine();
+                        Condutor c = new Condutor(cpf, nome, tel, endereco, email, LocalDate.parse(dataNasc));
+                        if(seguro.autorizarCondutor(c)){
+                            System.out.println("Condutor autorizado");
+                        }else{
+                            System.out.println("Falha em autorizar condutor, verifique os dados inseridos");
+                        }
+                    }
+                }break;
+
+                case DESAUTORIZAR_CONDUTOR:{
+                    imprimirIDSeguradoras();
+                    Seguradora s = seguradoras.get(entrada.nextInt());
+                    entrada.nextLine();//para nao pular o proximo
+
+                    System.out.println("Insira o id do seguro:");
+                    int id = entrada.nextInt();
+                    entrada.nextLine();//para nao pular o proximo
+
+                    Seguro seguro = s.getSeguroPorID(id);
+                    if(seguro != null){
+                        System.out.println("Insira o cpf do condutor a ser desautorizado: ");
+                        String cpf = entrada.nextLine();
+                        if(seguro.desautorizarCondutor(cpf)){
+                            System.out.println("Condutor desautorizado");
+                        }else{
+                            System.out.println("Condutor não encontrado");
+                        }
+                    }else{
+                        System.out.println("ID inválido");
+                    }
+                }break;
+
+                case GERAR_SINISTRO:{
+                    imprimirIDSeguradoras();
+                    Seguradora s = seguradoras.get(entrada.nextInt());
+                    entrada.nextLine();//para nao pular o proximo
+
+                    System.out.println("Insira o id do seguro:");
+                    int id = entrada.nextInt();
+                    entrada.nextLine();//para nao pular o proximo
+
+                    Seguro seguro = s.getSeguroPorID(id);
+                    if(seguro != null){
+                        System.out.println("Data do sinistro (formato aaaa-mm-dd): ");
+                        String data = entrada.nextLine();
+                        System.out.println("Endereco: ");
+                        String endereco = entrada.nextLine();
+
+                        System.out.println("CPF do condutor: ");
+                        Condutor c = seguro.getCondutorPorCPF(entrada.nextLine());
+
+                        if(seguro.gerarSinistro(new Sinistro(LocalDate.parse(data), endereco, seguro, c))){
+                            System.out.println("Sinistro gerado com sucesso");
+                        }else{
+                            System.out.println("Falha em gerar sinistro, verifique os dados inseridos");
+                        }
+                    }else{
+                        System.out.println("ID inválido");
+                    }
                 }break;
 
                 case CALC_RECEITA:{
                     imprimirIDSeguradoras();
                     Seguradora s = seguradoras.get(entrada.nextInt());
-                    s.calcularPrecoSeguroCliente();
-                    System.out.println("A receita total da seguradora "+s.getNome()+" é de "+s.calcularReceita());
+                    s.calcularReceita();
                 }break;
-*/
+
                 case SAIR:
                     System.out.println("Saindo...");
                     break loop;
