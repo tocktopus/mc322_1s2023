@@ -144,5 +144,10 @@ public abstract class Seguro {
 
     public abstract Cliente getCliente();
 
+    public static int getNumSeguros() {
+        return numSeguros;
+    }
+
+    
     
 }

@@ -26,7 +26,7 @@ public class Sinistro {
     
     public String toString() {
         String dados = "";
-        dados += "ID:" + id + "\nData: " + data + "\nEndereco: " + endereco + "\nDados do Seguro:\n" + seguro
+        dados += "ID:" + id + "\nData: " + data + "\nEndereco: " + endereco + "\nID do Seguro: " + seguro.getId()
                 + "\nDados do Condutor:\n" + condutor +"\n";
         return dados;
     }

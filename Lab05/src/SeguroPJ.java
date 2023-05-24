@@ -38,10 +38,10 @@ public class SeguroPJ extends Seguro{
         //(5 + quantidadeSinistrosCondutor /10))
         //
         //System.out.println(cliente);
-        valor = CalcSeguro.VALOR_BASE.fator * (10 + cliente.getQtdFuncionarios()/10);
-        valor *= (1 + 1/(cliente.qtdVeiculos() + 2)) * (1 + 1/(cliente.AnosPosFundacao() + 2));
-        valor *= (2 + seguradora.getSinistrosPorCliente(cliente.getCnpj()).size()/10);
-        valor *= (5 + qtdSinistrosCondutores() / 10);
+        valor = CalcSeguro.VALOR_BASE.fator * (10.0 + cliente.getQtdFuncionarios()/10.0);
+        valor *= (1.0 + 1.0/(frota.getListaVeiculos().size() + 2.0)) * (1.0 + 1.0/(cliente.AnosPosFundacao() + 2.0));
+        valor *= (2.0 + seguradora.getSinistrosPorCliente(cliente.getCnpj()).size()/10.0);
+        valor *= (5.0 + qtdSinistrosCondutores() / 10.0);
         return valor;
     }
 

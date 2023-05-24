@@ -63,7 +63,7 @@ public class ClientePJ extends Cliente {
      * @param code (codigo da frota)
      * @return valor booleano (true se conseguir remover, false do contrário)
      */
-    public boolean alterarFrota(String code){
+    public boolean atualizarFrota(String code){
         Frota f = localizarFrota(code);
         if(f != null){
             return listaFrota.remove(f);
@@ -78,7 +78,7 @@ public class ClientePJ extends Cliente {
      * @param placa (placa do veiculo a ser removido)
      * @return true se conseguir remover, false do contrario
      */
-    public boolean alterarFrota(String code, String placa){
+    public boolean atualizarFrota(String code, String placa){
         Frota f = localizarFrota(code);
         if(f != null){
             return f.removerVeiculo(placa);
@@ -93,7 +93,7 @@ public class ClientePJ extends Cliente {
      * @param veiculo (veiculo a ser cadastrado na frota)
      * @return true se conseguir cadastrar veiculo, false do contrario
      */
-    public boolean alterarFrota(String code, Veiculo veiculo){
+    public boolean atualizarFrota(String code, Veiculo veiculo){
         Frota f = localizarFrota(code);
         if(f != null){
             return f.cadastrarVeiculo(veiculo);

@@ -259,7 +259,13 @@ public class Seguradora {
         return listaSeguros;
     }
 
-    
+    public ArrayList<Sinistro> listarSinistros(){
+        ArrayList<Sinistro> sinistros = new ArrayList<Sinistro>();
+        for(Seguro s : listaSeguros){
+            sinistros.addAll(s.getListaSinistros());
+        }
+        return sinistros;
+    }
     /**
      * Mostra o balanco de seguros de todos os clientes da Seguradora
      */
@@ -276,12 +282,30 @@ public class Seguradora {
             }
             for(Seguro s : listaSeguros){
                 if (s.getCliente().equals(c)){
-                    receita += s.getValorMensal();
+                    receita += s.calcularValor(); 
                 }
             }
-            System.out.println("Cliente: " + cliente + " ; Balanço de seguros: " + receita);
+            System.out.println("Cliente: " + cliente + " ; Balanço de seguros: " + Math.round(receita*100.0)/100.0); //arredonda receita p/ duas casas
         }
     }   
+
+    public ArrayList<Sinistro> getSinistrosPorSeguro(int id){
+        for(Seguro s : listaSeguros){
+            if(s.getId() == id){
+                return s.getListaSinistros();
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Condutor> getCondutoresPorSeguro(int id){
+        for(Seguro s : listaSeguros){
+            if(s.getId() == id){
+                return s.getListaCondutores();
+            }
+        }
+        return null;
+    }
 
     // metodos relacionados ao atributo listaSinistros
     /*public boolean gerarSinistro(LocalDate data, String endereco, Veiculo veiculo, Cliente cliente){ //TO-DO: refatorar
