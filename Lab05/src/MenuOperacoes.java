@@ -43,7 +43,6 @@ public enum MenuOperacoes {
     VOLTAR_EXCLUIR(3.4),
 
     INVALIDO(-1);
-    
 
     public final double operacao;
 

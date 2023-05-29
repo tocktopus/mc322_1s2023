@@ -1,6 +1,6 @@
 /*
  * SeguroPF.java
- * Ultima modificacao: 21/05/2023
+ * Ultima modificacao: 29/05/2023
  * Material usado na disciplina MC322
  */
 
@@ -21,7 +21,7 @@ public class SeguroPF extends Seguro{
     public String toString(){
         String dados = "";
 
-        dados += "ID:" + id + "\nData de Inicio: " + dataInicio + "\nData de Fim: " + dataFim + "\nSeguradora:\n" + seguradora 
+        dados += "ID:" + id + "\nData de Inicio: " + dataInicio + "\nData de Fim: " + dataFim + "\nSeguradora: " + seguradora.getNome() 
         + "\nDados do Veiculo:\n" + veiculo + "Dados do Cliente:\n" + cliente;
 
         return dados;
@@ -30,9 +30,6 @@ public class SeguroPF extends Seguro{
     @Override
     public double calcularValor(){
         double valor = 0;
-        // Valor deve ser:
-        //  ( VALOR_BASE * FATOR_IDADE * (1 + 1/( quantidadeVeiculos +2) ) * 
-        //  (2 + quantidadeSinistrosCliente /10) * (5 + quantidadeSinistrosCondutor /10) )
         if (cliente.idade() >= 18 && cliente.idade() <= 30){
             valor = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_18_30.fator * (1.0 + 1.0/(cliente.qtdVeiculos()+2.0)) * 
                     (2.0 + seguradora.getSinistrosPorCliente(cliente.getCpf()).size()/10.0) * (5.0 + qtdSinistrosCondutores()/10.0); 

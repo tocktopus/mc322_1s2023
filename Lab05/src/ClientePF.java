@@ -1,6 +1,6 @@
 /*
  * ClientePF.java
- * Ultima modificacao: 21/05/2023
+ * Ultima modificacao: 29/05/2023
  * Material usado na disciplina MC322
  */
 
@@ -32,7 +32,7 @@ public class ClientePF extends Cliente {
         
         dados += "Nome: " + this.nome + "\nCPF: " + this.cpf + "\nTelefone: " + this.telefone + "\nEndereco: " + this.endereco +
                 "\nEmail: " + this.email + "\nGenero: " + this.genero + "\nEducacao: " + this.educacao + "\nData nascimento: " + 
-                this.dataNascimento + "\nLista Veiculos:\n" + this.listaVeiculos;
+                this.dataNascimento + "\nLista de Veiculos do Cliente:\n" + this.listaVeiculos;
 
         return dados;
     }
@@ -79,11 +79,11 @@ public class ClientePF extends Cliente {
         return false;
     }
 
-    public long idade(){
-        LocalDate agora = LocalDate.now();
-        return ChronoUnit.YEARS.between(dataNascimento, agora);
-    }
-
+    /**
+     * Procura um veiculo do cliente pela sua placa
+     * @param placa (placa do veiculo)
+     * @return veiculo procurado
+     */
     public Veiculo getVeiculoPorPlaca(String placa){
         for(Veiculo v : listaVeiculos){
             if(v.getPlaca().equals(placa)){
@@ -91,6 +91,11 @@ public class ClientePF extends Cliente {
             }
         }
         return null;
+    }
+
+    public long idade(){
+        LocalDate agora = LocalDate.now();
+        return ChronoUnit.YEARS.between(dataNascimento, agora);
     }
 
     @Override

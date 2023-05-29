@@ -1,6 +1,6 @@
 /*
  * Condutor.java
- * Ultima modificacao: 21/05/2023
+ * Ultima modificacao: 29/05/2023
  * Material usado na disciplina MC322
  */
 
@@ -30,7 +30,7 @@ public class Condutor {
     public String toString(){
         String dados = "";
         dados += "CPF:" + cpf + "\nNome: " + nome + "\nTelefone: " + telefone + "\nEndereco: " + endereco + "\nEmail: " + email
-                + "\nDataNascimento: " + dataNasc + "\n"; //nao inclui a listaSinistros pra nao entrar em loop infinito
+                + "\nData de nascimento: " + dataNasc + "\n"; //nao inclui a listaSinistros pra nao entrar em loop infinito
         return dados;
     }
     /**

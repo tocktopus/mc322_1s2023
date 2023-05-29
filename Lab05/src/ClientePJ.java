@@ -1,6 +1,6 @@
 /*
  * ClientePJ.java
- * Ultima modificacao: 21/05/2023
+ * Ultima modificacao: 29/05/2023
  * Material usado na disciplina MC322
  */
 
@@ -28,7 +28,7 @@ public class ClientePJ extends Cliente {
         String dados = "";
         dados += "Nome: " + this.nome + "\nCNPJ: " + this.cnpj + "\nTelefone: " + this.telefone + "\nEndereco: " + this.endereco +
                 "\nEmail: " + this.email + "\nData fundacao: " + this.dataFundacao + "\nNumero de funcionarios: " + this.qtdFuncionarios +
-                "\nLista de Frotas:\n" + this.listaFrota+"\n";
+                "\nLista de Frotas do Cliente:\n" + this.listaFrota+"\n";
 
         return dados;
     }
@@ -115,6 +115,11 @@ public class ClientePJ extends Cliente {
         }
     }
 
+    /**
+     * Procura uma frota do cliente pelo seu código
+     * @param code (código da frota)
+     * @return frota procurada
+     */
     public Frota getFrotaPorCode(String code){
         for(Frota f : listaFrota){
             if(f.getCode().equals(code)){
@@ -123,7 +128,6 @@ public class ClientePJ extends Cliente {
         }
         return null;
     }
-
 
     public long AnosPosFundacao(){
         LocalDate agora = LocalDate.now();
@@ -139,7 +143,6 @@ public class ClientePJ extends Cliente {
         return qtd;
     }
     
-
     // getters e setters:
     public String getCnpj() {
         return cnpj;

@@ -1,6 +1,6 @@
 /*
  * Frota.java
- * Ultima modificacao: 21/05/2023
+ * Ultima modificacao: 29/05/2023
  * Material usado na disciplina MC322
  */
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class Frota {
 
     public String toString() {
         String dados = ""; 
-        dados += "Code: " + this.code + "\nLista de Veiculos:\n" + this.listaVeiculos + "\n";
+        dados += "Code: " + this.code + "\nLista de Veiculos da Frota:\n" + this.listaVeiculos + "\n";
 
         return dados;
     }

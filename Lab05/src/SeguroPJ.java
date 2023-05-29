@@ -30,14 +30,6 @@ public class SeguroPJ extends Seguro{
     @Override
     public double calcularValor(){
         double valor = 0;
-        // valor deve ser:
-        //( VALOR_BASE * (10 + ( quantidadeFunc ) /10) *
-        //(1 + 1/( quantidadeVeiculos +2) ) *
-        //(1 + 1/( AnosPosFundacao +2) ) *
-        //(2 + quantidadeSinistrosCliente /10) *
-        //(5 + quantidadeSinistrosCondutor /10))
-        //
-        //System.out.println(cliente);
         valor = CalcSeguro.VALOR_BASE.fator * (10.0 + cliente.getQtdFuncionarios()/10.0);
         valor *= (1.0 + 1.0/(frota.getListaVeiculos().size() + 2.0)) * (1.0 + 1.0/(cliente.AnosPosFundacao() + 2.0));
         valor *= (2.0 + seguradora.getSinistrosPorCliente(cliente.getCnpj()).size()/10.0);

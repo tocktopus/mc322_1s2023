@@ -1,6 +1,6 @@
 /*
  * Sinistro.java
- * Ultima modificacao: 21/05/2023
+ * Ultima modificacao: 29/05/2023
  * Material usado na disciplina MC322
  */
 
@@ -27,7 +27,7 @@ public class Sinistro {
     public String toString() {
         String dados = "";
         dados += "ID:" + id + "\nData: " + data + "\nEndereco: " + endereco + "\nID do Seguro: " + seguro.getId()
-                + "\nDados do Condutor:\n" + condutor +"\n";
+                + "\nDados do Condutor do Sinistro:\n" + condutor;
         return dados;
     }
 

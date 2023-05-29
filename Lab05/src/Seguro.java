@@ -22,7 +22,6 @@ public abstract class Seguro {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.seguradora = seguradora;
-        //this.valorMensal = calcularValor();
         listaSinistros = new ArrayList<Sinistro>();
         listaCondutores = new ArrayList<Condutor>();
         id = numSeguros;
