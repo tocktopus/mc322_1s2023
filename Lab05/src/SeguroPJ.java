@@ -14,7 +14,7 @@ public class SeguroPJ extends Seguro{
         super(dataInicio, dataFim, seguradora);
         this.frota = frota;
         this.cliente = cliente;
-        this.valorMensal = calcularValor();
+        calcularValor();
     }
 
     @Override
@@ -22,11 +22,15 @@ public class SeguroPJ extends Seguro{
         String dados = "";
         
         dados += "ID:" + id + "\nData de Inicio: " + dataInicio + "\nData de Fim: " + dataFim + "\nSeguradora: " + seguradora 
-        + "\nDados da Frota:\n" + frota + "Dados do Cliente:\n" + cliente;
+        + "\nValor do Seguro: " + valorMensal +  "\nDados da Frota:\n" + frota + "Dados do Cliente:\n" + cliente;
 
         return dados;
     }
 
+    /**
+     * Calcula o valor do SeguroPJ, atualiza o atributo valorMensal e retorna o valor calculado
+     * @return valor mensal calculado
+     */
     @Override
     public double calcularValor(){
         double valor = 0;
@@ -34,6 +38,7 @@ public class SeguroPJ extends Seguro{
         valor *= (1.0 + 1.0/(frota.getListaVeiculos().size() + 2.0)) * (1.0 + 1.0/(cliente.AnosPosFundacao() + 2.0));
         valor *= (2.0 + seguradora.getSinistrosPorCliente(cliente.getCnpj()).size()/10.0);
         valor *= (5.0 + qtdSinistrosCondutores() / 10.0);
+        this.valorMensal = valor;
         return valor;
     }
 

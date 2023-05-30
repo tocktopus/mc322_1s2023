@@ -14,19 +14,24 @@ public class SeguroPF extends Seguro{
         super(dataInicio, dataFim, seguradora);
         this.veiculo = veiculo;
         this.cliente = cliente;
-        this.valorMensal = calcularValor();
+        calcularValor();
     }
 
+    
     @Override
     public String toString(){
         String dados = "";
 
-        dados += "ID:" + id + "\nData de Inicio: " + dataInicio + "\nData de Fim: " + dataFim + "\nSeguradora: " + seguradora.getNome() 
-        + "\nDados do Veiculo:\n" + veiculo + "Dados do Cliente:\n" + cliente;
+        dados += "ID:" + id + "\nData de Inicio: " + dataInicio + "\nData de Fim: " + dataFim + "\nSeguradora: " + seguradora.getNome()
+        +"\nValor do Seguro: " + valorMensal +  "\nDados do Veiculo:\n" + veiculo + "Dados do Cliente:\n" + cliente;
 
         return dados;
     }
 
+    /**
+     * Calcula o valor do SeguroPF, atualiza o atributo valorMensal e retorna o valor calculado
+     * @return valor mensal calculado
+     */
     @Override
     public double calcularValor(){
         double valor = 0;
@@ -42,6 +47,7 @@ public class SeguroPF extends Seguro{
             valor = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_60_90.fator * (1.0 + 1.0/(cliente.qtdVeiculos()+2.0)) * 
                     (2.0 + seguradora.getSinistrosPorCliente(cliente.getCpf()).size()/10.0) * (5.0 + qtdSinistrosCondutores()/10.0); 
         }
+        this.valorMensal = valor;
         return valor;
     }
 

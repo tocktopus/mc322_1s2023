@@ -3,7 +3,6 @@
  * Ultima modificacao: 29/05/2023
  * Material usado na disciplina MC322
  * 
- * //TO-DO: refatorar um montao de coisa vish
  */
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class Seguradora {
     private String telefone;
     private String email;
     private String endereco;
-    private ArrayList<Seguro> listaSeguros; //TO-DO: inserir atributo String final cnpj e ArrayList listaSeguros; remover listaSinistros
+    private ArrayList<Seguro> listaSeguros;
     private ArrayList<Cliente> listaClientes;
 
     // construtor
@@ -35,8 +34,6 @@ public class Seguradora {
 
         return dados;
     }
-
-    //TO-DO: inserir metodos gerarSeguro() e cancelarSeguro(), getSegurosPorCliente(), getSinistrosPorCliente(), e tbm listarSeguros()
 
     // metodos relacionados ao atributo listaClientes:
     /**
@@ -282,13 +279,17 @@ public class Seguradora {
     }
 
     /**
-     * Lista todos os seguros da seguradora
-     * @return arraylist contendo os seguros
+     * Lista todos os Seguros da Seguradora
+     * @return arraylist contendo os Seguros
      */
     public ArrayList<Seguro> listarSeguros(){
         return listaSeguros;
     }
 
+    /**
+     * Lista todos os Sinistros da Seguradora
+     * @return arraylist contendo os Sinistros
+     */
     public ArrayList<Sinistro> listarSinistros(){
         ArrayList<Sinistro> sinistros = new ArrayList<Sinistro>();
         for(Seguro s : listaSeguros){
@@ -296,6 +297,7 @@ public class Seguradora {
         }
         return sinistros;
     }
+
     /**
      * Mostra o balanco de seguros de todos os clientes da Seguradora
      */
@@ -322,7 +324,7 @@ public class Seguradora {
     /**
      * retorna sinistros de um seguro específico da listaSeguros
      * @param id (id do seguro)
-     * @return arraylist contendo os sinistros
+     * @return arraylist contendo os sinistros se encontrar o seguro, null do contrário
      */
     public ArrayList<Sinistro> getSinistrosPorSeguro(int id){
         for(Seguro s : listaSeguros){
@@ -336,7 +338,7 @@ public class Seguradora {
     /**
      * retorna condutores de um seguro específico da listaSeguros
      * @param id (id do seguro)
-     * @return arraylist contendo os condutores
+     * @return arraylist contendo os condutores se encontrar o seguro, null do contrário
      */
     public ArrayList<Condutor> getCondutoresPorSeguro(int id){
         for(Seguro s : listaSeguros){
@@ -350,7 +352,7 @@ public class Seguradora {
     /**
      * retorna seguro da listaSeguros com base no seu id
      * @param id (id do seguro)
-     * @return seguro procurado
+     * @return seguro procurado se o encontrar, null do contrário
      */
     public Seguro getSeguroPorID(int id){
         for(Seguro s : listaSeguros){

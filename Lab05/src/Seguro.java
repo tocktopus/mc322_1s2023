@@ -74,9 +74,16 @@ public abstract class Seguro {
         }
         //se nao achar condutor igual, autoriza (insere) o condutor e insere o sinistro na lista dele
         autorizarCondutor(sinistro.getCondutor());
+
+        calcularValor(); //atualiza o valor do seguro
+
         return sinistro.getCondutor().adicionarSinistro(sinistro);
     }
 
+    /**
+     * Soma a quantidade de Sinistros de todos os Condutores do Seguro
+     * @return qtd total de Sinistros dos Condutores
+     */
     public int qtdSinistrosCondutores(){
         int qtd = 0;
         for(Condutor c : listaCondutores){
@@ -85,6 +92,11 @@ public abstract class Seguro {
         return qtd;
     }
 
+    /**
+     * Retorna Condutor da listaCondutores baseado em seu cpf
+     * @param cpf (cpf do condutor)
+     * @return objeto Condutor se o encontrar, null do contrário
+     */
     public Condutor getCondutorPorCPF(String cpf){
         for (Condutor c : listaCondutores){
             if(c.getCpf().equals(cpf)){

@@ -22,8 +22,6 @@ public class Frota {
 
         return dados;
     }
-
-    //metodos 
     
     /**
      * Insere um Veiculo na listaVeiculos da frota.

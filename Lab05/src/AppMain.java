@@ -60,7 +60,7 @@ public class AppMain {
         seguradora.getSeguroPorID(1).gerarSinistro(new Sinistro(LocalDate.parse("2023-05-24"), "Rua X", seguradora.getSeguroPorID(1), c2));
         
         System.out.println("\nApresentando exemplos de utilização dos métodos do programa");
-        
+
         //apresentando detalhes de objetos de cada classe com o ToString()
         System.out.println("\n-> ToString() de ClientePF:\n" + pf);
         System.out.println("\n-> ToString() de ClientePJ:\n" + pj);
@@ -113,9 +113,7 @@ public class AppMain {
                     
                     switch(opCad){
                         case CAD_CLIENTE:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo next
+                            Seguradora s = getSeguradora(entrada);
 
                             System.out.println("Insira o tipo de cliente (digite \"pf\" para pessoa física, \"pj\" para pessoa jurídica): ");
                             String tipo = entrada.nextLine();
@@ -178,9 +176,7 @@ public class AppMain {
                         }break;
 
                         case CAD_VEICULO:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            Seguradora s = getSeguradora(entrada);
 
                             System.out.println("Insira o cpf/cnpj do cliente ao qual será cadastrado o veículo:");
                             String cliente = entrada.nextLine();
@@ -203,8 +199,9 @@ public class AppMain {
                                 }
                             }else if(c instanceof ClientePJ){
                                 ClientePJ k = (ClientePJ)c; //faz o downcasting
+                                System.out.println("Inserção de dados do novo Veículo\nCódigo da frota: ");
                                 String code = entrada.nextLine();
-                                System.out.println("Inserção de dados do novo Veículo\nPlaca: ");
+                                System.out.println("Placa: ");
                                 String placa = entrada.nextLine();
                                 System.out.println("Marca: ");
                                 String marca = entrada.nextLine();
@@ -226,11 +223,9 @@ public class AppMain {
                         }break;
 
                         case CAD_FROTA:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            Seguradora s = getSeguradora(entrada);
                             
-                            System.out.println("Insira o cpf/cnpj do cliente ao qual será cadastrado o veículo:");
+                            System.out.println("Insira o cnpj do cliente ao qual será cadastrada a frota");
                             String cliente = entrada.nextLine();
                             Cliente c = s.encontrarCliente(cliente);
 
@@ -300,10 +295,8 @@ public class AppMain {
 
                     switch(opListar){
                         case LISTAR_CLIENTE:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
+                            Seguradora s = getSeguradora(entrada);
 
-                            entrada.nextLine(); //para nao pular o proximo
                             System.out.println("Insira o tipo de cliente (digite \"pf\" para pessoa física, \"pj\" para pessoa jurídica): ");
                             String tipo = entrada.nextLine();
                             
@@ -315,10 +308,8 @@ public class AppMain {
                         }break;
 
                         case LISTAR_SEGURO:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
+                            Seguradora s = getSeguradora(entrada);
 
-                            entrada.nextLine(); //para nao pular o proximo
                             System.out.println("Como deseja listar os Seguros? (Digite \"seguradora\" para listar Seguros por Seguradora, \"cliente\" para listar por Cliente)");
                             String tipo = entrada.nextLine();
                             switch(tipo){
@@ -344,10 +335,8 @@ public class AppMain {
                         }break;
 
                         case LISTAR_SINISTROS:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
+                            Seguradora s = getSeguradora(entrada);
 
-                            entrada.nextLine(); //para nao pular o proximo
                             System.out.println("Como deseja listar os Sinistros? (Digite \"seguradora\" para listar Seguros por Seguradora, \"cliente\" para listar por Cliente, e \"seguro\" para listar por Seguro)");
                             String tipo = entrada.nextLine();
 
@@ -386,9 +375,7 @@ public class AppMain {
                         }break;
 
                         case LISTAR_CONDUTORES:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            Seguradora s = getSeguradora(entrada);
 
                             System.out.println("Insira o ID do Seguro cujos Condutores deseja listar");
                             int id = entrada.nextInt();
@@ -402,9 +389,8 @@ public class AppMain {
                         }break;
 
                         case LISTAR_FROTAS:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            Seguradora s = getSeguradora(entrada);
+
                             System.out.println("Insira o cnpj do cliente cujas Frotas deseja listar");
 
                             String cliente = entrada.nextLine();
@@ -419,9 +405,7 @@ public class AppMain {
                         }break;
 
                         case LISTAR_VEICULOS:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            Seguradora s = getSeguradora(entrada);
 
                             System.out.println("Insira o cpf do cliente cujos Veículos deseja listar:");
                             String cliente = entrada.nextLine();
@@ -450,14 +434,13 @@ public class AppMain {
                 System.out.println("\n ----EXCLUIR----\nEscolha uma das opções digitando o número correspondente:\n"+
                                         "3.1 Excluir Cliente\n"+
                                         "3.2 Excluir Veículo\n"+
+                                        "3.3 Excluir Frota\n"+
                                         "3.4 Voltar");
                     MenuOperacoes opExcluir = MenuOperacoes.valor(entrada.nextDouble());
                     
                     switch(opExcluir){
                         case EXCLUIR_CLIENTE:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine(); //para nao pular o proximo
+                            Seguradora s = getSeguradora(entrada);
 
                             System.out.println("Insira o cpf/cnpj do cliente que deseja excluir:");
                             String cliente = entrada.nextLine();
@@ -470,9 +453,7 @@ public class AppMain {
                         }break;
 
                         case EXCLUIR_VEICULO:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine();//para nao pular o proximo
+                            Seguradora s = getSeguradora(entrada);
 
                             System.out.println("Insira o cpf/cnpj do cliente dono do veículo:");
                             String cliente = entrada.nextLine();
@@ -507,9 +488,8 @@ public class AppMain {
                         }break;
 
                         case EXCLUIR_FROTA:{
-                            imprimirIDSeguradoras();
-                            Seguradora s = seguradoras.get(entrada.nextInt());
-                            entrada.nextLine();//para nao pular o proximo
+                            Seguradora s = getSeguradora(entrada);
+
                             System.out.println("Insira o cnpj do cliente dono da frota:");
                             String cliente = entrada.nextLine();
                             Cliente c = s.encontrarCliente(cliente);
@@ -538,9 +518,7 @@ public class AppMain {
                 }break;
 
                 case GERAR_SEGURO:{
-                    imprimirIDSeguradoras();
-                    Seguradora s = seguradoras.get(entrada.nextInt());
-                    entrada.nextLine();//para nao pular o proximo
+                    Seguradora s = getSeguradora(entrada);
 
                     System.out.println("Insira o cpf/cnpj do cliente dono do veículo:");
                     String cliente = entrada.nextLine();
@@ -581,9 +559,7 @@ public class AppMain {
                 }break;
 
                 case CANCELAR_SEGURO:{
-                    imprimirIDSeguradoras();
-                    Seguradora s = seguradoras.get(entrada.nextInt());
-                    entrada.nextLine();//para nao pular o proximo
+                    Seguradora s = getSeguradora(entrada);
 
                     System.out.println("Insira o id do seguro a ser cancelado:");
                     int id = entrada.nextInt();
@@ -595,9 +571,7 @@ public class AppMain {
                 }break;
 
                 case AUTORIZAR_CONDUTOR:{
-                    imprimirIDSeguradoras();
-                    Seguradora s = seguradoras.get(entrada.nextInt());
-                    entrada.nextLine();//para nao pular o proximo
+                    Seguradora s = getSeguradora(entrada);
 
                     System.out.println("Insira o id do seguro:");
                     int id = entrada.nextInt();
@@ -627,9 +601,7 @@ public class AppMain {
                 }break;
 
                 case DESAUTORIZAR_CONDUTOR:{
-                    imprimirIDSeguradoras();
-                    Seguradora s = seguradoras.get(entrada.nextInt());
-                    entrada.nextLine();//para nao pular o proximo
+                    Seguradora s = getSeguradora(entrada);
 
                     System.out.println("Insira o id do seguro:");
                     int id = entrada.nextInt();
@@ -650,9 +622,7 @@ public class AppMain {
                 }break;
 
                 case GERAR_SINISTRO:{
-                    imprimirIDSeguradoras();
-                    Seguradora s = seguradoras.get(entrada.nextInt());
-                    entrada.nextLine();//para nao pular o proximo
+                    Seguradora s = getSeguradora(entrada);
 
                     System.out.println("Insira o id do seguro:");
                     int id = entrada.nextInt();
@@ -671,7 +641,7 @@ public class AppMain {
                         if(c != null && seguro.gerarSinistro(new Sinistro(LocalDate.parse(data), endereco, seguro, c))){
                             System.out.println("Sinistro gerado com sucesso");
                         }else{
-                            System.out.println("Falha em gerar sinistro, verifique os dados inseridos");
+                            System.out.println("Falha em gerar sinistro, verifique se o condutor está cadastrado no seguro.");
                         }
                     }else{
                         System.out.println("ID inválido");
@@ -679,8 +649,8 @@ public class AppMain {
                 }break;
 
                 case CALC_RECEITA:{
-                    imprimirIDSeguradoras();
-                    Seguradora s = seguradoras.get(entrada.nextInt());
+                    Seguradora s = getSeguradora(entrada);
+                    System.out.println("Balanço de seguros da seguradora " + s.getNome() + ":");
                     s.calcularReceita();
                 }break;
 
@@ -704,6 +674,23 @@ public class AppMain {
         }
     }
 
-    
+    /**
+     * Recebe um id digitado pelo usuário até ele digitar um id válido, e então retorna a Seguradora correspondente
+     * @param entrada (scanner para fazer a entrada de dados)
+     * @return Seguradora encontrada
+     */
+    public static Seguradora getSeguradora(Scanner entrada){
+        imprimirIDSeguradoras();
+
+        int idSeg = entrada.nextInt();
+        while(idSeg < 0 || idSeg >= seguradoras.size()){
+            System.out.println("Digite um id válido.");
+            idSeg = entrada.nextInt();
+        }
+        Seguradora s = seguradoras.get(idSeg);
+        
+        entrada.nextLine(); //para nao pular o proximo next
+        return s;
+    }
     
 }

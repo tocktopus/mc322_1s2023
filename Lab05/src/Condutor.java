@@ -33,6 +33,7 @@ public class Condutor {
                 + "\nData de nascimento: " + dataNasc + "\n"; //nao inclui a listaSinistros pra nao entrar em loop infinito
         return dados;
     }
+
     /**
      * Adiciona um sinistro na listaSinistros do condutor
      * @param sinistro (sinistro a ser adicionado)
@@ -42,6 +43,10 @@ public class Condutor {
         return listaSinistros.add(sinistro);
     }
 
+    /**
+     * Lista os Sinistros do Condutor
+     * @return arraylist contendo os Sinistros
+     */
     public ArrayList<Sinistro> listarSinistros() {
         return listaSinistros;
     }
