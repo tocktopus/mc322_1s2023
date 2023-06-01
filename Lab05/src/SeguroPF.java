@@ -47,6 +47,7 @@ public class SeguroPF extends Seguro{
             valor = CalcSeguro.VALOR_BASE.fator * CalcSeguro.FATOR_60_90.fator * (1.0 + 1.0/(cliente.qtdVeiculos()+2.0)) * 
                     (2.0 + seguradora.getSinistrosPorCliente(cliente.getCpf()).size()/10.0) * (5.0 + qtdSinistrosCondutores()/10.0); 
         }
+        valor = Math.round(valor*100.0)/100.0;
         this.valorMensal = valor;
         return valor;
     }

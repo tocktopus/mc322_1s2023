@@ -302,7 +302,7 @@ public class Seguradora {
      * Mostra o balanco de seguros de todos os clientes da Seguradora
      */
     public void calcularReceita(){
-
+        double receitaTotal = 0;
         for(Cliente c : listaClientes){
             double receita = 0;
             String cliente;
@@ -317,8 +317,11 @@ public class Seguradora {
                     receita += s.calcularValor(); 
                 }
             }
-            System.out.println("Cliente: " + cliente + " ; Balanço de seguros: " + Math.round(receita*100.0)/100.0); //arredonda receita p/ duas casas
+            receitaTotal += receita;
+            System.out.println("Cliente: " + cliente + " ; Balanço de seguros: " + receita); 
         }
+        System.out.println("Receita total da seguradora " + nome + ": " + receitaTotal);
+
     }   
 
     /**

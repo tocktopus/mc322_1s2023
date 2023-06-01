@@ -141,7 +141,7 @@ public class AppMain {
                                     if(s.cadastrarCliente(clientePF)){
                                         System.out.println("Cliente cadastrado com sucesso!");
                                     }else{
-                                        System.out.println("Falha no cadastro, verifique se os dados estão corretos");
+                                        System.out.println("Falha no cadastro. Verifique se os dados estão corretos.");
                                     }
                                 }break;
 
@@ -165,7 +165,7 @@ public class AppMain {
                                     if(s.cadastrarCliente(clientePJ)){
                                         System.out.println("Cliente cadastrado com sucesso!");
                                     }else{
-                                        System.out.println("Falha no cadastro, verifique se os dados estão corretos");
+                                        System.out.println("Falha no cadastro. Verifique se os dados estão corretos.");
                                     }
                                 }break;
 
@@ -303,7 +303,7 @@ public class AppMain {
                             if(tipo.equals("pf") || tipo.equals("pj")){
                                 System.out.println("Listando clientes "+tipo+" da Seguradora "+s.getNome() + ":\n" + s.listarClientes(tipo));
                             }else{
-                                System.out.println("Comando inválido");
+                                System.out.println("Comando inválido.");
                             }
                         }break;
 
@@ -329,7 +329,7 @@ public class AppMain {
                                 }break;
 
                                 default:
-                                    System.out.println("Comando inválido");
+                                    System.out.println("Comando inválido.");
                                 break;
                             }
                         }break;
@@ -369,7 +369,7 @@ public class AppMain {
                                 }break;
 
                                 default:
-                                    System.out.println("Comando inválido");
+                                    System.out.println("Comando inválido.");
                                 break;
                             }
                         }break;
@@ -399,7 +399,7 @@ public class AppMain {
                                 ClientePJ k = (ClientePJ)c;
                                 System.out.println("Listando Frotas do Cliente "+ cliente + ":\n" +k.getListaFrota());
                             }else{
-                                System.out.println("Cliente inválido");
+                                System.out.println("Cliente inválido.");
                             }
 
                         }break;
@@ -415,7 +415,7 @@ public class AppMain {
                                 ClientePF k = (ClientePF)c;
                                 System.out.println("Listando Veiculos do Cliente "+ cliente + ":\n" +k.getListaVeiculos());
                             }else{
-                                System.out.println("Cliente inválido");
+                                System.out.println("Cliente inválido.");
                             }
                         }break;
 
@@ -423,7 +423,7 @@ public class AppMain {
                             continue loop;
 
                         default:
-                            System.out.println("Operação inválida");
+                            System.out.println("Operação inválida.");
                         break;
 
                     }
@@ -445,10 +445,10 @@ public class AppMain {
                             System.out.println("Insira o cpf/cnpj do cliente que deseja excluir:");
                             String cliente = entrada.nextLine();
                             if(s.removerCliente(cliente)){
-                                System.out.println("Cliente removido com sucesso");
+                                System.out.println("Cliente removido com sucesso.");
                                 
                             }else{
-                                System.out.println("Cliente não encontrado");
+                                System.out.println("Cliente não encontrado.");
                             }
                         }break;
 
@@ -464,9 +464,9 @@ public class AppMain {
                                 System.out.println("Insira a placa do veículo a ser removido:");
                                 String placa = entrada.nextLine();
                                 if(k.removerVeiculo(placa)){
-                                    System.out.println("Veiculo excluido com sucesso");
+                                    System.out.println("Veiculo excluido com sucesso.");
                                 }else{
-                                    System.out.println("Veiculo não encontrado");
+                                    System.out.println("Veiculo não encontrado.");
                                 }
 
                             }else if(c instanceof ClientePJ){
@@ -478,12 +478,12 @@ public class AppMain {
                                 String placa = entrada.nextLine();
 
                                 if(k.atualizarFrota(code, placa)){
-                                    System.out.println("Veiculo excluido com sucesso");
+                                    System.out.println("Veiculo excluido com sucesso.");
                                 }else{
-                                    System.out.println("Veiculo ou frota não encontrados");
+                                    System.out.println("Veiculo ou frota não encontrados.");
                                 }
                             }else{
-                                System.out.println("Cliente inválido");  
+                                System.out.println("Cliente inválido.");  
                             }
                         }break;
 
@@ -498,12 +498,12 @@ public class AppMain {
                                 System.out.println("Insira o código da frota a ser removida:");
                                 String code = entrada.nextLine();
                                 if(k.atualizarFrota(code)){
-                                    System.out.println("Frota excluida com sucesso");
+                                    System.out.println("Frota excluida com sucesso.");
                                 }else{
-                                    System.out.println("Frota não encontrada");
+                                    System.out.println("Frota não encontrada.");
                                 }
                             }else{
-                                System.out.println("Cliente inválido");
+                                System.out.println("Cliente inválido.");
                             }
                         }break;
 
@@ -511,7 +511,7 @@ public class AppMain {
                             continue loop;
 
                         default:
-                            System.out.println("Operação inválida");
+                            System.out.println("Operação inválida.");
                         break;
 
                     }
@@ -531,10 +531,10 @@ public class AppMain {
                         String dataFim = entrada.nextLine();
                         System.out.println("Placa do veiculo: ");
                         Veiculo v = k.getVeiculoPorPlaca(entrada.nextLine());
-                        if(s.gerarSeguro(new SeguroPF(LocalDate.parse(dataIni), LocalDate.parse(dataFim), s, v, k))){
+                        if(v != null && s.gerarSeguro(new SeguroPF(LocalDate.parse(dataIni), LocalDate.parse(dataFim), s, v, k))){
                             System.out.println("Seguro gerado com sucesso.");
                         }else{
-                            System.out.println("Seguro não gerado. Verifique os dados.");
+                            System.out.println("Seguro não gerado. Verifique se o veículo está cadastrado.");
                         }
 
                     }else if(c instanceof ClientePJ){
@@ -549,10 +549,10 @@ public class AppMain {
                             System.out.println("Seguro gerado com sucesso.");
                         }
                         else{
-                            System.out.println("Falha em gerar seguro. Verifique os dados.");
+                            System.out.println("Falha em gerar seguro. Verifique se a frota está cadastrada.");
                         }
                     }else{
-                        System.out.println("Cliente inválido");
+                        System.out.println("Cliente inválido.");
                     }
 
 
@@ -593,9 +593,9 @@ public class AppMain {
                         String dataNasc = entrada.nextLine();
                         Condutor c = new Condutor(cpf, nome, tel, endereco, email, LocalDate.parse(dataNasc));
                         if(seguro.autorizarCondutor(c)){
-                            System.out.println("Condutor autorizado");
+                            System.out.println("Condutor autorizado.");
                         }else{
-                            System.out.println("Falha em autorizar condutor, verifique os dados inseridos");
+                            System.out.println("Falha em autorizar condutor. Verifique o cpf inserido.");
                         }
                     }
                 }break;
@@ -612,12 +612,12 @@ public class AppMain {
                         System.out.println("Insira o cpf do condutor a ser desautorizado: ");
                         String cpf = entrada.nextLine();
                         if(seguro.desautorizarCondutor(cpf)){
-                            System.out.println("Condutor desautorizado");
+                            System.out.println("Condutor desautorizado.");
                         }else{
-                            System.out.println("Condutor não encontrado");
+                            System.out.println("Condutor não encontrado.");
                         }
                     }else{
-                        System.out.println("ID inválido");
+                        System.out.println("ID inválido.");
                     }
                 }break;
 
@@ -639,12 +639,12 @@ public class AppMain {
                         Condutor c = seguro.getCondutorPorCPF(entrada.nextLine());
 
                         if(c != null && seguro.gerarSinistro(new Sinistro(LocalDate.parse(data), endereco, seguro, c))){
-                            System.out.println("Sinistro gerado com sucesso");
+                            System.out.println("Sinistro gerado com sucesso!");
                         }else{
-                            System.out.println("Falha em gerar sinistro, verifique se o condutor está cadastrado no seguro.");
+                            System.out.println("Falha em gerar sinistro. Verifique se o condutor está cadastrado no seguro.");
                         }
                     }else{
-                        System.out.println("ID inválido");
+                        System.out.println("ID inválido.");
                     }
                 }break;
 
@@ -659,15 +659,17 @@ public class AppMain {
                     break loop;
 
                 default:
-                    System.out.println("Operação inválida");
+                    System.out.println("Operação inválida.");
                 break;
             }
         }
         entrada.close();
     }
 
+    /**
+     * Imprime todas as seguradoras existentes e seus respectivos ids
+     */
     public static void imprimirIDSeguradoras(){
-        //Imprime todas as seguradoras existentes e seus respectivos ids
         System.out.println("Escolha uma das seguradoras digitando seu id:");
         for (int i=0; i < seguradoras.size(); i++){
             System.out.println("ID "+ i + " - "+ seguradoras.get(i).getNome());
@@ -684,7 +686,7 @@ public class AppMain {
 
         int idSeg = entrada.nextInt();
         while(idSeg < 0 || idSeg >= seguradoras.size()){
-            System.out.println("Digite um id válido.");
+            System.out.println("Digite um id válido:");
             idSeg = entrada.nextInt();
         }
         Seguradora s = seguradoras.get(idSeg);

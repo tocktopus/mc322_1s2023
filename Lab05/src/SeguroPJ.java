@@ -38,6 +38,7 @@ public class SeguroPJ extends Seguro{
         valor *= (1.0 + 1.0/(frota.getListaVeiculos().size() + 2.0)) * (1.0 + 1.0/(cliente.AnosPosFundacao() + 2.0));
         valor *= (2.0 + seguradora.getSinistrosPorCliente(cliente.getCnpj()).size()/10.0);
         valor *= (5.0 + qtdSinistrosCondutores() / 10.0);
+        valor = Math.round(valor*100.0)/100.0;
         this.valorMensal = valor;
         return valor;
     }
