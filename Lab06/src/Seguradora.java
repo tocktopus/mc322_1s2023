@@ -7,6 +7,7 @@
 
 import java.util.ArrayList;
 
+
 public class Seguradora {
     private final String cnpj;
     private String nome;
@@ -15,6 +16,18 @@ public class Seguradora {
     private String endereco;
     private ArrayList<Seguro> listaSeguros;
     private ArrayList<Cliente> listaClientes;
+    private ArrayList<Veiculo> listaVeiculos;
+    private ArrayList<Frota> listaFrotas;
+    private ArrayList<Condutor> listaCondutores;
+
+    private ArquivoClientePF arquivoClientePF;
+    private ArquivoClientePJ arquivoClientePJ;
+    private ArquivoCondutor arquivoCondutor;
+    private ArquivoFrota arquivoFrota;
+    private ArquivoVeiculo arquivoVeiculo;
+    private ArquivoSeguro arquivoSeguro;
+    private ArquivoSinistro arquivoSinistro;
+    
 
     // construtor
     public Seguradora(String cnpj, String nome, String telefone, String email, String endereco) {
@@ -25,6 +38,18 @@ public class Seguradora {
         this.endereco = endereco;
         listaSeguros = new ArrayList<Seguro>();
         listaClientes = new ArrayList<Cliente>();
+        listaVeiculos = new ArrayList<Veiculo>();
+        listaFrotas = new ArrayList<Frota>();
+        listaCondutores = new ArrayList<Condutor>();
+        
+        arquivoClientePF = new ArquivoClientePF(this);
+        arquivoClientePJ = new ArquivoClientePJ(this);
+        arquivoCondutor = new ArquivoCondutor(this);
+        arquivoFrota = new ArquivoFrota(this);
+        arquivoVeiculo = new ArquivoVeiculo(this);
+        arquivoSeguro = new ArquivoSeguro();
+        arquivoSinistro = new ArquivoSinistro();
+        
     }
 
     public String toString() { //nao incluindo listaSinistros e listaClientes pois os exibiremos em metodos separados
@@ -366,6 +391,45 @@ public class Seguradora {
         return null;
     }
 
+    public void lerDados(String tipoArq, String nome){
+        if(tipoArq.equals("veiculo")){
+            arquivoVeiculo.lerArquivo(nome);
+
+        }else if(tipoArq.equals("frota")){
+            arquivoFrota.lerArquivo(nome);
+
+        }else if(tipoArq.equals("clientepf")){
+            arquivoClientePF.lerArquivo(nome);
+            
+        }else if(tipoArq.equals("clientepj")){
+            arquivoClientePJ.lerArquivo(nome);
+            
+        }else if(tipoArq.equals("condutor")){
+            arquivoCondutor.lerArquivo(nome);
+        }else{
+            //sla
+        }
+        
+        
+    }
+    public Veiculo getVeiculo(String placa){
+        for(Veiculo v : listaVeiculos){
+            if(v.getPlaca().equals(placa)){
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public Frota getFrota(String code){
+        for(Frota f : listaFrotas){
+            if(f.getCode().equals(code)){
+                return f;
+            }
+        }
+        return null;
+    }
+
     // getters e setters
     public String getNome() {
         return nome;
@@ -402,5 +466,30 @@ public class Seguradora {
     public String getCnpj() {
         return cnpj;
     }
+    public ArrayList<Veiculo> getListaVeiculos() {
+        return listaVeiculos;
+    }
+
+    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos) {
+        this.listaVeiculos = listaVeiculos;
+    }
+
+    public ArrayList<Frota> getListaFrotas() {
+        return listaFrotas;
+    }
+
+    public void setListaFrotas(ArrayList<Frota> listaFrotas) {
+        this.listaFrotas = listaFrotas;
+    }
+
+    public ArrayList<Condutor> getListaCondutores() {
+        return listaCondutores;
+    }
+
+    public void setListaCondutores(ArrayList<Condutor> listaCondutores) {
+        this.listaCondutores = listaCondutores;
+    }
+
+    
 
 }
