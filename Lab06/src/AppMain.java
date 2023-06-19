@@ -51,7 +51,6 @@ public class AppMain {
         seg.getSeguroPorID(1).gerarSinistro(new Sinistro(LocalDate.parse("2023-05-24"), "Rua X", seg.getSeguroPorID(1), c2));
 
         criarMenu();
-        System.out.println(seg.listarSeguros());
 
         //gravando dados nos arquivos:
         seg.gravarDados("seguro", "src/arquivos/seguros.csv");

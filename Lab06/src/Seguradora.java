@@ -406,6 +406,7 @@ public class Seguradora {
             
         }else if(tipoArq.equals("condutor")){
             arquivoCondutor.lerArquivo(nome);
+
         }else{
             //sla
         }
@@ -415,8 +416,10 @@ public class Seguradora {
     public void gravarDados(String tipoArq, String nome){
         if(tipoArq.equals("seguro")){
             arquivoSeguro.gravarArquivo(nome);
+
         }else if(tipoArq.equals("sinistro")){
             arquivoSinistro.gravarArquivo(nome);
+            
         }else{
             //sla
         }

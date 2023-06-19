@@ -10,7 +10,7 @@ private Seguradora seguradora;
 
     public boolean gravarArquivo(String nome){
         try(OutputStreamWriter bufferOut = new OutputStreamWriter(new FileOutputStream(nome),"UTF-8")){
-            bufferOut.write("ID,DATA_INI,DATA_FIM,LISTA_SINISTROS,LISTA_CONDUTORES,VALOR_MENSAL\n");
+            bufferOut.write("ID,DATA,ENDERECO,CONDUTOR,SEGURO\n");
             for(Sinistro s : seguradora.listarSinistros()){
                 bufferOut.write(s.getId()+","+s.getData()+","+s.getEndereco()+","+s.getCondutor().getCpf()+","+s.getSeguro().getId()+"\n");
             }
