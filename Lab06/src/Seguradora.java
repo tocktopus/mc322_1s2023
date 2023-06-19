@@ -1,6 +1,6 @@
 /*
  * Seguradora.java
- * Ultima modificacao: 29/05/2023
+ * Ultima modificacao: 19/06/2023
  * Material usado na disciplina MC322
  * 
  */
@@ -47,8 +47,8 @@ public class Seguradora {
         arquivoCondutor = new ArquivoCondutor(this);
         arquivoFrota = new ArquivoFrota(this);
         arquivoVeiculo = new ArquivoVeiculo(this);
-        arquivoSeguro = new ArquivoSeguro();
-        arquivoSinistro = new ArquivoSinistro();
+        arquivoSeguro = new ArquivoSeguro(this);
+        arquivoSinistro = new ArquivoSinistro(this);
         
     }
 
@@ -410,7 +410,16 @@ public class Seguradora {
             //sla
         }
         
-        
+    }
+
+    public void gravarDados(String tipoArq, String nome){
+        if(tipoArq.equals("seguro")){
+            arquivoSeguro.gravarArquivo(nome);
+        }else if(tipoArq.equals("sinistro")){
+            arquivoSinistro.gravarArquivo(nome);
+        }else{
+            //sla
+        }
     }
     public Veiculo getVeiculo(String placa){
         for(Veiculo v : listaVeiculos){

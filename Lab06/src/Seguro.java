@@ -1,6 +1,6 @@
 /*
  * Seguro.java
- * Ultima modificacao: 21/05/2023
+ * Ultima modificacao: 19/06/2023
  * Material usado na disciplina MC322
  */
 
@@ -109,20 +109,26 @@ public abstract class Seguro {
     public String toStringListaSini(){
         String sinistros = "";
 
-        for(Sinistro s : listaSinistros){
-            sinistros += s.getId() + ",";
+        if(!listaSinistros.isEmpty()){
+            for(Sinistro s : listaSinistros){
+                sinistros += s.getId() + ",";
+            }
+            sinistros = sinistros.substring(0, sinistros.length()-1); //removendo a , do final
         }
-        sinistros = sinistros.substring(0, sinistros.length()-1); //removendo a , do final
+        
         return sinistros;
     }
 
     public String toStringListaCond(){
         String condutores = "";
 
-        for(Condutor c : listaCondutores){
-            condutores += c.getCpf() + ",";
+        if(!listaCondutores.isEmpty()){
+            for(Condutor c : listaCondutores){
+                condutores += c.getCpf() + ",";
+            }
+            condutores = condutores.substring(0, condutores.length()-1);
         }
-        condutores = condutores.substring(0, condutores.length()-1);
+        
         return condutores;
     }
 

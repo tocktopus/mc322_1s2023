@@ -36,7 +36,7 @@ public class ArquivoCondutor implements I_Arquivo{
         return true;
     }
 
-    public boolean gravarArquivo(){
+    public boolean gravarArquivo(String nome){
         return true;
     }
 }
