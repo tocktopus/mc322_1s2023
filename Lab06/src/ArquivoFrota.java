@@ -8,6 +8,7 @@ public class ArquivoFrota implements I_Arquivo{
     public ArquivoFrota(Seguradora seguradora){
         this.seguradora = seguradora;
     }
+    
     public boolean lerArquivo(String nome){
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/arquivos/frotas.csv"), "UTF-8"))) {

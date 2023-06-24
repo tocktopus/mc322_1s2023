@@ -114,9 +114,9 @@ public class AppMain {
                                         System.out.println("Educação: ");
                                         String educacao = entrada.nextLine();
                                         System.out.println("Data de nascimento (formato aaaa-mm-dd): ");
-                                        String dataNasc = entrada.nextLine();
+                                        LocalDate dataNasc = LocalDate.parse(entrada.nextLine());
 
-                                        ClientePF clientePF = new ClientePF(nome, cpf, telefone, endereco, email, genero, educacao, LocalDate.parse(dataNasc));
+                                        ClientePF clientePF = new ClientePF(nome, cpf, telefone, endereco, email, genero, educacao, dataNasc);
                                         
                                         if(s.cadastrarCliente(clientePF)){
                                             System.out.println("Cliente cadastrado com sucesso!");
@@ -137,11 +137,11 @@ public class AppMain {
                                         System.out.println("Email: ");
                                         String email = entrada.nextLine();
                                         System.out.println("Data de fundação (formato aaaa-mm-dd): ");
-                                        String dataFund = entrada.nextLine();
+                                        LocalDate dataFund = LocalDate.parse(entrada.nextLine());
                                         System.out.println("Quantidade de funcionários: ");
                                         int qtdFunc = entrada.nextInt();
 
-                                        ClientePJ clientePJ = new ClientePJ(nome, cnpj, telefone, endereco, email, LocalDate.parse(dataFund), qtdFunc);
+                                        ClientePJ clientePJ = new ClientePJ(nome, cnpj, telefone, endereco, email, dataFund, qtdFunc);
                                         if(s.cadastrarCliente(clientePJ)){
                                             System.out.println("Cliente cadastrado com sucesso!");
                                         }else{
@@ -506,12 +506,12 @@ public class AppMain {
                         if(c instanceof ClientePF){
                             ClientePF k = (ClientePF) c;
                             System.out.println("Inserção de dados do Seguro\nData de início (formato aaaa-mm-dd): ");
-                            String dataIni = entrada.nextLine();
+                            LocalDate dataIni = LocalDate.parse(entrada.nextLine());
                             System.out.println("Data de fim (formato aaaa-mm-dd): ");
-                            String dataFim = entrada.nextLine();
+                            LocalDate dataFim = LocalDate.parse(entrada.nextLine());
                             System.out.println("Placa do veiculo: ");
                             Veiculo v = k.getVeiculoPorPlaca(entrada.nextLine());
-                            if(v != null && s.gerarSeguro(new SeguroPF(LocalDate.parse(dataIni), LocalDate.parse(dataFim), s, v, k))){
+                            if(v != null && s.gerarSeguro(new SeguroPF(dataIni, dataFim, s, v, k))){
                                 System.out.println("Seguro gerado com sucesso.");
                             }else{
                                 System.out.println("Seguro não gerado. Verifique se o veículo está cadastrado.");
@@ -520,12 +520,12 @@ public class AppMain {
                         }else if(c instanceof ClientePJ){
                             ClientePJ k = (ClientePJ) c;
                             System.out.println("Inserção de dados do Seguro\nData de início (formato aaaa-mm-dd): ");
-                            String dataIni = entrada.nextLine();
+                            LocalDate dataIni = LocalDate.parse(entrada.nextLine());
                             System.out.println("Data de fim (formato aaaa-mm-dd): ");
-                            String dataFim = entrada.nextLine();
+                            LocalDate dataFim = LocalDate.parse(entrada.nextLine());
                             System.out.println("Código da Frota: ");
                             Frota f = k.getFrotaPorCode(entrada.nextLine());
-                            if(f != null && s.gerarSeguro(new SeguroPJ(LocalDate.parse(dataIni), LocalDate.parse(dataFim), s, f, k))){
+                            if(f != null && s.gerarSeguro(new SeguroPJ(dataIni, dataFim, s, f, k))){
                                 System.out.println("Seguro gerado com sucesso.");
                             }
                             else{
@@ -559,10 +559,10 @@ public class AppMain {
 
                         Seguro seguro = s.getSeguroPorID(id);
                         if(seguro != null){
-                            System.out.println("Inserção de dados do Condutor\nNome: ");
-                            String nome = entrada.nextLine();
-                            System.out.println("CPF: ");
+                            System.out.println("Inserção de dados do Condutor\nCpf: ");
                             String cpf = entrada.nextLine();
+                            System.out.println("Nome: ");
+                            String nome = entrada.nextLine();
                             System.out.println("Telefone: ");
                             String tel = entrada.nextLine();
                             System.out.println("Endereco: ");
@@ -570,8 +570,8 @@ public class AppMain {
                             System.out.println("Email: ");
                             String email = entrada.nextLine();
                             System.out.println("Data de nascimento (formato aaaa-mm-dd): ");
-                            String dataNasc = entrada.nextLine();
-                            Condutor c = new Condutor(cpf, nome, tel, endereco, email, LocalDate.parse(dataNasc));
+                            LocalDate dataNasc = LocalDate.parse(entrada.nextLine());
+                            Condutor c = new Condutor(cpf, nome, tel, endereco, email, dataNasc);
                             if(seguro.autorizarCondutor(c)){
                                 System.out.println("Condutor autorizado.");
                             }else{
@@ -611,14 +611,14 @@ public class AppMain {
                         Seguro seguro = s.getSeguroPorID(id);
                         if(seguro != null){
                             System.out.println("Data do sinistro (formato aaaa-mm-dd): ");
-                            String data = entrada.nextLine();
+                            LocalDate data = LocalDate.parse(entrada.nextLine());
                             System.out.println("Endereco: ");
                             String endereco = entrada.nextLine();
 
                             System.out.println("CPF do condutor: ");
                             Condutor c = seguro.getCondutorPorCPF(entrada.nextLine());
 
-                            if(c != null && seguro.gerarSinistro(new Sinistro(LocalDate.parse(data), endereco, seguro, c))){
+                            if(c != null && seguro.gerarSinistro(new Sinistro(data, endereco, seguro, c))){
                                 System.out.println("Sinistro gerado com sucesso!");
                             }else{
                                 System.out.println("Falha em gerar sinistro. Verifique se o condutor está cadastrado no seguro.");
@@ -648,6 +648,10 @@ public class AppMain {
                 break loop;
             }catch(DateTimeParseException ex){
                 System.out.println("Formato de data inválido.");
+                criarMenu();
+                break loop;
+            }catch(Exception e){
+                System.out.println("Ocorreu um erro: " + e);
                 criarMenu();
                 break loop;
             }

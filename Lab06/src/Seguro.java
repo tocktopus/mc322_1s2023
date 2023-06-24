@@ -106,6 +106,10 @@ public abstract class Seguro {
         return null;
     }
 
+    /**
+     * Transforma os ids de todos os Sinistros do Seguro em uma única String
+     * @return String contendo os ids dos Sinistros separados por vírgula
+     */
     public String toStringListaSini(){
         String sinistros = "";
 
@@ -119,6 +123,10 @@ public abstract class Seguro {
         return sinistros;
     }
 
+    /**
+     * Transforma os cpfs de todos os Condutores do Seguro em uma única String
+     * @return String contendo os cpfs dos Condutores separados por vírgula
+     */
     public String toStringListaCond(){
         String condutores = "";
 

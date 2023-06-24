@@ -391,6 +391,11 @@ public class Seguradora {
         return null;
     }
 
+    /**
+     * Recebe o tipo e nome do arquivo de onde os dados serão lidos, e lê os dados desse arquivo com o objeto arquivo correspondente.
+     * @param tipoArq (string indicando o tipo de arquivo a ser lido)
+     * @param nome (nome do arquivo relativo ao projeto)
+     */
     public void lerDados(String tipoArq, String nome){
         if(tipoArq.equals("veiculo")){
             arquivoVeiculo.lerArquivo(nome);
@@ -407,12 +412,16 @@ public class Seguradora {
         }else if(tipoArq.equals("condutor")){
             arquivoCondutor.lerArquivo(nome);
 
-        }else{
-            //sla
         }
+        //Obs. o método não realiza a leitura de dados de Seguros e Sinistros pois não são atividades solicitadas
         
     }
 
+    /**
+     * Recebe o tipo e nome do arquivo onde os dados serão gravados, e armazena os dados correspondentes.
+     * @param tipoArq (string indicando o tipo de arquivo a ser lido)
+     * @param nome (nome do arquivo relativo ao projeto)
+     */
     public void gravarDados(String tipoArq, String nome){
         if(tipoArq.equals("seguro")){
             arquivoSeguro.gravarArquivo(nome);
@@ -420,10 +429,15 @@ public class Seguradora {
         }else if(tipoArq.equals("sinistro")){
             arquivoSinistro.gravarArquivo(nome);
             
-        }else{
-            //sla
         }
+        //Obs. o método não realiza a gravação de dados de Clientes, Veículos, Frotas, etc, pois não são atividades solicitadas
     }
+
+    /**
+     * Retorna um veículo da listaVeiculos da seguradora baseado em sua placa.
+     * @param placa (placa do veículo buscado)
+     * @return Veiculo buscado se o encontrar, null do contrário
+     */
     public Veiculo getVeiculo(String placa){
         for(Veiculo v : listaVeiculos){
             if(v.getPlaca().equals(placa)){
@@ -433,6 +447,11 @@ public class Seguradora {
         return null;
     }
 
+    /**
+     * Retorna uma frota da listaFrotas da seguradora baseado em seu código.
+     * @param placa (placa do frota buscada)
+     * @return Frota buscada se a encontrar, null do contrário
+     */
     public Frota getFrota(String code){
         for(Frota f : listaFrotas){
             if(f.getCode().equals(code)){
