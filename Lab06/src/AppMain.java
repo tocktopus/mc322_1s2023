@@ -1,6 +1,6 @@
 /*
  * Seguro.java
- * Ultima modificacao: 19/06/2023
+ * Ultima modificacao: 23/06/2023
  * Material usado na disciplina MC322
  * 
  * to-do: implementar interface arquivo e tratar exceptions
@@ -38,17 +38,24 @@ public class AppMain {
 
         Condutor c1 = seg.getListaCondutores().get(0);
         Condutor c2 = seg.getListaCondutores().get(1);
+        Condutor c3 = seg.getListaCondutores().get(2);
+        Condutor c4 = seg.getListaCondutores().get(3);
 
+        //gerando seguros para dois dos clientes
         seg.gerarSeguro(new SeguroPF(LocalDate.parse("2020-02-02"), LocalDate.parse("2020-08-02"), seg, v1, pf1));
         seg.gerarSeguro(new SeguroPJ(LocalDate.parse("2020-02-02"), LocalDate.parse("2020-08-02"), seg, f1, pj1));
         
         //autorizando condutores para cada um dos seguros
         seg.getSeguroPorID(0).autorizarCondutor(c1);
-        seg.getSeguroPorID(1).autorizarCondutor(c2);
+        seg.getSeguroPorID(0).autorizarCondutor(c2);
+        seg.getSeguroPorID(1).autorizarCondutor(c3);
+        seg.getSeguroPorID(1).autorizarCondutor(c4);
 
         //gerando sinistros para cada um dos seguros
         seg.getSeguroPorID(0).gerarSinistro(new Sinistro(LocalDate.parse("2023-05-24"), "Centro", seg.getSeguroPorID(0), c1));
-        seg.getSeguroPorID(1).gerarSinistro(new Sinistro(LocalDate.parse("2023-05-24"), "Rua X", seg.getSeguroPorID(1), c2));
+        seg.getSeguroPorID(0).gerarSinistro(new Sinistro(LocalDate.parse("2023-05-24"), "Rua X", seg.getSeguroPorID(0), c2));
+        seg.getSeguroPorID(1).gerarSinistro(new Sinistro(LocalDate.parse("2023-05-30"), "Rua Y", seg.getSeguroPorID(1), c3));
+        seg.getSeguroPorID(1).gerarSinistro(new Sinistro(LocalDate.parse("2023-05-24"), "Avenida C", seg.getSeguroPorID(1), c4));
 
         criarMenu();
 
